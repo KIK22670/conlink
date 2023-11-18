@@ -1,9 +1,15 @@
 const express = require('express');
-const app = express();
-const port = process.env.PORT || 3001; // Ändere die Portnummer auf 3001 oder eine andere, die nicht verwendet wird
+const path = require('path');
 
+const app = express();
+const port = process.env.PORT || 3001;
+
+// Statische Dateien im "public"-Ordner verfügbar machen
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Routen-Handler für die Wurzel-URL
 app.get('/', (req, res) => {
-    res.send('Hello World!');
+    res.sendFile(path.join(__dirname, 'public', 'home.html'));
 });
 
 app.listen(port, () => {
