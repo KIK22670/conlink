@@ -4328,8 +4328,8 @@ fieldset:disabled .btn {
 .nav-link {
     display: block;
     padding: .5rem 1rem;
-    color: #13C5DD;
-    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out
+    color: white;
+
 }
 
 @media (prefers-reduced-motion: reduce) {
