@@ -17,10 +17,92 @@
     <link rel="stylesheet" href="css/doctorsearch.css">
     <link rel="stylesheet" href="css/stylehome.css">
 
-    <!--hallo ich bjin irina und nerivhg-->
+   <!-- ... (previous code) ... -->
 
+   <style>
+    .content {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 0%;
+    }
+
+
+
+    .navbar .navbar-nav .nav-link .bi,
+    .navbar .left-navbar .navbar-nav .nav-link .bi {
+        color: #fff !important;
+        font-size: x-large;
+    }
+
+    .dropdown-btn, .search-btn {
+        background-color: #1B9AAA;
+        height: 50px;
+        margin-left: 75px; 
+        width: 300px; 
+    }
+
+    .dropdown-menu, .search-group {
+        background-color: #1B9AAA;
+    }
+
+    .dropdown-menu a {
+        color: #fff;
+        font-size: medium;
+    }
+
+    .dropdown-menu a:hover {
+        background-color: #1B9AAA;
+    }
+
+    #searchInput {
+        border-color: #1B9AAA;
+        height: 50px;
+        flex-grow: 1;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px 0 0 5px;
+    }
+
+    .search-group {
+        display: flex;
+        align-items: center;
+        border-radius: 5px;
+    }
+
+    .search-btn {
+        border: none;
+        padding: 10px 15px;
+        border-radius: 0 5px 5px 0;
+        color: white;
+        cursor: pointer;
+    }
+
+    #searchInput:focus, .search-btn:focus {
+        outline: none;
+    }
+
+    .left-content h1 {
+        color: #1B9AAA;
+        font-size: 3em;
+        margin-bottom: 20px;
+        font-style: italic;
+    }
+
+    .dropdown {
+        margin-right: 20px; 
+    }
+
+    #fachrichtungDropdown, #ortPlzDropdown {
+        margin-left: 0;
+        width: 350px; 
+    }
+</style>
+<!-- ... (remaining code) ... -->
+
+    
     <!-- Ende Header -->
-
 </head>
 
 <body>
@@ -47,42 +129,67 @@
         </div>
     </div>
     <!-- Ende Navbar -->
+    
 
     <!-- Linke Navbar -->
     <nav class="navbar left-navbar">
         <div class="container">
             <div class="navbar-nav">
-                <i class="bi bi-house-door"></i><a href="home.html" class="nav-item nav-link active"
-                    class="nav-item-white">Übersicht</a>
-                <i class="bi bi-person"></i><a href="doctorsearch.html" class="nav-item nav-link"
-                    class="nav-item-white">Ärztesuche</a>
-                <i class="bi bi-calendar"></i><a href="service.html" class="nav-item nav-link"
-                    class="nav-item-white">Termine</a>
+                <a href="home.html" class="nav-item nav-link active">
+                    <i class="bi bi-house-door"></i> Übersicht
+                </a>
+                <a href="doctorsearch.html" class="nav-item nav-link">
+                    <i class="bi bi-person"></i> Ärztesuche
+                </a>
+                <a href="service.html" class="nav-item nav-link">
+                    <i class="bi bi-calendar"></i> Termine
+                </a>
             </div>
         </div>
     </nav>
     <!-- Ende linke Navbar -->
 
-    <!-- Ärztesuche Content -->
     <div class="content">
-        <!-- Hier kommt der Inhalt deiner Ärztesuche-Seite -->
-        <h1>Ärztesuche</h1>
-        <!-- Weitere Inhalte hier einfügen -->
+        <div class="left-content">
+            <h1>Ärztesuche</h1>
+        </div>
+
+        <div class="content">
+            <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle dropdown-btn" type="button" id="fachrichtungDropdown"
+                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="bi bi-person"></i> Fachrichtung
+                </button>
+                <div class="dropdown-menu" aria-labelledby="fachrichtungDropdown">
+                    <!-- Dynamic data will be fetched from the database and populated here -->
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle dropdown-btn" type="button" id="ortPlzDropdown"
+                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="bi bi-geo-alt"></i> Ort, PLZ
+                </button>
+                <div class="dropdown-menu" aria-labelledby="ortPlzDropdown">
+                    <!-- Dynamic data will be fetched from the database and populated here -->
+                </div>
+            </div>
+
+            <div class="search-group">
+                <input type="text" class="form-control" placeholder="Suche nach Namen" id="searchInput">
+                <button type="button" class="search-btn" onclick="searchNames()">
+                    <i class="bi bi-search"></i> Suche
+                </button>
+            </div>
+        </div>
     </div>
-    <!-- Ende Ärztesuche Content -->
-
-
-
-
-
 
     <!-- Footer aus der Home-Seite --
     <div class="container-fluid bg-dark text-light border-top border-secondary py-4">
         <div class="container">
             <div class="row g-5">
                 <div class="col-md-6 text-center text-md-start">
-                    <p class="mb-md-0">&copy; <a class="text-primary" href="#">ConLink</a>. All Rights Reserved.
-                    </p>
+                    <p class="mb-md-0">&copy; <a class="text-primary" href="#">ConLink</a>. All Rights Reserved.</p>
                 </div>
                 <div class="col-md-6 text-center text-md-end">
                     <a href="" style="margin-right: 10px;">Impressum</a>
@@ -91,7 +198,7 @@
             </div>
         </div>
     </div>
-    -- Ende Footer -->
+    !-- Ende Footer -->
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
