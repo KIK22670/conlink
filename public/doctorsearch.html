@@ -17,78 +17,84 @@
     <link rel="stylesheet" href="css/doctorsearch.css">
     <link rel="stylesheet" href="css/stylehome.css">
 
-   <!-- ... (previous code) ... -->
+    <!-- ... (previous code) ... -->
 
-   <style>
-    .content {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        margin-top: 0%;
-    }
+    <style>
+        .content {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 0%;
+        }
 
 
 
-    .dropdown-btn, .search-btn {
-        background-color: #1B9AAA;
-        height: 50px;
-        margin-left: 75px; 
-        width: 50px; 
-    }
+        .dropdown-btn,
+        .search-btn {
+            background-color: #1B9AAA;
+            height: 35px;
+            width: 40px;
+        }
 
-    .dropdown-menu, .search-group {
-        background-color: #1B9AAA;
-    }
+        .dropdown-menu,
+        .search-group {
+            background-color: #1B9AAA;
+        }
 
-   
 
-    #searchInput {
-        border-color: #1B9AAA;
-        height: 50px;
-        flex-grow: 1;
-        border: none;
-        padding: 10px 15px;
-        border-radius: 5px 0 0 5px;
-    }
 
-    .search-group {
-        display: flex;
-        align-items: center;
-        border-radius: 5px;
-    }
+        #searchInput {
+            border-color: #1B9AAA;
+            height: 35px;
+            flex-grow: 1;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px 0 0 5px;
+            margin-right: 0;
+        }
 
-    .search-btn {
-        border: none;
-        padding: 10px 15px;
-        border-radius: 0 5px 5px 0;
-        color: white;
-        cursor: pointer;
-    }
+        .search-group {
+            display: flex;
+            align-items: center;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
 
-    #searchInput:focus, .search-btn:focus {
-        outline: none;
-    }
+        .search-btn {
+            border: none;
+            padding: 10px 15px;
+            border-radius: 0 5px 5px 0;
+            color: white;
+            cursor: pointer;
+            margin-left: 0;
+        }
 
-    .left-content h1 {
-        color: #1B9AAA;
-        font-size: large;
-        margin-bottom: 20px;
-        font-style: italic;
-    }
+        #searchInput:focus,
+        .search-btn:focus {
+            outline: none;
+        }
 
-    .dropdown {
-        margin-right: 20px; 
-    }
+        .left-content h1 {
+            color: #1B9AAA;
+            font-size: xlarge;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
 
-    #fachrichtungDropdown, #ortPlzDropdown {
-        margin-left: 0;
-        width: 350px; 
-    }
-</style>
-<!-- ... (remaining code) ... -->
+        .dropdown {
+            margin-right: 5px;
+        }
 
-    
+        #fachrichtungDropdown,
+        #ortPlzDropdown {
+            margin-left: 0;
+            width: 200px;
+        }
+    </style>
+    <!-- ... (remaining code) ... -->
+
+
     <!-- Ende Header -->
 </head>
 
@@ -106,17 +112,18 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0">
-                        <a href="home.html" class="nav-item nav-link active">Home</a>
-                        <a href="about.html" class="nav-item nav-link">About</a>
-                        <a href="service.html" class="nav-item nav-link">Service</a>
-                        <a href="login.html" class="nav-item nav-link">Login</a>
+                        <a href="home.html" class="nav-item nav-link">Home</a>
+                        <a href="about.html" class="nav-item nav-link">About Us</a>
+                        <a href="#" class="nav-item nav-link">
+                            <i class="bi bi-person"></i> <!-- Hier das Benutzer-Icon -->
+                        </a>
                     </div>
                 </div>
             </nav>
         </div>
     </div>
     <!-- Ende Navbar -->
-    
+
 
     <!-- Linke Navbar -->
     <nav class="navbar left-navbar">
@@ -128,7 +135,7 @@
                 <a href="doctorsearch.html" class="nav-item nav-link">
                     <i class="bi bi-person"></i> Ärztesuche
                 </a>
-                <a href="service.html" class="nav-item nav-link">
+                <a href="appoitmentoverview.html" class="nav-item nav-link">
                     <i class="bi bi-calendar"></i> Termine
                 </a>
             </div>
@@ -143,29 +150,34 @@
 
         <div class="content">
             <div class="dropdown">
-                <button class="btn btn-primary dropdown-toggle dropdown-btn" type="button" id="fachrichtungDropdown"
-                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="bi bi-person"></i> Fachrichtung
-                </button>
-                <div class="dropdown-menu" aria-labelledby="fachrichtungDropdown">
-                    <!-- Dynamic data will be fetched from the database and populated here -->
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text bg-primary text-light"><i class="bi bi-heart"></i></span>
+                        <!-- Hier das Medizin-Icon -->
+                    </div>
+                    <input type="text" class="form-control" id="fachrichtungInput" placeholder="Fachrichtung">
+                </div>
+                <div class="dropdown-menu" aria-labelledby="fachrichtungInput" id="fachrichtungDropdown">
+                    <!-- Dynamic data will be fetched from the server and populated here -->
                 </div>
             </div>
 
+
             <div class="dropdown">
-                <button class="btn btn-primary dropdown-toggle dropdown-btn" type="button" id="ortPlzDropdown"
-                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="bi bi-geo-alt"></i> Ort, PLZ
-                </button>
-                <div class="dropdown-menu" aria-labelledby="ortPlzDropdown">
-                    <!-- Dynamic data will be fetched from the database and populated here -->
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text bg-primary text-light"><i class="bi bi-geo-alt"></i></span>
+                    </div>
+                    <input type="text" class="form-control" id="ortPlzInput" placeholder="Ort, PLZ">
+                </div>
+                <div class="dropdown-menu" aria-labelledby="ortPlzInput" id="ortPlzDropdown">
+                    <!-- Dynamic data will be fetched from the server and populated here -->
                 </div>
             </div>
 
             <div class="search-group">
-                <input type="text" class="form-control" placeholder="Suche nach Namen" id="searchInput">
-                <button type="button" class="search-btn" onclick="searchNames()">
-                    <i class="bi bi-search"></i> Suche
+                <button type="button" class="search-btn btn btn-primary" onclick="searchNames()">
+                    <i class="bi bi-search"></i>
                 </button>
             </div>
         </div>

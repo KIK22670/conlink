@@ -20,6 +20,7 @@
       position: fixed;
       top: 0;
       left: 0;
+      color: #1D2A4D;
       background-color: #F5F1E3;
       padding-top: 20px;
       border-right: 1px solid #dee2e6;
@@ -53,8 +54,8 @@
   .left-navbar .navbar-nav a i {
       margin-right: 8px;
       /* Abstand zwischen Icon und Text anpassen */
-      font-size: 18px;
+      font-size: 20px;
       /* Größe des Icons anpassen */
-      color: #007bff;
+      color: white;
       /* Farbe des Icons anpassen */
   }

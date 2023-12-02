@@ -3082,7 +3082,7 @@ fieldset:disabled .btn {
 
 .btn-primary {
     color: #000;
-    background-color: #13C5DD;
+    background-color: #1B9AAA;
     border-color: #13C5DD
 }
 
@@ -4328,7 +4328,7 @@ fieldset:disabled .btn {
 .nav-link {
     display: block;
     padding: .5rem 1rem;
-    color: white;
+    color: whitesmoke;
 
 }
 
@@ -4340,7 +4340,8 @@ fieldset:disabled .btn {
 
 .nav-link:hover,
 .nav-link:focus {
-    color: #0f9eb1
+    color: whitesmoke;
+
 }
 
 .nav-link.disabled {
@@ -4370,13 +4371,13 @@ fieldset:disabled .btn {
 .nav-tabs .nav-link.disabled {
     color: #6c757d;
     background-color: transparent;
-    border-color: transparent
+    border-color: transparent;
+    background-color: #DDDBCB;
 }
 
 .nav-tabs .nav-link.active,
 .nav-tabs .nav-item.show .nav-link {
     color: #495057;
-    background-color: #fff;
     border-color: #dee2e6 #dee2e6 #fff
 }
 
@@ -8190,7 +8191,7 @@ fieldset:disabled .btn {
 }
 
 .bg-primary {
-    background-color: #13C5DD !important
+    background-color: #1B9AAA !important
 }
 
 .bg-secondary {
