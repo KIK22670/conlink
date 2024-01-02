@@ -8,51 +8,19 @@
     <title>FAQ</title>
 
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      
+        .accordion-body {
+            transition: 0.3s ease-out;
 
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        h2 {
-            color: #333;
-        }
-
-        p {
-            color: #666;
         }
 
         .accordion-item {
+
             margin-bottom: 30px;
         }
 
-        .accordion-button {
-            background-color: #f8f9fa;
-            color: #333;
-            width: 100%;
-            text-align: left;
-            padding: 10px;
-            cursor: pointer;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-
-        .accordion-body {
-            background-color: #fff;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-top: 0;
-            border-radius: 0 0 5px 5px;
-        }
     </style>
 
-    
 
     <!-- Home-Seite Header -->
     <!-- Hier werden die Style- und Icon-Bibliotheken von der Home-Seite wiederverwendet -->
@@ -82,9 +50,9 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0">
-                        <a href="home.html" class="nav-item nav-link active">Home</a>
+                        <a href="home.html" class="nav-item nav-link ">Home</a>
                         <a href="about.html" class="nav-item nav-link">About Us</a>
-                        <a href="faq.html" class="nav-item nav-link">FAQ</a>
+                        <a href="faq.html" class="nav-item nav-link active">FAQ</a>
                         <a href="login.html" class="nav-item nav-link">Login</a>
                     </div>
                 </div>
@@ -117,6 +85,73 @@
                 Arzt Ihrer Wahl, und folgen Sie den angegebenen Schritten, um einen Termin zu buchen.
             </div>
         </div>
+
+        <!-- Frage 3 -->
+        <div class="accordion-item">
+            <button class="accordion-button" onclick="toggleCollapse('collapse3')">
+                Frage 3: Gibt es Kosten für die Nutzung von ConLink?
+            </button>
+            <div id="collapse3" class="accordion-body">
+                Die Nutzung von ConLink ist für Patienten kostenlos. Es fallen keine Gebühren für die Terminreservierung an.
+            </div>
+        </div>
+
+
+        <!-- Frage 4 -->
+        <div class="accordion-item">
+            <button class="accordion-button" onclick="toggleCollapse('collapse4')">
+                Frage 4: Kann ich Termine auch telefonisch vereinbaren?
+            </button>
+            <div id="collapse4" class="accordion-body">
+                Nein, die Terminvereinbarung erfolgt ausschließlich über unsere Online-Plattform. Dies ermöglicht eine effiziente
+                und transparente Terminplanung.
+            </div>
+        </div>
+
+        <!-- Frage 5 -->
+        <div class="accordion-item">
+            <button class="accordion-button" onclick="toggleCollapse('collapse5')">
+                Frage 5: Wie ändere ich meine persönlichen Informationen in meinem ConLink-Konto?
+            </button>
+            <div id="collapse5" class="accordion-body">
+                Um Ihre persönlichen Informationen zu ändern, loggen Sie sich in Ihr ConLink-Konto ein und gehen Sie zu den
+                Kontoeinstellungen. Dort können Sie Ihre Daten aktualisieren.
+            </div>
+        </div>
+
+        <!-- Frage 6 -->
+        <div class="accordion-item">
+            <button class="accordion-button" onclick="toggleCollapse('collapse6')">
+                Frage 6: Welche Ärzte sind auf ConLink verfügbar?
+            </button>
+            <div id="collapse6" class="accordion-body">
+                ConLink bietet eine Vielzahl von Wahlärzten in verschiedenen Fachbereichen. Sie können nach Ärzten in Ihrer
+                Nähe suchen und Termine vereinbaren.
+            </div>
+        </div>
+
+        <!-- Frage 7 -->
+        <div class="accordion-item">
+            <button class="accordion-button" onclick="toggleCollapse('collapse7')">
+                Frage 7: Wie erhalte ich Benachrichtigungen zu meinen Terminen?
+            </button>
+            <div id="collapse7" class="accordion-body">
+                Sie erhalten automatische Benachrichtigungen per E-Mail oder SMS zu Ihren bevorstehenden Terminen. Stellen Sie
+                sicher, dass Ihre Kontaktdaten aktuell sind.
+            </div>
+        </div>
+
+        <!-- Frage 8 -->
+        <div class="accordion-item">
+            <button class="accordion-button" onclick="toggleCollapse('collapse8')">
+                Frage 8: Wie sicher sind meine persönlichen Daten auf ConLink?
+            </button>
+            <div id="collapse8" class="accordion-body">
+                Die Sicherheit Ihrer persönlichen Daten hat für uns höchste Priorität. ConLink verwendet moderne Verschlüsselung
+                und Sicherheitsmaßnahmen, um Ihre Informationen zu schützen.
+            </div>
+        </div>
+
     </div>
 
     <script>
