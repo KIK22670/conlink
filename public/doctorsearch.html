@@ -16,6 +16,13 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/doctorsearch.css">
     <link rel="stylesheet" href="css/stylehome.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-df5A9UmivzC/2sS62+RKTJ3RsKOqkgYzGROOOOf7tCZ9j3qDViFqMyF0gy5dzCp" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script> 
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/common/main.css" integrity="sha384-GLhlTQ8iFZn5O3RI0p0+PzL46Pph+6cVp/rZI463L7D5F5hG5tr5QF1BnxRTt" crossorigin="anonymous">
 
     <!-- ... (previous code) ... -->
 
@@ -91,6 +98,54 @@
             margin-left: 0;
             width: 200px;
         }
+
+        .container-box {
+      display: flex;
+      border: 1px solid #000000;
+      margin: 0 auto;
+      background-color: #ffffffd0;
+      border-radius: 10px;
+      width: 60%;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+    }
+
+    /* Styling für die linke Seite */
+    .info-side {
+      padding: 20px;
+      flex: 1; /* Nimmt den verfügbaren Platz ein */
+      border-right: 1px solid #ccc;
+    }
+
+    /* Styling für die rechte Seite */
+    .calendar-side {
+      padding: 20px;
+      flex: 1; /* Nimmt den verfügbaren Platz ein */
+    }
+
+    .icon {
+        margin-right: 8px; /* Abstand zwischen Symbol und Text anpassen */
+    }
+
+    h2 {
+        color: #1B9AAA;
+        font-weight: bold;
+        font-style: italic;
+        text-align: center;
+        font-size: 20px
+    }
+
+    h3 {
+        font-size: 17px;
+         text-align: center;
+    }
+
+    /* Styling für FullCalendar */
+    #calendar {
+        max-width: 100%;
+        margin: 20px 0;
+    }
+        
     </style>
     <!-- ... (remaining code) ... -->
 
@@ -183,6 +238,267 @@
             </div>
         </div>
     </div>
+
+    <!-- Arzt nr 1 -->
+
+    <div class="container-box">
+  
+        <!-- Linke Seite für Informationen -->
+        <div class="info-side">
+          <h2>Dr. Erwald Heberer</h2>
+          <h3>Facharzt für Allgemeinmedizin</h3>
+          <p><span class="icon"><i class="fas fa-map-marker-alt"></i></span>1050 Wien</p>
+          <p><span class="icon"><i class="fas fa-phone"></i></span>01 8374623</p>
+          <p><span class="icon"><i class="fas fa-mobile-alt"></i></span>+43 677 12863712</p>
+          <p><span class="icon"><i class="fas fa-envelope"></i></span>erwald.heberer@example.com</p>
+          <p><span class="icon"><i class="fas fa-globe"></i></span>www.doc05.at</p>
+          <p><span class="icon"><i class="fas fa-comments"></i></span>Deutsch</p>
+        </div>
+      
+        <!-- Rechte Seite für den Kalender -->
+        <div class="calendar-side">
+            <h2>Kalender</h2>
+            <div id="calendar"></div>
+        </div>
+      
+      </div>
+
+      <!-- FullCalendar Initialisierung -->
+<script>
+    $(document).ready(function() {
+        $('#calendar').fullCalendar({
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,agendaWeek,agendaDay'
+            },
+            events: [
+                {
+                    title: 'Termin 1',
+                    start: '2024-01-05T08:00:00',
+                    end: '2024-01-05T09:00:00'
+                },
+                {
+                    title: 'Termin 2',
+                    start: '2024-01-05T09:00:00',
+                    end: '2024-01-05T10:00:00'
+                },
+                // Weitere Termine hier einfügen
+            ]
+        });
+    });
+</script>
+
+      -- arzt nr 2
+
+      <div class="container-box">
+  
+        <!-- Linke Seite für Informationen -->
+        <div class="info-side">
+          <h2>Dr. Marie Effner</h2>
+          <h3>Fachärztin für Kardiologie</h3>
+          <p><span class="icon"><i class="fas fa-map-marker-alt"></i></span>1100 Wien</p>
+          <p><span class="icon"><i class="fas fa-phone"></i></span>01 6743561</p>
+          <p><span class="icon"><i class="fas fa-mobile-alt"></i></span>+43 600 45327698</p>
+          <p><span class="icon"><i class="fas fa-envelope"></i></span>marie.effner@example.com</p>
+          <p><span class="icon"><i class="fas fa-globe"></i></span>www.doc10.at</p>
+          <p><span class="icon"><i class="fas fa-comments"></i></span>Deutsch, Englisch</p>
+        </div>
+      
+        <!-- Rechte Seite für den Kalender -->
+    <div class="calendar-side">
+        <h2>Kalender</h2>
+        <div id="calendar"></div>
+    </div>
+      
+      </div>
+
+      -- arzt nr 3
+
+      <div class="container-box">
+  
+        <!-- Linke Seite für Informationen -->
+        <div class="info-side">
+          <h2>Dr. med. Michael Jordan</h2>
+          <h3>Facharzt für Dermatologie</h3>
+          <p><span class="icon"><i class="fas fa-map-marker-alt"></i></span>1120 Wien</p>
+          <p><span class="icon"><i class="fas fa-phone"></i></span>01 9371263</p>
+          <p><span class="icon"><i class="fas fa-mobile-alt"></i></span>+43 699 49271263</p>
+          <p><span class="icon"><i class="fas fa-envelope"></i></span>michael.jordan@example.com</p>
+          <p><span class="icon"><i class="fas fa-globe"></i></span>www.doc12.at</p>
+          <p><span class="icon"><i class="fas fa-comments"></i></span>Deutsch, Serbisch</p>
+        </div>
+      
+        <!-- Rechte Seite für den Kalender -->
+        <div class="calendar-side">
+          <h2>Kalender</h2>
+          <!-- Hier kannst du deinen Kalender-Code einfügen -->
+          <!-- Beispiel: -->
+          <p>Zeitslots für die Terminbuchung</p>
+          <ul>
+            <li>08:00 - 09:00 Uhr</li>
+            <li>09:00 - 10:00 Uhr</li>
+            <!-- Weitere Zeitslots hier einfügen -->
+          </ul>
+        </div>
+      
+      </div>
+
+      -- arzt nr 4
+
+      <div class="container-box">
+  
+        <!-- Linke Seite für Informationen -->
+        <div class="info-side">
+          <h2>Dr. med. Julia Schmidt</h2>
+          <h3>Fachärztin für Pädiatrie</h3>
+          <p><span class="icon"><i class="fas fa-map-marker-alt"></i></span>1010 Wien</p>
+          <p><span class="icon"><i class="fas fa-phone"></i></span>01 4820374</p>
+          <p><span class="icon"><i class="fas fa-mobile-alt"></i></span>+43 699 98362817</p>
+          <p><span class="icon"><i class="fas fa-envelope"></i></span>julia.schmidt@example.com</p>
+          <p><span class="icon"><i class="fas fa-globe"></i></span>www.doc01.at</p>
+          <p><span class="icon"><i class="fas fa-comments"></i></span>Deutsch, Rumänisch</p>
+        </div>
+      
+        <!-- Rechte Seite für den Kalender -->
+        <div class="calendar-side">
+          <h2>Kalender</h2>
+          <!-- Hier kannst du deinen Kalender-Code einfügen -->
+          <!-- Beispiel: -->
+          <p>Zeitslots für die Terminbuchung</p>
+          <ul>
+            <li>08:00 - 09:00 Uhr</li>
+            <li>09:00 - 10:00 Uhr</li>
+            <!-- Weitere Zeitslots hier einfügen -->
+          </ul>
+        </div>
+      
+      </div>
+
+      -- arzt nr 5
+
+      <div class="container-box">
+  
+        <!-- Linke Seite für Informationen -->
+        <div class="info-side">
+          <h2>Dr. med. Michael Müller</h2>
+          <h3>Facharzt für Onkologie</h3>
+          <p><span class="icon"><i class="fas fa-map-marker-alt"></i></span>1020 Wien</p>
+          <p><span class="icon"><i class="fas fa-phone"></i></span>01 9012834</p>
+          <p><span class="icon"><i class="fas fa-mobile-alt"></i></span>+43 674 09271635</p>
+          <p><span class="icon"><i class="fas fa-envelope"></i></span>michael.müller@example.com</p>
+          <p><span class="icon"><i class="fas fa-globe"></i></span>www.doc02.at</p>
+          <p><span class="icon"><i class="fas fa-comments"></i></span>Deutsch, Urdu</p>
+        </div>
+      
+        <!-- Rechte Seite für den Kalender -->
+        <div class="calendar-side">
+          <h2>Kalender</h2>
+          <!-- Hier kannst du deinen Kalender-Code einfügen -->
+          <!-- Beispiel: -->
+          <p>Zeitslots für die Terminbuchung</p>
+          <ul>
+            <li>08:00 - 09:00 Uhr</li>
+            <li>09:00 - 10:00 Uhr</li>
+            <!-- Weitere Zeitslots hier einfügen -->
+          </ul>
+        </div>
+      
+      </div>
+
+      -- arzt nr 6
+
+      <div class="container-box">
+  
+        <!-- Linke Seite für Informationen -->
+        <div class="info-side">
+          <h2>Dr. med. Anna Wagner</h2>
+          <h3>Fachärztin für Psychologie</h3>
+          <p><span class="icon"><i class="fas fa-map-marker-alt"></i></span>1030 Wien</p>
+          <p><span class="icon"><i class="fas fa-phone"></i></span>01 9381726</p>
+          <p><span class="icon"><i class="fas fa-mobile-alt"></i></span>+43 674 09273649</p>
+          <p><span class="icon"><i class="fas fa-envelope"></i></span>anna.wagner@example.com</p>
+          <p><span class="icon"><i class="fas fa-globe"></i></span>www.doc03.at</p>
+          <p><span class="icon"><i class="fas fa-comments"></i></span>Deutsch, Spanisch</p>
+        </div>
+      
+        <!-- Rechte Seite für den Kalender -->
+        <div class="calendar-side">
+          <h2>Kalender</h2>
+          <!-- Hier kannst du deinen Kalender-Code einfügen -->
+          <!-- Beispiel: -->
+          <p>Zeitslots für die Terminbuchung</p>
+          <ul>
+            <li>08:00 - 09:00 Uhr</li>
+            <li>09:00 - 10:00 Uhr</li>
+            <!-- Weitere Zeitslots hier einfügen -->
+          </ul>
+        </div>
+      
+      </div>
+
+      -- arzt nr 7
+
+      <div class="container-box">
+  
+        <!-- Linke Seite für Informationen -->
+        <div class="info-side">
+          <h2>Dr. Christoph Becker</h2>
+          <h3>Facharzt für Orthopädie</h3>
+          <p><span class="icon"><i class="fas fa-map-marker-alt"></i></span>1040 Wien</p>
+          <p><span class="icon"><i class="fas fa-phone"></i></span>01 8123934</p>
+          <p><span class="icon"><i class="fas fa-mobile-alt"></i></span>+43 660 02711523</p>
+          <p><span class="icon"><i class="fas fa-envelope"></i></span>christoph.becker@example.com</p>
+          <p><span class="icon"><i class="fas fa-globe"></i></span>www.doc04.at</p>
+          <p><span class="icon"><i class="fas fa-comments"></i></span>Deutsch, Französisch</p>
+        </div>
+      
+        <!-- Rechte Seite für den Kalender -->
+        <div class="calendar-side">
+          <h2>Kalender</h2>
+          <!-- Hier kannst du deinen Kalender-Code einfügen -->
+          <!-- Beispiel: -->
+          <p>Zeitslots für die Terminbuchung</p>
+          <ul>
+            <li>08:00 - 09:00 Uhr</li>
+            <li>09:00 - 10:00 Uhr</li>
+            <!-- Weitere Zeitslots hier einfügen -->
+          </ul>
+        </div>
+      
+      </div>
+
+      -- arzt nr 8
+
+      <div class="container-box">
+  
+        <!-- Linke Seite für Informationen -->
+        <div class="info-side">
+          <h2>Dr. med. Laura Hofman</h2>
+          <h3>Fachärztin für Neurologie</h3>
+          <p><span class="icon"><i class="fas fa-map-marker-alt"></i></span>1060 Wien</p>
+          <p><span class="icon"><i class="fas fa-phone"></i></span>01 3821773</p>
+          <p><span class="icon"><i class="fas fa-mobile-alt"></i></span>+43 665 01822436</p>
+          <p><span class="icon"><i class="fas fa-envelope"></i></span>laura.hofmann@example.com</p>
+          <p><span class="icon"><i class="fas fa-globe"></i></span>www.doc06.at</p>
+          <p><span class="icon"><i class="fas fa-comments"></i></span>Deutsch, Russisch</p>
+        </div>
+      
+        <!-- Rechte Seite für den Kalender -->
+        <div class="calendar-side">
+          <h2>Kalender</h2>
+          <!-- Hier kannst du deinen Kalender-Code einfügen -->
+          <!-- Beispiel: -->
+          <p>Zeitslots für die Terminbuchung</p>
+          <ul>
+            <li>08:00 - 09:00 Uhr</li>
+            <li>09:00 - 10:00 Uhr</li>
+            <!-- Weitere Zeitslots hier einfügen -->
+          </ul>
+        </div>
+      
+      </div>
+      
 
     <!-- Footer aus der Home-Seite --
     <div class="container-fluid bg-dark text-light border-top border-secondary py-4">

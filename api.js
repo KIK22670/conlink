@@ -2,6 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const client = require('./connection.js');
+const bcrypt = require('bcrypt');
 
 // Middleware, um die Verbindung zu öffnen
 router.use((req, res, next) => {
@@ -20,28 +21,65 @@ router.get('/aerzte', (req, res) => {
     });
 });
 
-router.post('/register', (req, res) => {
-    const { email, password, confirmPassword, p_id } = req.body;
 
-    if (password !== confirmPassword) {
-        return res.status(400).json({ error: 'Passwords do not match' });
+// Registration route
+router.post('/registration', async (req, res) => {
+    const { nameregister, emailregister, passwortregister } = req.body;
+
+    try {
+        // Hash the password before storing it
+        const hashedPassword = await bcrypt.hash(passwortregister, 10);
+
+        const query = {
+            text: 'INSERT INTO u_userverwaltung(u_id, u_passwort, u_email) VALUES($1, $2, $3)',
+            values: [nameregister, emailregister, hashedPassword],
+        };
+
+        // Insert user into the database
+        await client.query(query);
+
+        res.status(201).json({ message: 'User registered successfully' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Internal Server Error');
     }
-
-    // Füge den Benutzer zur Datenbank hinzu, ohne u_id explizit anzugeben
-    const query = 'INSERT INTO u_userverwaltung (u_email, u_passwort, u_p_id) VALUES ($1, $2, $3) RETURNING *';
-    const values = [email, password, p_id]; // Verwende p_id für u_p_id
-
-    client.query(query, values, (err, result) => {
-        if (err) {
-            console.error(err);
-            return res.status(500).json({ error: 'Internal Server Error' });
-        }
-
-        res.status(201).json({ message: 'User registered successfully', user: result.rows[0] });
-    });
 });
 
+// Login route
+router.post('/login', async (req, res) => {
+    const { email, passwort } = req.body;
 
+    try {
+        const query = {
+            text: 'SELECT * FROM users WHERE email = $1',
+            values: [email],
+        };
+
+        // Retrieve user from the database based on the provided email
+        const result = await client.query(query);
+
+        if (result.rows.length === 0) {
+            // User not found
+            return res.status(401).json({ message: 'Invalid credentials' });
+        }
+
+        const user = result.rows[0];
+
+        // Compare the provided password with the stored hashed password
+        const isPasswordValid = await bcrypt.compare(passwort, user.password);
+
+        if (!isPasswordValid) {
+            // Invalid password
+            return res.status(401).json({ message: 'Invalid credentials' });
+        }
+
+        // Successful login
+        res.status(200).json({ message: 'Login successful', user: { id: user.id, name: user.name, email: user.email } });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Internal Server Error');
+    }
+});
 
 
 // Middleware, um die Verbindung zu schließen
