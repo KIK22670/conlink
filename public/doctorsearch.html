@@ -20,9 +20,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script> 
+    
+    <!-- Flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/common/main.css" integrity="sha384-GLhlTQ8iFZn5O3RI0p0+PzL46Pph+6cVp/rZI463L7D5F5hG5tr5QF1BnxRTt" crossorigin="anonymous">
+    <!-- Font Awesome Icons (falls nicht bereits eingebunden) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <!-- jQuery (falls für Flatpickr erforderlich) -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> 
+
+    <!-- Flatpickr JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
     <!-- ... (previous code) ... -->
 
@@ -140,11 +149,14 @@
          text-align: center;
     }
 
-    /* Styling für FullCalendar */
-    #calendar {
-        max-width: 100%;
-        margin: 20px 0;
-    }
+    .calendar-side {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100%; /* Je nach Bedarf */
+}
         
     </style>
     <!-- ... (remaining code) ... -->
@@ -241,7 +253,7 @@
 
     <!-- Arzt nr 1 -->
 
-    <div class="container-box">
+    <div class="container-box" id="container-box-1">
   
         <!-- Linke Seite für Informationen -->
         <div class="info-side">
@@ -255,43 +267,45 @@
           <p><span class="icon"><i class="fas fa-comments"></i></span>Deutsch</p>
         </div>
       
-        <!-- Rechte Seite für den Kalender -->
         <div class="calendar-side">
             <h2>Kalender</h2>
-            <div id="calendar"></div>
+            <h3>Wählen Sie einen Termin aus</h3>
+            <!-- Hier könnte weiterer Text oder HTML für den Kalender stehen -->
+            <input type="text" id="datePicker-1" placeholder="Datum und Uhrzeit auswählen">
         </div>
-      
-      </div>
+    </div>
 
-      <!-- FullCalendar Initialisierung -->
-<script>
-    $(document).ready(function() {
-        $('#calendar').fullCalendar({
-            header: {
-                left: 'prev,next today',
-                center: 'title',
-                right: 'month,agendaWeek,agendaDay'
-            },
-            events: [
-                {
-                    title: 'Termin 1',
-                    start: '2024-01-05T08:00:00',
-                    end: '2024-01-05T09:00:00'
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            flatpickr('#datePicker-1', {
+                enableTime: true, // Erlaubt die Auswahl der Uhrzeit
+                dateFormat: "d-m-Y H:i", // Das Datums- und Uhrzeitformat
+                minDate: "today", // Mindestens auswählbares Datum ist heute
+                maxDate: new Date().fp_incr(60), // Maximales auswählbares Datum ist 60 Tage in der Zukunft
+                defaultDate: "today", // Standardmäßig ausgewähltes Datum ist heute
+                time_24hr: true, // Verwendet das 24-Stunden-Format für die Uhrzeit
+                locale: {
+                    firstDayOfWeek: 1, // Setzt den Montag als ersten Tag der Woche
+                    weekdays: {
+                        shorthand: ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
+                        longhand: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag']
+                    },
+                    months: {
+                        shorthand: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
+                        longhand: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember']
+                    }
                 },
-                {
-                    title: 'Termin 2',
-                    start: '2024-01-05T09:00:00',
-                    end: '2024-01-05T10:00:00'
+                onClose: function(selectedDates, dateStr, instance) {
+                    console.log("Ausgewähltes Datum und Uhrzeit:", dateStr);
                 },
-                // Weitere Termine hier einfügen
-            ]
+                // Weitere Konfigurationen hier...
+            });
         });
-    });
-</script>
+    </script>
 
       -- arzt nr 2
 
-      <div class="container-box">
+      <div class="container-box" id="container-box-2">
   
         <!-- Linke Seite für Informationen -->
         <div class="info-side">
@@ -305,17 +319,45 @@
           <p><span class="icon"><i class="fas fa-comments"></i></span>Deutsch, Englisch</p>
         </div>
       
-        <!-- Rechte Seite für den Kalender -->
-    <div class="calendar-side">
-        <h2>Kalender</h2>
-        <div id="calendar"></div>
-    </div>
-      
+        <div class="calendar-side">
+            <h2>Kalender</h2>
+            <h3>Wählen Sie einen Termin aus</h3>
+            <!-- Hier könnte weiterer Text oder HTML für den Kalender stehen -->
+            <input type="text" id="datePicker-2" placeholder="Datum und Uhrzeit auswählen">
+        </div>
       </div>
+
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            flatpickr('#datePicker-2', {
+                enableTime: true, // Erlaubt die Auswahl der Uhrzeit
+                dateFormat: "d-m-Y H:i", // Das Datums- und Uhrzeitformat
+                minDate: "today", // Mindestens auswählbares Datum ist heute
+                maxDate: new Date().fp_incr(60), // Maximales auswählbares Datum ist 60 Tage in der Zukunft
+                defaultDate: "today", // Standardmäßig ausgewähltes Datum ist heute
+                time_24hr: true, // Verwendet das 24-Stunden-Format für die Uhrzeit
+                locale: {
+                    firstDayOfWeek: 1, // Setzt den Montag als ersten Tag der Woche
+                    weekdays: {
+                        shorthand: ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
+                        longhand: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag']
+                    },
+                    months: {
+                        shorthand: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
+                        longhand: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember']
+                    }
+                },
+                onClose: function(selectedDates, dateStr, instance) {
+                    console.log("Ausgewähltes Datum und Uhrzeit:", dateStr);
+                },
+                // Weitere Konfigurationen hier...
+            });
+        });
+    </script>
 
       -- arzt nr 3
 
-      <div class="container-box">
+      <div class="container-box" id="container-box-3">
   
         <!-- Linke Seite für Informationen -->
         <div class="info-side">
@@ -329,24 +371,45 @@
           <p><span class="icon"><i class="fas fa-comments"></i></span>Deutsch, Serbisch</p>
         </div>
       
-        <!-- Rechte Seite für den Kalender -->
         <div class="calendar-side">
-          <h2>Kalender</h2>
-          <!-- Hier kannst du deinen Kalender-Code einfügen -->
-          <!-- Beispiel: -->
-          <p>Zeitslots für die Terminbuchung</p>
-          <ul>
-            <li>08:00 - 09:00 Uhr</li>
-            <li>09:00 - 10:00 Uhr</li>
-            <!-- Weitere Zeitslots hier einfügen -->
-          </ul>
+            <h2>Kalender</h2>
+            <h3>Wählen Sie einen Termin aus</h3>
+            <!-- Hier könnte weiterer Text oder HTML für den Kalender stehen -->
+            <input type="text" id="datePicker-3" placeholder="Datum und Uhrzeit auswählen">
         </div>
-      
       </div>
+
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            flatpickr('#datePicker-3', {
+                enableTime: true, // Erlaubt die Auswahl der Uhrzeit
+                dateFormat: "d-m-Y H:i", // Das Datums- und Uhrzeitformat
+                minDate: "today", // Mindestens auswählbares Datum ist heute
+                maxDate: new Date().fp_incr(60), // Maximales auswählbares Datum ist 60 Tage in der Zukunft
+                defaultDate: "today", // Standardmäßig ausgewähltes Datum ist heute
+                time_24hr: true, // Verwendet das 24-Stunden-Format für die Uhrzeit
+                locale: {
+                    firstDayOfWeek: 1, // Setzt den Montag als ersten Tag der Woche
+                    weekdays: {
+                        shorthand: ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
+                        longhand: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag']
+                    },
+                    months: {
+                        shorthand: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
+                        longhand: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember']
+                    }
+                },
+                onClose: function(selectedDates, dateStr, instance) {
+                    console.log("Ausgewähltes Datum und Uhrzeit:", dateStr);
+                },
+                // Weitere Konfigurationen hier...
+            });
+        });
+    </script>
 
       -- arzt nr 4
 
-      <div class="container-box">
+      <div class="container-box" id="container-box-4">
   
         <!-- Linke Seite für Informationen -->
         <div class="info-side">
@@ -360,24 +423,45 @@
           <p><span class="icon"><i class="fas fa-comments"></i></span>Deutsch, Rumänisch</p>
         </div>
       
-        <!-- Rechte Seite für den Kalender -->
         <div class="calendar-side">
-          <h2>Kalender</h2>
-          <!-- Hier kannst du deinen Kalender-Code einfügen -->
-          <!-- Beispiel: -->
-          <p>Zeitslots für die Terminbuchung</p>
-          <ul>
-            <li>08:00 - 09:00 Uhr</li>
-            <li>09:00 - 10:00 Uhr</li>
-            <!-- Weitere Zeitslots hier einfügen -->
-          </ul>
+            <h2>Kalender</h2>
+            <h3>Wählen Sie einen Termin aus</h3>
+            <!-- Hier könnte weiterer Text oder HTML für den Kalender stehen -->
+            <input type="text" id="datePicker-4" placeholder="Datum und Uhrzeit auswählen">
         </div>
-      
       </div>
+
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            flatpickr('#datePicker-4', {
+                enableTime: true, // Erlaubt die Auswahl der Uhrzeit
+                dateFormat: "d-m-Y H:i", // Das Datums- und Uhrzeitformat
+                minDate: "today", // Mindestens auswählbares Datum ist heute
+                maxDate: new Date().fp_incr(60), // Maximales auswählbares Datum ist 60 Tage in der Zukunft
+                defaultDate: "today", // Standardmäßig ausgewähltes Datum ist heute
+                time_24hr: true, // Verwendet das 24-Stunden-Format für die Uhrzeit
+                locale: {
+                    firstDayOfWeek: 1, // Setzt den Montag als ersten Tag der Woche
+                    weekdays: {
+                        shorthand: ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
+                        longhand: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag']
+                    },
+                    months: {
+                        shorthand: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
+                        longhand: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember']
+                    }
+                },
+                onClose: function(selectedDates, dateStr, instance) {
+                    console.log("Ausgewähltes Datum und Uhrzeit:", dateStr);
+                },
+                // Weitere Konfigurationen hier...
+            });
+        });
+    </script>
 
       -- arzt nr 5
 
-      <div class="container-box">
+      <div class="container-box" id="container-box-5">
   
         <!-- Linke Seite für Informationen -->
         <div class="info-side">
@@ -391,24 +475,46 @@
           <p><span class="icon"><i class="fas fa-comments"></i></span>Deutsch, Urdu</p>
         </div>
       
-        <!-- Rechte Seite für den Kalender -->
         <div class="calendar-side">
-          <h2>Kalender</h2>
-          <!-- Hier kannst du deinen Kalender-Code einfügen -->
-          <!-- Beispiel: -->
-          <p>Zeitslots für die Terminbuchung</p>
-          <ul>
-            <li>08:00 - 09:00 Uhr</li>
-            <li>09:00 - 10:00 Uhr</li>
-            <!-- Weitere Zeitslots hier einfügen -->
-          </ul>
+            <h2>Kalender</h2>
+            <h3>Wählen Sie einen Termin aus</h3>
+            <!-- Hier könnte weiterer Text oder HTML für den Kalender stehen -->
+            <input type="text" id="datePicker-5" placeholder="Datum und Uhrzeit auswählen">
         </div>
-      
       </div>
+
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            flatpickr('#datePicker-5', {
+                enableTime: true, // Erlaubt die Auswahl der Uhrzeit
+                dateFormat: "d-m-Y H:i", // Das Datums- und Uhrzeitformat
+                minDate: "today", // Mindestens auswählbares Datum ist heute
+                maxDate: new Date().fp_incr(60), // Maximales auswählbares Datum ist 60 Tage in der Zukunft
+                defaultDate: "today", // Standardmäßig ausgewähltes Datum ist heute
+                time_24hr: true, // Verwendet das 24-Stunden-Format für die Uhrzeit
+                locale: {
+                    firstDayOfWeek: 1, // Setzt den Montag als ersten Tag der Woche
+                    weekdays: {
+                        shorthand: ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
+                        longhand: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag']
+                    },
+                    months: {
+                        shorthand: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
+                        longhand: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember']
+                    }
+                },
+                onClose: function(selectedDates, dateStr, instance) {
+                    console.log("Ausgewähltes Datum und Uhrzeit:", dateStr);
+                },
+                // Weitere Konfigurationen hier...
+            });
+        });
+    </script>
+
 
       -- arzt nr 6
 
-      <div class="container-box">
+      <div class="container-box" id="container-box-6">
   
         <!-- Linke Seite für Informationen -->
         <div class="info-side">
@@ -422,24 +528,45 @@
           <p><span class="icon"><i class="fas fa-comments"></i></span>Deutsch, Spanisch</p>
         </div>
       
-        <!-- Rechte Seite für den Kalender -->
         <div class="calendar-side">
-          <h2>Kalender</h2>
-          <!-- Hier kannst du deinen Kalender-Code einfügen -->
-          <!-- Beispiel: -->
-          <p>Zeitslots für die Terminbuchung</p>
-          <ul>
-            <li>08:00 - 09:00 Uhr</li>
-            <li>09:00 - 10:00 Uhr</li>
-            <!-- Weitere Zeitslots hier einfügen -->
-          </ul>
+            <h2>Kalender</h2>
+            <h3>Wählen Sie einen Termin aus</h3>
+            <!-- Hier könnte weiterer Text oder HTML für den Kalender stehen -->
+            <input type="text" id="datePicker-6" placeholder="Datum und Uhrzeit auswählen">
         </div>
-      
       </div>
+
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            flatpickr('#datePicker-5', {
+                enableTime: true, // Erlaubt die Auswahl der Uhrzeit
+                dateFormat: "d-m-Y H:i", // Das Datums- und Uhrzeitformat
+                minDate: "today", // Mindestens auswählbares Datum ist heute
+                maxDate: new Date().fp_incr(60), // Maximales auswählbares Datum ist 60 Tage in der Zukunft
+                defaultDate: "today", // Standardmäßig ausgewähltes Datum ist heute
+                time_24hr: true, // Verwendet das 24-Stunden-Format für die Uhrzeit
+                locale: {
+                    firstDayOfWeek: 1, // Setzt den Montag als ersten Tag der Woche
+                    weekdays: {
+                        shorthand: ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
+                        longhand: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag']
+                    },
+                    months: {
+                        shorthand: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
+                        longhand: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember']
+                    }
+                },
+                onClose: function(selectedDates, dateStr, instance) {
+                    console.log("Ausgewähltes Datum und Uhrzeit:", dateStr);
+                },
+                // Weitere Konfigurationen hier...
+            });
+        });
+    </script>
 
       -- arzt nr 7
 
-      <div class="container-box">
+      <div class="container-box" id="container-box-7">
   
         <!-- Linke Seite für Informationen -->
         <div class="info-side">
@@ -453,24 +580,46 @@
           <p><span class="icon"><i class="fas fa-comments"></i></span>Deutsch, Französisch</p>
         </div>
       
-        <!-- Rechte Seite für den Kalender -->
         <div class="calendar-side">
-          <h2>Kalender</h2>
-          <!-- Hier kannst du deinen Kalender-Code einfügen -->
-          <!-- Beispiel: -->
-          <p>Zeitslots für die Terminbuchung</p>
-          <ul>
-            <li>08:00 - 09:00 Uhr</li>
-            <li>09:00 - 10:00 Uhr</li>
-            <!-- Weitere Zeitslots hier einfügen -->
-          </ul>
+            <h2>Kalender</h2>
+            <h3>Wählen Sie einen Termin aus</h3>
+            <!-- Hier könnte weiterer Text oder HTML für den Kalender stehen -->
+            <input type="text" id="datePicker-7" placeholder="Datum und Uhrzeit auswählen">
         </div>
       
       </div>
 
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            flatpickr('#datePicker-7', {
+                enableTime: true, // Erlaubt die Auswahl der Uhrzeit
+                dateFormat: "d-m-Y H:i", // Das Datums- und Uhrzeitformat
+                minDate: "today", // Mindestens auswählbares Datum ist heute
+                maxDate: new Date().fp_incr(60), // Maximales auswählbares Datum ist 60 Tage in der Zukunft
+                defaultDate: "today", // Standardmäßig ausgewähltes Datum ist heute
+                time_24hr: true, // Verwendet das 24-Stunden-Format für die Uhrzeit
+                locale: {
+                    firstDayOfWeek: 1, // Setzt den Montag als ersten Tag der Woche
+                    weekdays: {
+                        shorthand: ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
+                        longhand: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag']
+                    },
+                    months: {
+                        shorthand: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
+                        longhand: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember']
+                    }
+                },
+                onClose: function(selectedDates, dateStr, instance) {
+                    console.log("Ausgewähltes Datum und Uhrzeit:", dateStr);
+                },
+                // Weitere Konfigurationen hier...
+            });
+        });
+    </script>
+
       -- arzt nr 8
 
-      <div class="container-box">
+      <div class="container-box" id="container-box-8">
   
         <!-- Linke Seite für Informationen -->
         <div class="info-side">
@@ -484,20 +633,41 @@
           <p><span class="icon"><i class="fas fa-comments"></i></span>Deutsch, Russisch</p>
         </div>
       
-        <!-- Rechte Seite für den Kalender -->
         <div class="calendar-side">
-          <h2>Kalender</h2>
-          <!-- Hier kannst du deinen Kalender-Code einfügen -->
-          <!-- Beispiel: -->
-          <p>Zeitslots für die Terminbuchung</p>
-          <ul>
-            <li>08:00 - 09:00 Uhr</li>
-            <li>09:00 - 10:00 Uhr</li>
-            <!-- Weitere Zeitslots hier einfügen -->
-          </ul>
+            <h2>Kalender</h2>
+            <h3>Wählen Sie einen Termin aus</h3>
+            <!-- Hier könnte weiterer Text oder HTML für den Kalender stehen -->
+            <input type="text" id="datePicker-8" placeholder="Datum und Uhrzeit auswählen">
         </div>
-      
       </div>
+
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            flatpickr('#datePicker-8', {
+                enableTime: true, // Erlaubt die Auswahl der Uhrzeit
+                dateFormat: "d-m-Y H:i", // Das Datums- und Uhrzeitformat
+                minDate: "today", // Mindestens auswählbares Datum ist heute
+                maxDate: new Date().fp_incr(60), // Maximales auswählbares Datum ist 60 Tage in der Zukunft
+                defaultDate: "today", // Standardmäßig ausgewähltes Datum ist heute
+                time_24hr: true, // Verwendet das 24-Stunden-Format für die Uhrzeit
+                locale: {
+                    firstDayOfWeek: 1, // Setzt den Montag als ersten Tag der Woche
+                    weekdays: {
+                        shorthand: ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
+                        longhand: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag']
+                    },
+                    months: {
+                        shorthand: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
+                        longhand: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember']
+                    }
+                },
+                onClose: function(selectedDates, dateStr, instance) {
+                    console.log("Ausgewähltes Datum und Uhrzeit:", dateStr);
+                },
+                // Weitere Konfigurationen hier...
+            });
+        });
+    </script>
       
 
     <!-- Footer aus der Home-Seite --
