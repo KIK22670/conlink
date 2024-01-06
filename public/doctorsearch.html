@@ -195,9 +195,6 @@
     <nav class="navbar left-navbar">
         <div class="container">
             <div class="navbar-nav">
-                <a href="uebersicht.html" class="nav-item nav-link active">
-                    <i class="bi bi-house-door"></i> Übersicht
-                </a>
                 <a href="doctorsearch.html" class="nav-item nav-link">
                     <i class="bi bi-person"></i> Ärztesuche
                 </a>
@@ -212,31 +209,33 @@
     <div class="content">
         <div class="left-content">
             <h1>Ärztesuche</h1>
-        </div>
+        </div>    
+                
 
-        
-        <div class="search-group">
+        <div class="content">
             <!-- Fachrichtung Dropdown -->
             <div class="dropdown">
                 <div class="input-group">
-                    <span class="input-group-text bg-primary text-light"><i class="bi bi-heart"></i></span>
-                    <select class="form-control" id="fachrichtungDropdown">
-                            <option value="">Alle Fachrichtungen</option>
-                            <option value="">Allgemeinmedizin</option>
-                            <option value="">Kardiologie</option>
-                            <option value="">Dermatologie</option>
-                            <option value="">Pädiatrie</option>
-                            <option value="">Onkologie</option>
-                            <option value="">Psychologie</option>
-                            <option value="">Orthopädie</option>
-                            <option value="">Neurologie</option>
-                        </select>
+                    <div class="input-group-prepend">
+                        <span class="input-group-text bg-primary text-light"><i class="bi bi-heart"></i></span>
                     </div>
+                    <select class="form-control" id="fachrichtungDropdown">
+                        <option value="">Alle Fachrichtungen</option>
+                        <option value="">Allgemeinmedizin</option>
+                        <option value="">Kardiologie</option>
+                        <option value="">Dermatologie</option>
+                        <option value="">Pädiatrie</option>
+                        <option value="">Onkologie</option>
+                        <option value="">Psychologie</option>
+                        <option value="">Orthopädie</option>
+                        <option value="">Neurologie</option>                                              
+                    </select>
                 </div>
-        
-                <!-- Orte/PLZ Dropdown -->
-                <div class="dropdown">
-                    <div class="input-group">
+            </div>
+
+            <div class="dropdown">
+                <div class="input-group">
+                    <div class="input-group-prepend">
                         <span class="input-group-text bg-primary text-light"><i class="bi bi-geo-alt"></i></span>
                         <select class="form-control" id="ortPlzDropdown">
                             <option value="">Alle Orte/PLZ</option>
@@ -250,10 +249,13 @@
                             <option value="">1060 Wien</option>
                         </select>
                     </div>
+
                 </div>
             </div>
         </div>
         
+
+                
             <button class="btn btn-primary" onclick="searchDoctors()">Suchen</button>
     
             <div id="doctorResults"></div>
@@ -716,7 +718,90 @@
                 // Weitere Konfigurationen hier...
             });
         });
-    </script>   
+    </script>
+<script>
+ const doctors = [
+ { id: 1, name: 'Dr. Erwald Heberer', specialty: 'Allgemeinmedizin', location: '1050 Wien' },
+        { id: 2, name: 'Dr. Marie Effner', specialty: 'Kardiologie', location: '1100 Wien' },
+        { id: 3, name: 'Dr. med. Michael Jordan', specialty: 'Dermatologie', location: '1120 Wien' },
+        { id: 4, name: 'Dr. med. Julia Schmidt', specialty: 'Pädiatrie', location: '1010 Wien' },
+        { id: 5, name: 'Dr. med. Michael Müller', specialty: 'Onkologie', location: '1020 Wien' },
+        { id: 6, name: 'Dr. med. Anna Wagner', specialty: 'Psychologie', location: '1030 Wien' },
+        { id: 7, name: 'Dr. Christoph Becker', specialty: 'Orthopädie', location: '1040 Wien' },
+        { id: 8, name: 'Dr. med. Laura Hofmann', specialty: 'Neurologie', location: '1060 Wien' },
+    ];
+
+function searchDoctors() {
+ const specialtyInput = document.getElementById('fachrichtungDropdown').value.toLowerCase();
+ const locationInput = document.getElementById('ortPlzDropdown').value.toLowerCase();
+
+ const filteredDoctors = doctors.filter(doctor =>
+     doctor.specialty.toLowerCase().includes(specialtyInput) &&
+     doctor.location.toLowerCase().includes(locationInput)
+ );
+
+ displayDoctors(filteredDoctors);
+}
+function displayDoctors(doctors) {
+    const doctorsListContainer = document.getElementById('doctorResults');
+    doctorsListContainer.innerHTML = '';
+
+    if (doctors.length === 0) {
+        doctorsListContainer.innerHTML = '<p>Keine Ärzte gefunden.</p>';
+        return;
+    }
+
+    doctors.forEach(doctor => {
+        const doctorElement = document.createElement('div');
+        doctorElement.className = 'container-box';
+        doctorElement.id = 'container-box-' + doctor.id;
+        doctorElement.innerHTML = `
+            <div class="info-side">
+                <h2>${doctor.name}</h2>
+                <h3>${doctor.specialty}</h3>
+                <p><span class="icon"><i class="fas fa-map-marker-alt"></i></span>${doctor.location}</p>
+                <!-- Weitere Informationen hier ... -->
+            </div>
+            <div class="calendar-side">
+                <h2>Kalender</h2>
+                <h3>Wählen Sie einen Termin aus</h3>
+                <input type="text" id="datePicker-${doctor.id}" placeholder="Datum und Uhrzeit auswählen">
+                <p></p>
+                <button onclick="buchungSpeichern()">Termin buchen</button>
+            </div>
+        `;
+        doctorsListContainer.appendChild(doctorElement);
+    });
+}
+
+
+     const datePickerId = 'datePicker-' + doctor.id;
+     flatpickr('#' + datePickerId, {
+         enableTime: true,
+         dateFormat: "d-m-Y H:i",
+         minDate: "today",
+         maxDate: new Date().fp_incr(60),
+         defaultDate: "today",
+         time_24hr: true,
+         locale: {
+             firstDayOfWeek: 1,
+             weekdays: {
+                 shorthand: ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
+                 longhand: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag']
+             },
+             months: {
+                 shorthand: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
+                 longhand: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember']
+             }
+         },
+         onClose: function (selectedDates, dateStr, instance) {
+             console.log("Ausgewähltes Datum und Uhrzeit:", dateStr);
+         },
+     
+     });
+
+        </script>
+
 
     <!-- Footer aus der Home-Seite -->
     <div class="container-fluid bg-dark text-light border-top border-secondary py-4">
