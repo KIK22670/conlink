@@ -221,7 +221,6 @@
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text bg-primary text-light"><i class="bi bi-heart"></i></span>
-                        <!-- Hier das Medizin-Icon -->
                     </div>
                     <input type="text" class="form-control" id="fachrichtungInput" placeholder="Fachrichtung">
                 </div>
@@ -229,7 +228,6 @@
                     <!-- Dynamic data will be fetched from the server and populated here -->
                 </div>
             </div>
-
 
             <div class="dropdown">
                 <div class="input-group">
@@ -243,14 +241,13 @@
                 </div>
             </div>
 
-            <div class="search-group">
-                <button type="button" class="search-btn btn btn-primary" onclick="searchNames()">
-                    <i class="bi bi-search"></i>
-                </button>
-            </div>
+            <button class="btn btn-primary" onclick="searchDoctors()">Suchen</button>
+
+            <div id="doctorResults"></div>
         </div>
     </div>
 
+    
     <!-- Arzt nr 1 -->
 
     <div class="container-box" id="container-box-1">
@@ -303,7 +300,6 @@
                 onClose: function(selectedDates, dateStr, instance) {
                     console.log("Ausgewähltes Datum und Uhrzeit:", dateStr);
                 },
-                // Weitere Konfigurationen hier...
             });
         });
 
@@ -565,7 +561,7 @@
             <h2>Kalender</h2>
             <h3>Wählen Sie einen Termin aus</h3>
             <!-- Hier könnte weiterer Text oder HTML für den Kalender stehen -->
-            <input type="text" id="datePicker-6" placeholder="Datum und Uhrzeit auswählen">
+            <input type="text" id="datePicker-5" placeholder="Datum und Uhrzeit auswählen">
             <p></p>
             <button onclick="buchungSpeichern()">Termin buchen</button>
         </div>
@@ -708,7 +704,133 @@
             });
         });
     </script>
+
+    <script>
+        function searchDoctors() {
+    const specialtyInput = document.getElementById('fachrichtungInput').value.toLowerCase();
+    const locationInput = document.getElementById('ortPlzInput').value.toLowerCase();
+
+    const filteredDoctors = doctors.filter(doctor =>
+        doctor.specialty.toLowerCase().includes(specialtyInput) &&
+        doctor.location.toLowerCase().includes(locationInput)
+    );
+
+    displayDoctors(filteredDoctors);
+}
+
+function displayDoctors(doctors) {
+    const doctorsListContainer = document.getElementById('doctorsList');
+    doctorsListContainer.innerHTML = '';
+
+    if (doctors.length === 0) {
+        doctorsListContainer.innerHTML = '<p>Keine Ärzte gefunden.</p>';
+        return;
+    }
+
+    doctors.forEach(doctor => {
+        const doctorElement = document.createElement('div');
+        doctorElement.innerHTML = `
+            <h2>${doctor.name}</h2>
+            <p>Fachrichtung: ${doctor.specialty}</p>
+            <p>Ort: ${doctor.location}</p>
+        `;
+
+        doctorsListContainer.appendChild(doctorElement);
+    });
+}
+
+var doctors = [
+    { name: 'Dr. Erwald Heberer', specialty: 'Allgemeinmedizin', location: '1050 Wien' },
+    { name: 'Dr. Marie Effner', specialty: 'Kardiologie', location: '1100 Wien' },
+    { name: 'Dr. med. Michael Jordan', specialty: 'Dermatologie', location: '1120 Wien' },
+    { name: 'Dr. med. Julia Schmidt', specialty: 'Pädiatrie', location: '1010 Wien' },
+    { name: 'Dr. med. Michael Müller', specialty: 'Onkologie', location: '1020 Wien' },
+    { name: 'Dr. med. Anna Wagner', specialty: 'Psychologie', location: '1030 Wien' },
+    { name: 'Dr. Christoph Becker', specialty: 'Orthopädie', location: '1040 Wien' },
+    { name: 'Dr. med. Laura Hofmann', specialty: 'Neurologie', location: '1060 Wien' },   
+];
+
+    </script>
       
+       <!-- Füge Flatpickr-Script und Bootstrap-JavaScript hinzu -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXqOOjJCq6NYeXsOt41ZdPSTtmiKtS2baD"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script>
+        // Initialisiere Flatpickr auf allen Date/Time-Eingabefeldern
+        flatpickr(".flatpickr", {
+            enableTime: true,
+            dateFormat: "Y-m-d H:i",
+        });
+
+        var doctors = [
+    { name: 'Dr. Erwald Heberer', specialty: 'Allgemeinmedizin', location: '1050 Wien' },
+    { name: 'Dr. Marie Effner', specialty: 'Kardiologie', location: '1100 Wien' },
+    { name: 'Dr. med. Michael Jordan', specialty: 'Dermatologie', location: '1120 Wien' },
+    { name: 'Dr. med. Julia Schmidt', specialty: 'Pädiatrie', location: '1010 Wien' },
+    { name: 'Dr. med. Michael Müller', specialty: 'Onkologie', location: '1020 Wien' },
+    { name: 'Dr. med. Anna Wagner', specialty: 'Psychologie', location: '1030 Wien' },
+    { name: 'Dr. Christoph Becker', specialty: 'Orthopädie', location: '1040 Wien' },
+    { name: 'Dr. med. Laura Hofmann', specialty: 'Neurologie', location: '1060 Wien' },   
+];
+function searchDoctors() {
+            var specialtyInput = document.getElementById("fachrichtungInput").value.toLowerCase();
+            var locationInput = document.getElementById("ortPlzInput").value.toLowerCase();
+
+            var filteredDoctors = doctors.filter(function (doctor) {
+                return (
+                    doctor.specialty.toLowerCase().includes(specialtyInput) &&
+                    doctor.location.toLowerCase().includes(locationInput)
+                );
+            });
+
+            displayDoctors(filteredDoctors);
+        }
+
+        // Funktion zum Anzeigen von Ärzten
+        function displayDoctors(doctorList) {
+            var resultsContainer = document.getElementById("doctorResults");
+            resultsContainer.innerHTML = ""; // Leere vorherige Ergebnisse
+
+            if (doctorList.length === 0) {
+                resultsContainer.innerHTML = "Keine Ärzte gefunden.";
+                return;
+            }
+
+            doctorList.forEach(function (doctor) {
+                var doctorCard = document.createElement("div");
+                doctorCard.className = "card mb-3";
+                var cardBody = document.createElement("div");
+                cardBody.className = "card-body";
+
+                // Füge die Arztdaten zum Karteninhalt hinzu
+                cardBody.innerHTML = `
+                    <h5 class="card-title">${doctor.name}</h5>
+                    <p class="card-text"><strong>Fachrichtung:</strong> ${doctor.specialty}</p>
+                    <p class="card-text"><strong>Ort:</strong> ${doctor.location}</p>
+                    <p class="card-text"><strong>Telefon:</strong> ${doctor.phoneNumber}</p>
+                    <p class="card-text"><strong>E-Mail:</strong> ${doctor.email}</p>
+                    <p class="card-text"><strong>Website:</strong> ${doctor.website}</p>
+                    <p class="card-text"><strong>Sprachen:</strong> ${doctor.languages.join(", ")}</p>
+                    <button class="btn btn-primary" onclick="bookAppointment('${doctor.name}')">Termin buchen</button>
+                `;
+
+                doctorCard.appendChild(cardBody);
+                resultsContainer.appendChild(doctorCard);
+            });
+        }
+
+        // Funktion zum Termin buchen
+        function bookAppointment(doctorName) {
+            // Hier kannst du die Logik zum Buchen eines Termins implementieren
+            alert("Termin für " + doctorName + " gebucht!");
+        }
+        </script>
+
 
     <!-- Footer aus der Home-Seite -->
     <div class="container-fluid bg-dark text-light border-top border-secondary py-4">
