@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ärztesuche</title>
+</head>
+<body>
+
+    <div>
+        <label for="fachrichtungInput">Fachrichtung:</label>
+        <input type="text" id="fachrichtungInput">
+    </div>
+
+    <div>
+        <label for="ortPlzInput">Ort/PLZ:</label>
+        <input type="text" id="ortPlzInput">
+    </div>
+
+    <button onclick="searchDoctors()">Suche</button>
+
+    <div id="doctorsList"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
