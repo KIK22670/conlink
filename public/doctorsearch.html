@@ -719,29 +719,29 @@
             });
         });
     </script>
-<script>
- const doctors = [
- { id: 1, name: 'Dr. Erwald Heberer', specialty: 'Allgemeinmedizin', location: '1050 Wien' },
-        { id: 2, name: 'Dr. Marie Effner', specialty: 'Kardiologie', location: '1100 Wien' },
-        { id: 3, name: 'Dr. med. Michael Jordan', specialty: 'Dermatologie', location: '1120 Wien' },
-        { id: 4, name: 'Dr. med. Julia Schmidt', specialty: 'Pädiatrie', location: '1010 Wien' },
-        { id: 5, name: 'Dr. med. Michael Müller', specialty: 'Onkologie', location: '1020 Wien' },
-        { id: 6, name: 'Dr. med. Anna Wagner', specialty: 'Psychologie', location: '1030 Wien' },
-        { id: 7, name: 'Dr. Christoph Becker', specialty: 'Orthopädie', location: '1040 Wien' },
-        { id: 8, name: 'Dr. med. Laura Hofmann', specialty: 'Neurologie', location: '1060 Wien' },
-    ];
+    <script>
+    const doctors = [
+    { id: 1, name: 'Dr. Erwald Heberer', specialty: 'Allgemeinmedizin', location: '1050 Wien' },
+            { id: 2, name: 'Dr. Marie Effner', specialty: 'Kardiologie', location: '1100 Wien' },
+            { id: 3, name: 'Dr. med. Michael Jordan', specialty: 'Dermatologie', location: '1120 Wien' },
+            { id: 4, name: 'Dr. med. Julia Schmidt', specialty: 'Pädiatrie', location: '1010 Wien' },
+            { id: 5, name: 'Dr. med. Michael Müller', specialty: 'Onkologie', location: '1020 Wien' },
+            { id: 6, name: 'Dr. med. Anna Wagner', specialty: 'Psychologie', location: '1030 Wien' },
+            { id: 7, name: 'Dr. Christoph Becker', specialty: 'Orthopädie', location: '1040 Wien' },
+            { id: 8, name: 'Dr. med. Laura Hofmann', specialty: 'Neurologie', location: '1060 Wien' },
+        ];
 
-function searchDoctors() {
- const specialtyInput = document.getElementById('fachrichtungDropdown').value.toLowerCase();
- const locationInput = document.getElementById('ortPlzDropdown').value.toLowerCase();
+    function searchDoctors() {
+    const specialtyInput = document.getElementById('fachrichtungDropdown').value.toLowerCase();
+    const locationInput = document.getElementById('ortPlzDropdown').value.toLowerCase();
 
- const filteredDoctors = doctors.filter(doctor =>
-     doctor.specialty.toLowerCase().includes(specialtyInput) &&
-     doctor.location.toLowerCase().includes(locationInput)
- );
+    const filteredDoctors = doctors.filter(doctor =>
+        doctor.specialty.toLowerCase().includes(specialtyInput) &&
+        doctor.location.toLowerCase().includes(locationInput)
+    );
 
- displayDoctors(filteredDoctors);
-}
+    displayDoctors(filteredDoctors);
+    }
 function displayDoctors(doctors) {
     const doctorsListContainer = document.getElementById('doctorResults');
     doctorsListContainer.innerHTML = '';
