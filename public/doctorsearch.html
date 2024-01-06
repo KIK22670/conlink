@@ -35,16 +35,20 @@
 
     <!-- ... (previous code) ... -->
 
+    
     <style>
         .content {
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
             align-items: center;
-            justify-content: space-between;
-            margin-top: 0%;
+            margin-top: 2%;
         }
 
-
+        .search-group {
+            display: flex;
+            margin-bottom: 10px;
+            align-items: center;
+        }
 
         .dropdown-btn,
         .search-btn {
@@ -58,8 +62,6 @@
             background-color: #1B9AAA;
         }
 
-
-
         #searchInput {
             border-color: #1B9AAA;
             height: 35px;
@@ -70,11 +72,9 @@
             margin-right: 0;
         }
 
-        .search-group {
-            display: flex;
-            align-items: center;
-            border-radius: 5px;
-            margin-right: 10px;
+        #fachrichtungDropdown,
+        #ortPlzDropdown {
+            width: 200px;
         }
 
         .search-btn {
@@ -83,7 +83,7 @@
             border-radius: 0 5px 5px 0;
             color: white;
             cursor: pointer;
-            margin-left: 0;
+            margin-left: -40px; /* Adjusted margin to position the button next to the dropdown */
         }
 
         #searchInput:focus,
@@ -102,63 +102,61 @@
             margin-right: 5px;
         }
 
-        #fachrichtungDropdown,
-        #ortPlzDropdown {
-            margin-left: 0;
-            width: 200px;
+        .btn-primary {
+            margin-left: 0px;
         }
 
         .container-box {
-      display: flex;
-      border: 1px solid #000000;
-      margin: 0 auto;
-      background-color: #ffffffd0;
-      border-radius: 10px;
-      width: 60%;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      margin-bottom: 20px;
-    }
+            display: flex;
+            border: 1px solid #000000;
+            margin: 0 auto;
+            background-color: #ffffffd0;
+            border-radius: 10px;
+            width: 60%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
 
-    /* Styling für die linke Seite */
-    .info-side {
-      padding: 20px;
-      flex: 1; /* Nimmt den verfügbaren Platz ein */
-      border-right: 1px solid #ccc;
-    }
+        /* Styling für die linke Seite */
+        .info-side {
+            padding: 20px;
+            flex: 1; /* Nimmt den verfügbaren Platz ein */
+            border-right: 1px solid #ccc;
+        }
 
-    /* Styling für die rechte Seite */
-    .calendar-side {
-      padding: 20px;
-      flex: 1; /* Nimmt den verfügbaren Platz ein */
-    }
+        /* Styling für die rechte Seite */
+        .calendar-side {
+            padding: 20px;
+            flex: 1; /* Nimmt den verfügbaren Platz ein */
+        }
 
-    .icon {
-        margin-right: 8px; /* Abstand zwischen Symbol und Text anpassen */
-    }
+        .icon {
+            margin-right: 8px; /* Abstand zwischen Symbol und Text anpassen */
+        }
 
-    h2 {
-        color: #1B9AAA;
-        font-weight: bold;
-        font-style: italic;
-        text-align: center;
-        font-size: 20px
-    }
+        h2 {
+            color: #1B9AAA;
+            font-weight: bold;
+            font-style: italic;
+            text-align: center;
+            font-size: 20px
+        }
 
-    h3 {
-        font-size: 17px;
-         text-align: center;
-    }
+        h3 {
+            font-size: 17px;
+            text-align: center;
+        }
 
-    .calendar-side {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    height: 100%; /* Je nach Bedarf */
-}
-        
+        .calendar-side {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            height: 100%; /* Je nach Bedarf */
+        }
     </style>
+</head>
     <!-- ... (remaining code) ... -->
 
 
@@ -216,33 +214,48 @@
             <h1>Ärztesuche</h1>
         </div>
 
-        <div class="content">
+        
+        <div class="search-group">
+            <!-- Fachrichtung Dropdown -->
             <div class="dropdown">
                 <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text bg-primary text-light"><i class="bi bi-heart"></i></span>
+                    <span class="input-group-text bg-primary text-light"><i class="bi bi-heart"></i></span>
+                    <select class="form-control" id="fachrichtungDropdown">
+                            <option value="">Alle Fachrichtungen</option>
+                            <option value="">Allgemeinmedizin</option>
+                            <option value="">Kardiologie</option>
+                            <option value="">Dermatologie</option>
+                            <option value="">Pädiatrie</option>
+                            <option value="">Onkologie</option>
+                            <option value="">Psychologie</option>
+                            <option value="">Orthopädie</option>
+                            <option value="">Neurologie</option>
+                        </select>
                     </div>
-                    <input type="text" class="form-control" id="fachrichtungInput" placeholder="Fachrichtung">
                 </div>
-                <div class="dropdown-menu" aria-labelledby="fachrichtungInput" id="fachrichtungDropdown">
-                    <!-- Dynamic data will be fetched from the server and populated here -->
-                </div>
-            </div>
-
-            <div class="dropdown">
-                <div class="input-group">
-                    <div class="input-group-prepend">
+        
+                <!-- Orte/PLZ Dropdown -->
+                <div class="dropdown">
+                    <div class="input-group">
                         <span class="input-group-text bg-primary text-light"><i class="bi bi-geo-alt"></i></span>
+                        <select class="form-control" id="ortPlzDropdown">
+                            <option value="">Alle Orte/PLZ</option>
+                            <option value="">1050 Wien</option>
+                            <option value="">1100 Wien</option>
+                            <option value="">1120 Wien</option>
+                            <option value="">1010 Wien</option>
+                            <option value="">1020 Wien</option>
+                            <option value="">1030 Wien</option>
+                            <option value="">1040 Wien</option>
+                            <option value="">1060 Wien</option>
+                        </select>
                     </div>
-                    <input type="text" class="form-control" id="ortPlzInput" placeholder="Ort, PLZ">
-                </div>
-                <div class="dropdown-menu" aria-labelledby="ortPlzInput" id="ortPlzDropdown">
-                    <!-- Dynamic data will be fetched from the server and populated here -->
                 </div>
             </div>
-
+        </div>
+        
             <button class="btn btn-primary" onclick="searchDoctors()">Suchen</button>
-
+    
             <div id="doctorResults"></div>
         </div>
     </div>
@@ -703,134 +716,7 @@
                 // Weitere Konfigurationen hier...
             });
         });
-    </script>
-
-    <script>
-        function searchDoctors() {
-    const specialtyInput = document.getElementById('fachrichtungInput').value.toLowerCase();
-    const locationInput = document.getElementById('ortPlzInput').value.toLowerCase();
-
-    const filteredDoctors = doctors.filter(doctor =>
-        doctor.specialty.toLowerCase().includes(specialtyInput) &&
-        doctor.location.toLowerCase().includes(locationInput)
-    );
-
-    displayDoctors(filteredDoctors);
-}
-
-function displayDoctors(doctors) {
-    const doctorsListContainer = document.getElementById('doctorsList');
-    doctorsListContainer.innerHTML = '';
-
-    if (doctors.length === 0) {
-        doctorsListContainer.innerHTML = '<p>Keine Ärzte gefunden.</p>';
-        return;
-    }
-
-    doctors.forEach(doctor => {
-        const doctorElement = document.createElement('div');
-        doctorElement.innerHTML = `
-            <h2>${doctor.name}</h2>
-            <p>Fachrichtung: ${doctor.specialty}</p>
-            <p>Ort: ${doctor.location}</p>
-        `;
-
-        doctorsListContainer.appendChild(doctorElement);
-    });
-}
-
-var doctors = [
-    { name: 'Dr. Erwald Heberer', specialty: 'Allgemeinmedizin', location: '1050 Wien' },
-    { name: 'Dr. Marie Effner', specialty: 'Kardiologie', location: '1100 Wien' },
-    { name: 'Dr. med. Michael Jordan', specialty: 'Dermatologie', location: '1120 Wien' },
-    { name: 'Dr. med. Julia Schmidt', specialty: 'Pädiatrie', location: '1010 Wien' },
-    { name: 'Dr. med. Michael Müller', specialty: 'Onkologie', location: '1020 Wien' },
-    { name: 'Dr. med. Anna Wagner', specialty: 'Psychologie', location: '1030 Wien' },
-    { name: 'Dr. Christoph Becker', specialty: 'Orthopädie', location: '1040 Wien' },
-    { name: 'Dr. med. Laura Hofmann', specialty: 'Neurologie', location: '1060 Wien' },   
-];
-
-    </script>
-      
-       <!-- Füge Flatpickr-Script und Bootstrap-JavaScript hinzu -->
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXqOOjJCq6NYeXsOt41ZdPSTtmiKtS2baD"
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
-    <script>
-        // Initialisiere Flatpickr auf allen Date/Time-Eingabefeldern
-        flatpickr(".flatpickr", {
-            enableTime: true,
-            dateFormat: "Y-m-d H:i",
-        });
-
-        var doctors = [
-    { name: 'Dr. Erwald Heberer', specialty: 'Allgemeinmedizin', location: '1050 Wien' },
-    { name: 'Dr. Marie Effner', specialty: 'Kardiologie', location: '1100 Wien' },
-    { name: 'Dr. med. Michael Jordan', specialty: 'Dermatologie', location: '1120 Wien' },
-    { name: 'Dr. med. Julia Schmidt', specialty: 'Pädiatrie', location: '1010 Wien' },
-    { name: 'Dr. med. Michael Müller', specialty: 'Onkologie', location: '1020 Wien' },
-    { name: 'Dr. med. Anna Wagner', specialty: 'Psychologie', location: '1030 Wien' },
-    { name: 'Dr. Christoph Becker', specialty: 'Orthopädie', location: '1040 Wien' },
-    { name: 'Dr. med. Laura Hofmann', specialty: 'Neurologie', location: '1060 Wien' },   
-];
-function searchDoctors() {
-            var specialtyInput = document.getElementById("fachrichtungInput").value.toLowerCase();
-            var locationInput = document.getElementById("ortPlzInput").value.toLowerCase();
-
-            var filteredDoctors = doctors.filter(function (doctor) {
-                return (
-                    doctor.specialty.toLowerCase().includes(specialtyInput) &&
-                    doctor.location.toLowerCase().includes(locationInput)
-                );
-            });
-
-            displayDoctors(filteredDoctors);
-        }
-
-        // Funktion zum Anzeigen von Ärzten
-        function displayDoctors(doctorList) {
-            var resultsContainer = document.getElementById("doctorResults");
-            resultsContainer.innerHTML = ""; // Leere vorherige Ergebnisse
-
-            if (doctorList.length === 0) {
-                resultsContainer.innerHTML = "Keine Ärzte gefunden.";
-                return;
-            }
-
-            doctorList.forEach(function (doctor) {
-                var doctorCard = document.createElement("div");
-                doctorCard.className = "card mb-3";
-                var cardBody = document.createElement("div");
-                cardBody.className = "card-body";
-
-                // Füge die Arztdaten zum Karteninhalt hinzu
-                cardBody.innerHTML = `
-                    <h5 class="card-title">${doctor.name}</h5>
-                    <p class="card-text"><strong>Fachrichtung:</strong> ${doctor.specialty}</p>
-                    <p class="card-text"><strong>Ort:</strong> ${doctor.location}</p>
-                    <p class="card-text"><strong>Telefon:</strong> ${doctor.phoneNumber}</p>
-                    <p class="card-text"><strong>E-Mail:</strong> ${doctor.email}</p>
-                    <p class="card-text"><strong>Website:</strong> ${doctor.website}</p>
-                    <p class="card-text"><strong>Sprachen:</strong> ${doctor.languages.join(", ")}</p>
-                    <button class="btn btn-primary" onclick="bookAppointment('${doctor.name}')">Termin buchen</button>
-                `;
-
-                doctorCard.appendChild(cardBody);
-                resultsContainer.appendChild(doctorCard);
-            });
-        }
-
-        // Funktion zum Termin buchen
-        function bookAppointment(doctorName) {
-            // Hier kannst du die Logik zum Buchen eines Termins implementieren
-            alert("Termin für " + doctorName + " gebucht!");
-        }
-        </script>
-
+    </script>   
 
     <!-- Footer aus der Home-Seite -->
     <div class="container-fluid bg-dark text-light border-top border-secondary py-4">
