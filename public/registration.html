@@ -25,7 +25,19 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            document.querySelector('.signin-form').addEventListener('submit', async function (e) {
+            var form = document.querySelector('.signin-form');
+
+            form.addEventListener('submit', function (event) {
+                var password = form.querySelector('input[name="passwortregister"]').value;
+                var confirmPassword = form.querySelector('input[name="passwort_confirm"]').value;
+
+                if (password !== confirmPassword) {
+                    alert('Die Passwörter stimmen nicht überein. Bitte überprüfen Sie Ihre Eingaben.');
+                    event.preventDefault(); // Verhindert das Absenden des Formulars
+                }
+            });
+
+            form.addEventListener('submit', async function (e) {
                 e.preventDefault();
 
                 const formData = new FormData(this);
@@ -108,19 +120,7 @@
                                     <label class="label" for="password_confirm">Passwort bestätigen</label>
                                     <input type="password" class="form-control" name="passwort_confirm" placeholder="Confirm Password" required>
                                 </div>
-                                    <label for="emailregister" class="label">Email</label>
-                                    <input type="text" id="emailregister" class="form-control" name="emailregister" placeholder="Email" required>
-                                  </div>
-                                  <div class="form-group mb-3">
-                                    <label for="passwortregister" class="label" for="password">Passwort</label>
-                                    <input type="password" id="passwortregister" class="form-control" name="passwortregister" placeholder="Password" required>
-                                  </div>
-                                  <div class="form-group mb-3">
-                                    <label for="passwort_confirm" class="label">Passwort bestätigen</label>
-                                    <input type="password" id="passwort_confirm" class="form-control" name="passwort_confirm" placeholder="Confirm Password" required>
-                                  </div>
-
-                                <div class="form-group">
+                                <div class="form-group mb-3">
                                     <button type="submit" value="Registration" class="form-control btn btn-primary submit px-3">Sign Up</button>
                                 </div>
                             </form>
@@ -132,21 +132,7 @@
     </section>
     
     <!--Fehlermeldung die kommt, wenn Passwörter nicht übereinstimmen -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var form = document.querySelector('.signin-form');
     
-            form.addEventListener('submit', function (event) {
-                var password = form.querySelector('input[name="passwortregister"]').value;
-                var confirmPassword = form.querySelector('input[name="passwort_confirm"]').value;
-    
-                if (password !== confirmPassword) {
-                    alert('Die Passwörter stimmen nicht überein. Bitte überprüfen Sie Ihre Eingaben.');
-                    event.preventDefault(); // Verhindert das Absenden des Formulars
-                }
-            });
-        });
-    </script>
     
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-light border-top border-secondary py-4">
