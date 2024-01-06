@@ -16,11 +16,12 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/doctorsearch.css">
     <link rel="stylesheet" href="css/stylehome.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-df5A9UmivzC/2sS62+RKTJ3RsKOqkgYzGROOOOf7tCZ9j3qDViFqMyF0gy5dzCp" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha384-df5A9UmivzC/2sS62+RKTJ3RsKOqkgYzGROOOOf7tCZ9j3qDViFqMyF0gy5dzCp" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    
+
     <!-- Flatpickr CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
@@ -28,14 +29,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
     <!-- jQuery (falls für Flatpickr erforderlich) -->
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> 
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
     <!-- Flatpickr JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
     <!-- ... (previous code) ... -->
 
-    
+
     <style>
         .content {
             display: flex;
@@ -83,7 +84,8 @@
             border-radius: 0 5px 5px 0;
             color: white;
             cursor: pointer;
-            margin-left: -40px; /* Adjusted margin to position the button next to the dropdown */
+            margin-left: -40px;
+            /* Adjusted margin to position the button next to the dropdown */
         }
 
         #searchInput:focus,
@@ -120,18 +122,21 @@
         /* Styling für die linke Seite */
         .info-side {
             padding: 20px;
-            flex: 1; /* Nimmt den verfügbaren Platz ein */
+            flex: 1;
+            /* Nimmt den verfügbaren Platz ein */
             border-right: 1px solid #ccc;
         }
 
         /* Styling für die rechte Seite */
         .calendar-side {
             padding: 20px;
-            flex: 1; /* Nimmt den verfügbaren Platz ein */
+            flex: 1;
+            /* Nimmt den verfügbaren Platz ein */
         }
 
         .icon {
-            margin-right: 8px; /* Abstand zwischen Symbol und Text anpassen */
+            margin-right: 8px;
+            /* Abstand zwischen Symbol und Text anpassen */
         }
 
         h2 {
@@ -153,14 +158,15 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            height: 100%; /* Je nach Bedarf */
+            height: 100%;
+            /* Je nach Bedarf */
         }
     </style>
 </head>
-    <!-- ... (remaining code) ... -->
+<!-- ... (remaining code) ... -->
 
 
-    <!-- Ende Header -->
+<!-- Ende Header -->
 </head>
 
 <body>
@@ -209,89 +215,68 @@
     <div class="content">
         <div class="left-content">
             <h1>Ärztesuche</h1>
-        </div>    
-                
-
-        <div class="content">
-            <!-- Fachrichtung Dropdown -->
-            <div class="dropdown">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text bg-primary text-light"><i class="bi bi-heart"></i></span>
-                    </div>
-                    <select class="form-control" id="fachrichtungDropdown">
-                        <option value="">Alle Fachrichtungen</option>
-                        <option value="">Allgemeinmedizin</option>
-                        <option value="">Kardiologie</option>
-                        <option value="">Dermatologie</option>
-                        <option value="">Pädiatrie</option>
-                        <option value="">Onkologie</option>
-                        <option value="">Psychologie</option>
-                        <option value="">Orthopädie</option>
-                        <option value="">Neurologie</option>                                              
-                    </select>
-                </div>
-            </div>
-
-            <div class="dropdown">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text bg-primary text-light"><i class="bi bi-geo-alt"></i></span>
-                        <select class="form-control" id="ortPlzDropdown">
-                            <option value="">Alle Orte/PLZ</option>
-                            <option value="">1050 Wien</option>
-                            <option value="">1100 Wien</option>
-                            <option value="">1120 Wien</option>
-                            <option value="">1010 Wien</option>
-                            <option value="">1020 Wien</option>
-                            <option value="">1030 Wien</option>
-                            <option value="">1040 Wien</option>
-                            <option value="">1060 Wien</option>
-                        </select>
-                    </div>
-
-                </div>
-            </div>
         </div>
-        
+        <div class="dropdown">
+            <div class="input-group search-group">
+                <select class="form-select" id="fachrichtungDropdown">
+                    <option value="" selected>Fachrichtung</option>
+                    <option value="Allgemeinmedizin">Allgemeinmedizin</option>
+                    <option value="Kardiologie">Kardiologie</option>
+                    <option value="Dermatologie">Dermatologie</option>
+                    <option value="Pädiatrie">Pädiatrie</option>
+                    <option value="Onkologie">Onkologie</option>
+                    <option value="Psychologie">Psychologie</option>
+                    <option value="Orthopädie">Orthopädie</option>
+                    <option value="Neurologie">Neurologie</option>
+                </select>
 
-                
-            <button class="btn btn-primary" onclick="searchDoctors()">Suchen</button>
-    
-            <div id="doctorResults"></div>
+                <select class="form-select" id="ortPlzDropdown">
+                    <option value="" selected>Orte/PLZ</option>
+                    <option value="1050">1050 Wien</option>
+                    <option value="1100">1100 Wien</option>
+                    <option value="1120">1120 Wien</option>
+                    <option value="1010">1010 Wien</option>
+                    <option value="1020">1020 Wien</option>
+                    <option value="1030">1030 Wien</option>
+                    <option value="1040">1040 Wien</option>
+                    <option value="1060">1060 Wien</option>
+                </select>
+
+                <button class="btn btn-primary search-btn" type="button">
+                    <i class="bi bi-search"></i> Suche
+                </button>
+            </div>
         </div>
     </div>
 
-    
-    <!-- Arzt nr 1 -->
+
+    Arzt nr 1
 
     <div class="container-box" id="container-box-1">
-  
-        <!-- Linke Seite für Informationen -->
         <div class="info-side">
-          <h2>Dr. Erwald Heberer</h2>
-          <h3>Facharzt für Allgemeinmedizin</h3>
-          <p><span class="icon"><i class="fas fa-map-marker-alt"></i></span>1050 Wien</p>
-          <p><span class="icon"><i class="fas fa-phone"></i></span>01 8374623</p>
-          <p><span class="icon"><i class="fas fa-mobile-alt"></i></span>+43 677 12863712</p>
-          <p><span class="icon"><i class="fas fa-envelope"></i></span>erwald.heberer@example.com</p>
-          <p><span class="icon"><i class="fas fa-globe"></i></span>www.doc05.at</p>
-          <p><span class="icon"><i class="fas fa-comments"></i></span>Deutsch</p>
+            <h2>Dr. Erwald Heberer</h2>
+            <h3>Facharzt für Allgemeinmedizin</h3>
+            <p><span class="icon"><i class="fas fa-map-marker-alt"></i></span>1050 Wien</p>
+            <p><span class="icon"><i class="fas fa-phone"></i></span>01 8374623</p>
+            <p><span class="icon"><i class="fas fa-mobile-alt"></i></span>+43 677 12863712</p>
+            <p><span class="icon"><i class="fas fa-envelope"></i></span>erwald.heberer@example.com</p>
+            <p><span class="icon"><i class="fas fa-globe"></i></span>www.doc05.at</p>
+            <p><span class="icon"><i class="fas fa-comments"></i></span>Deutsch</p>
         </div>
-      
+
         <div class="calendar-side">
             <h2>Kalender</h2>
             <h3>Wählen Sie einen Termin aus</h3>
-            <!-- Hier könnte weiterer Text oder HTML für den Kalender stehen -->
+            Hier könnte weiterer Text oder HTML für den Kalender stehen
             <input type="text" id="datePicker-1" placeholder="Datum und Uhrzeit auswählen">
             <p></p>
             <button onclick="buchungSpeichern()">Termin buchen</button>
         </div>
     </div>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             flatpickr('#datePicker-1', {
                 enableTime: true, // Erlaubt die Auswahl der Uhrzeit
                 dateFormat: "d-m-Y H:i", // Das Datums- und Uhrzeitformat
@@ -299,8 +284,9 @@
                 maxDate: new Date().fp_incr(60), // Maximales auswählbares Datum ist 60 Tage in der Zukunft
                 defaultDate: "today", // Standardmäßig ausgewähltes Datum ist heute
                 time_24hr: true, // Verwendet das 24-Stunden-Format für die Uhrzeit
-                onChange: function(selectedDates, dateStr, instance) {
-                selectedDate = dateStr; },
+                onChange: function (selectedDates, dateStr, instance) {
+                    selectedDate = dateStr;
+                },
                 locale: {
                     firstDayOfWeek: 1, // Setzt den Montag als ersten Tag der Woche
                     weekdays: {
@@ -312,49 +298,126 @@
                         longhand: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember']
                     }
                 },
-                onClose: function(selectedDates, dateStr, instance) {
+                onClose: function (selectedDates, dateStr, instance) {
                     console.log("Ausgewähltes Datum und Uhrzeit:", dateStr);
                 },
             });
         });
 
         function speichern() {
-        // Sende die ausgewählten Daten an den Server oder führe eine andere Aktion aus
-        // Hier könnte eine AJAX-Anfrage an den Server erfolgen
-        // Beispiel mit Fetch API:
-        fetch('/speichern', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ selectedDate }),
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Daten erfolgreich gespeichert:', data);
-        })
-        .catch(error => {
-            console.error('Fehler beim Speichern der Daten:', error);
-        });
-    }
+            // Sende die ausgewählten Daten an den Server oder führe eine andere Aktion aus
+            // Hier könnte eine AJAX-Anfrage an den Server erfolgen
+            // Beispiel mit Fetch API:
+            fetch('/speichern', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ selectedDate }),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Daten erfolgreich gespeichert:', data);
+                })
+                .catch(error => {
+                    console.error('Fehler beim Speichern der Daten:', error);
+                });
+        }
     </script>
 
-      -- arzt nr 2
 
-      <div class="container-box" id="container-box-2">
-  
+    <script>
+        function searchDoctors() {
+            const fachrichtung = $('#fachrichtungDropdown').val();
+            const ortPlz = $('#ortPlzDropdown').val();
+
+            // AJAX-Anfrage an den Server senden
+            $.ajax({
+                url: `http://localhost:3001/api/searchDoctors?fachrichtung=${fachrichtung}&ortPlz=${ortPlz}`,
+                method: 'GET',
+                success: function (data) {
+                    // Erfolgreiche Antwort vom Server
+                    displayDoctorResults(data);
+                },
+                error: function (error) {
+                    // Fehler bei der Anfrage
+                    console.error('Fehler beim Suchen der Ärzte:', error.responseText);
+                }
+            });
+        }
+
+        function displayDoctorResults(doctors) {
+            const doctorResultsDiv = $('#doctorResults');
+            doctorResultsDiv.empty(); // Leert vorherige Suchergebnisse
+
+            doctors.forEach(doctor => {
+                const doctorBox = $(`
+                <div class="container-box" id="container-box-${doctor.a_id}">
+                    <div class="info-side">
+                        <h2>${doctor.a_vorname} ${doctor.a_nachname}</h2>
+                        <h3>${doctor.a_fachrichtung}</h3>
+                        <p><span class="icon"><i class="fas fa-map-marker-alt"></i></span>${doctor.a_plz} ${doctor.a_ort}</p>
+                        <p><span class="icon"><i class="fas fa-phone"></i></span>${doctor.a_telefonnummer}</p>
+                        <p><span class="icon"><i class="fas fa-mobile-alt"></i></span>${doctor.a_mobile}</p>
+                        <p><span class="icon"><i class="fas fa-envelope"></i></span>${doctor.a_email}</p>
+                        <p><span class="icon"><i class="fas fa-globe"></i></span>${doctor.a_website}</p>
+                        <p><span class="icon"><i class="fas fa-comments"></i></span>${doctor.a_sprache}</p>
+                    </div>
+                    <div class="calendar-side">
+                        <h2>Kalender</h2>
+                        <h3>Wählen Sie einen Termin aus</h3>
+                        <input type="text" id="datePicker-${doctor.a_id}" placeholder="Datum und Uhrzeit auswählen">
+                        <p></p>
+                        <button onclick="buchungSpeichern(${doctor.a_id})">Termin buchen</button>
+                    </div>
+                </div>
+            `);
+
+                doctorResultsDiv.append(doctorBox);
+
+                // Flatpickr für jeden Arzt initialisieren
+                flatpickr(`#datePicker-${doctor.a_id}`, {
+                    enableTime: true,
+                    dateFormat: "d-m-Y H:i",
+                    minDate: "today",
+                    maxDate: new Date().fp_incr(60),
+                    defaultDate: "today",
+                    time_24hr: true,
+                    onChange: function (selectedDates, dateStr, instance) {
+                        // Aktion bei Auswahl eines Datums
+                        // Hier können Sie weitere Aktionen hinzufügen oder Daten speichern
+                        console.log("Ausgewähltes Datum und Uhrzeit:", dateStr);
+                    },
+                });
+            });
+        }
+
+        function buchungSpeichern(doctorId) {
+            const selectedDate = $(`#datePicker-${doctorId}`).val();
+
+            // Hier können Sie den ausgewählten Termin und die Arzt-ID an den Server senden
+            // und die Buchung speichern
+            console.log(`Termin für Arzt ${doctorId} speichern:`, selectedDate);
+            // Fügen Sie hier Ihre AJAX-Anfrage zum Speichern der Buchung hinzu
+        }
+    </script>
+
+    <!-- arzt nr 2-->
+
+    <div class="container-box" id="container-box-2">
+
         <!-- Linke Seite für Informationen -->
         <div class="info-side">
-          <h2>Dr. Marie Effner</h2>
-          <h3>Fachärztin für Kardiologie</h3>
-          <p><span class="icon"><i class="fas fa-map-marker-alt"></i></span>1100 Wien</p>
-          <p><span class="icon"><i class="fas fa-phone"></i></span>01 6743561</p>
-          <p><span class="icon"><i class="fas fa-mobile-alt"></i></span>+43 600 45327698</p>
-          <p><span class="icon"><i class="fas fa-envelope"></i></span>marie.effner@example.com</p>
-          <p><span class="icon"><i class="fas fa-globe"></i></span>www.doc10.at</p>
-          <p><span class="icon"><i class="fas fa-comments"></i></span>Deutsch, Englisch</p>
+            <h2>Dr. Marie Effner</h2>
+            <h3>Fachärztin für Kardiologie</h3>
+            <p><span class="icon"><i class="fas fa-map-marker-alt"></i></span>1100 Wien</p>
+            <p><span class="icon"><i class="fas fa-phone"></i></span>01 6743561</p>
+            <p><span class="icon"><i class="fas fa-mobile-alt"></i></span>+43 600 45327698</p>
+            <p><span class="icon"><i class="fas fa-envelope"></i></span>marie.effner@example.com</p>
+            <p><span class="icon"><i class="fas fa-globe"></i></span>www.doc10.at</p>
+            <p><span class="icon"><i class="fas fa-comments"></i></span>Deutsch, Englisch</p>
         </div>
-      
+
         <div class="calendar-side">
             <h2>Kalender</h2>
             <h3>Wählen Sie einen Termin aus</h3>
@@ -363,10 +426,10 @@
             <p></p>
             <button onclick="buchungSpeichern()">Termin buchen</button>
         </div>
-      </div>
+    </div>
 
-      <script>
-        document.addEventListener('DOMContentLoaded', function() {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
             flatpickr('#datePicker-2', {
                 enableTime: true, // Erlaubt die Auswahl der Uhrzeit
                 dateFormat: "d-m-Y H:i", // Das Datums- und Uhrzeitformat
@@ -385,7 +448,7 @@
                         longhand: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember']
                     }
                 },
-                onClose: function(selectedDates, dateStr, instance) {
+                onClose: function (selectedDates, dateStr, instance) {
                     console.log("Ausgewähltes Datum und Uhrzeit:", dateStr);
                 },
                 // Weitere Konfigurationen hier...
@@ -393,22 +456,22 @@
         });
     </script>
 
-      -- arzt nr 3
+    -- arzt nr 3
 
-      <div class="container-box" id="container-box-3">
-  
+    <div class="container-box" id="container-box-3">
+
         <!-- Linke Seite für Informationen -->
         <div class="info-side">
-          <h2>Dr. med. Michael Jordan</h2>
-          <h3>Facharzt für Dermatologie</h3>
-          <p><span class="icon"><i class="fas fa-map-marker-alt"></i></span>1120 Wien</p>
-          <p><span class="icon"><i class="fas fa-phone"></i></span>01 9371263</p>
-          <p><span class="icon"><i class="fas fa-mobile-alt"></i></span>+43 699 49271263</p>
-          <p><span class="icon"><i class="fas fa-envelope"></i></span>michael.jordan@example.com</p>
-          <p><span class="icon"><i class="fas fa-globe"></i></span>www.doc12.at</p>
-          <p><span class="icon"><i class="fas fa-comments"></i></span>Deutsch, Serbisch</p>
+            <h2>Dr. med. Michael Jordan</h2>
+            <h3>Facharzt für Dermatologie</h3>
+            <p><span class="icon"><i class="fas fa-map-marker-alt"></i></span>1120 Wien</p>
+            <p><span class="icon"><i class="fas fa-phone"></i></span>01 9371263</p>
+            <p><span class="icon"><i class="fas fa-mobile-alt"></i></span>+43 699 49271263</p>
+            <p><span class="icon"><i class="fas fa-envelope"></i></span>michael.jordan@example.com</p>
+            <p><span class="icon"><i class="fas fa-globe"></i></span>www.doc12.at</p>
+            <p><span class="icon"><i class="fas fa-comments"></i></span>Deutsch, Serbisch</p>
         </div>
-      
+
         <div class="calendar-side">
             <h2>Kalender</h2>
             <h3>Wählen Sie einen Termin aus</h3>
@@ -417,10 +480,10 @@
             <p></p>
             <button onclick="buchungSpeichern()">Termin buchen</button>
         </div>
-      </div>
+    </div>
 
-      <script>
-        document.addEventListener('DOMContentLoaded', function() {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
             flatpickr('#datePicker-3', {
                 enableTime: true, // Erlaubt die Auswahl der Uhrzeit
                 dateFormat: "d-m-Y H:i", // Das Datums- und Uhrzeitformat
@@ -439,7 +502,7 @@
                         longhand: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember']
                     }
                 },
-                onClose: function(selectedDates, dateStr, instance) {
+                onClose: function (selectedDates, dateStr, instance) {
                     console.log("Ausgewähltes Datum und Uhrzeit:", dateStr);
                 },
                 // Weitere Konfigurationen hier...
@@ -447,22 +510,22 @@
         });
     </script>
 
-      -- arzt nr 4
+    -- arzt nr 4
 
-      <div class="container-box" id="container-box-4">
-  
+    <div class="container-box" id="container-box-4">
+
         <!-- Linke Seite für Informationen -->
         <div class="info-side">
-          <h2>Dr. med. Julia Schmidt</h2>
-          <h3>Fachärztin für Pädiatrie</h3>
-          <p><span class="icon"><i class="fas fa-map-marker-alt"></i></span>1010 Wien</p>
-          <p><span class="icon"><i class="fas fa-phone"></i></span>01 4820374</p>
-          <p><span class="icon"><i class="fas fa-mobile-alt"></i></span>+43 699 98362817</p>
-          <p><span class="icon"><i class="fas fa-envelope"></i></span>julia.schmidt@example.com</p>
-          <p><span class="icon"><i class="fas fa-globe"></i></span>www.doc01.at</p>
-          <p><span class="icon"><i class="fas fa-comments"></i></span>Deutsch, Rumänisch</p>
+            <h2>Dr. med. Julia Schmidt</h2>
+            <h3>Fachärztin für Pädiatrie</h3>
+            <p><span class="icon"><i class="fas fa-map-marker-alt"></i></span>1010 Wien</p>
+            <p><span class="icon"><i class="fas fa-phone"></i></span>01 4820374</p>
+            <p><span class="icon"><i class="fas fa-mobile-alt"></i></span>+43 699 98362817</p>
+            <p><span class="icon"><i class="fas fa-envelope"></i></span>julia.schmidt@example.com</p>
+            <p><span class="icon"><i class="fas fa-globe"></i></span>www.doc01.at</p>
+            <p><span class="icon"><i class="fas fa-comments"></i></span>Deutsch, Rumänisch</p>
         </div>
-      
+
         <div class="calendar-side">
             <h2>Kalender</h2>
             <h3>Wählen Sie einen Termin aus</h3>
@@ -471,10 +534,10 @@
             <p></p>
             <button onclick="buchungSpeichern()">Termin buchen</button>
         </div>
-      </div>
+    </div>
 
-      <script>
-        document.addEventListener('DOMContentLoaded', function() {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
             flatpickr('#datePicker-4', {
                 enableTime: true, // Erlaubt die Auswahl der Uhrzeit
                 dateFormat: "d-m-Y H:i", // Das Datums- und Uhrzeitformat
@@ -493,7 +556,7 @@
                         longhand: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember']
                     }
                 },
-                onClose: function(selectedDates, dateStr, instance) {
+                onClose: function (selectedDates, dateStr, instance) {
                     console.log("Ausgewähltes Datum und Uhrzeit:", dateStr);
                 },
                 // Weitere Konfigurationen hier...
@@ -501,22 +564,22 @@
         });
     </script>
 
-      -- arzt nr 5
+    -- arzt nr 5
 
-      <div class="container-box" id="container-box-5">
-  
+    <div class="container-box" id="container-box-5">
+
         <!-- Linke Seite für Informationen -->
         <div class="info-side">
-          <h2>Dr. med. Michael Müller</h2>
-          <h3>Facharzt für Onkologie</h3>
-          <p><span class="icon"><i class="fas fa-map-marker-alt"></i></span>1020 Wien</p>
-          <p><span class="icon"><i class="fas fa-phone"></i></span>01 9012834</p>
-          <p><span class="icon"><i class="fas fa-mobile-alt"></i></span>+43 674 09271635</p>
-          <p><span class="icon"><i class="fas fa-envelope"></i></span>michael.müller@example.com</p>
-          <p><span class="icon"><i class="fas fa-globe"></i></span>www.doc02.at</p>
-          <p><span class="icon"><i class="fas fa-comments"></i></span>Deutsch, Urdu</p>
+            <h2>Dr. med. Michael Müller</h2>
+            <h3>Facharzt für Onkologie</h3>
+            <p><span class="icon"><i class="fas fa-map-marker-alt"></i></span>1020 Wien</p>
+            <p><span class="icon"><i class="fas fa-phone"></i></span>01 9012834</p>
+            <p><span class="icon"><i class="fas fa-mobile-alt"></i></span>+43 674 09271635</p>
+            <p><span class="icon"><i class="fas fa-envelope"></i></span>michael.müller@example.com</p>
+            <p><span class="icon"><i class="fas fa-globe"></i></span>www.doc02.at</p>
+            <p><span class="icon"><i class="fas fa-comments"></i></span>Deutsch, Urdu</p>
         </div>
-      
+
         <div class="calendar-side">
             <h2>Kalender</h2>
             <h3>Wählen Sie einen Termin aus</h3>
@@ -525,10 +588,10 @@
             <p></p>
             <button onclick="buchungSpeichern()">Termin buchen</button>
         </div>
-      </div>
+    </div>
 
-      <script>
-        document.addEventListener('DOMContentLoaded', function() {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
             flatpickr('#datePicker-5', {
                 enableTime: true, // Erlaubt die Auswahl der Uhrzeit
                 dateFormat: "d-m-Y H:i", // Das Datums- und Uhrzeitformat
@@ -547,7 +610,7 @@
                         longhand: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember']
                     }
                 },
-                onClose: function(selectedDates, dateStr, instance) {
+                onClose: function (selectedDates, dateStr, instance) {
                     console.log("Ausgewähltes Datum und Uhrzeit:", dateStr);
                 },
                 // Weitere Konfigurationen hier...
@@ -556,22 +619,22 @@
     </script>
 
 
-      -- arzt nr 6
+    -- arzt nr 6
 
-      <div class="container-box" id="container-box-6">
-  
+    <div class="container-box" id="container-box-6">
+
         <!-- Linke Seite für Informationen -->
         <div class="info-side">
-          <h2>Dr. med. Anna Wagner</h2>
-          <h3>Fachärztin für Psychologie</h3>
-          <p><span class="icon"><i class="fas fa-map-marker-alt"></i></span>1030 Wien</p>
-          <p><span class="icon"><i class="fas fa-phone"></i></span>01 9381726</p>
-          <p><span class="icon"><i class="fas fa-mobile-alt"></i></span>+43 674 09273649</p>
-          <p><span class="icon"><i class="fas fa-envelope"></i></span>anna.wagner@example.com</p>
-          <p><span class="icon"><i class="fas fa-globe"></i></span>www.doc03.at</p>
-          <p><span class="icon"><i class="fas fa-comments"></i></span>Deutsch, Spanisch</p>
+            <h2>Dr. med. Anna Wagner</h2>
+            <h3>Fachärztin für Psychologie</h3>
+            <p><span class="icon"><i class="fas fa-map-marker-alt"></i></span>1030 Wien</p>
+            <p><span class="icon"><i class="fas fa-phone"></i></span>01 9381726</p>
+            <p><span class="icon"><i class="fas fa-mobile-alt"></i></span>+43 674 09273649</p>
+            <p><span class="icon"><i class="fas fa-envelope"></i></span>anna.wagner@example.com</p>
+            <p><span class="icon"><i class="fas fa-globe"></i></span>www.doc03.at</p>
+            <p><span class="icon"><i class="fas fa-comments"></i></span>Deutsch, Spanisch</p>
         </div>
-      
+
         <div class="calendar-side">
             <h2>Kalender</h2>
             <h3>Wählen Sie einen Termin aus</h3>
@@ -580,10 +643,10 @@
             <p></p>
             <button onclick="buchungSpeichern()">Termin buchen</button>
         </div>
-      </div>
+    </div>
 
-      <script>
-        document.addEventListener('DOMContentLoaded', function() {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
             flatpickr('#datePicker-5', {
                 enableTime: true, // Erlaubt die Auswahl der Uhrzeit
                 dateFormat: "d-m-Y H:i", // Das Datums- und Uhrzeitformat
@@ -602,7 +665,7 @@
                         longhand: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember']
                     }
                 },
-                onClose: function(selectedDates, dateStr, instance) {
+                onClose: function (selectedDates, dateStr, instance) {
                     console.log("Ausgewähltes Datum und Uhrzeit:", dateStr);
                 },
                 // Weitere Konfigurationen hier...
@@ -610,22 +673,22 @@
         });
     </script>
 
-      -- arzt nr 7
+    -- arzt nr 7
 
-      <div class="container-box" id="container-box-7">
-  
+    <div class="container-box" id="container-box-7">
+
         <!-- Linke Seite für Informationen -->
         <div class="info-side">
-          <h2>Dr. Christoph Becker</h2>
-          <h3>Facharzt für Orthopädie</h3>
-          <p><span class="icon"><i class="fas fa-map-marker-alt"></i></span>1040 Wien</p>
-          <p><span class="icon"><i class="fas fa-phone"></i></span>01 8123934</p>
-          <p><span class="icon"><i class="fas fa-mobile-alt"></i></span>+43 660 02711523</p>
-          <p><span class="icon"><i class="fas fa-envelope"></i></span>christoph.becker@example.com</p>
-          <p><span class="icon"><i class="fas fa-globe"></i></span>www.doc04.at</p>
-          <p><span class="icon"><i class="fas fa-comments"></i></span>Deutsch, Französisch</p>
+            <h2>Dr. Christoph Becker</h2>
+            <h3>Facharzt für Orthopädie</h3>
+            <p><span class="icon"><i class="fas fa-map-marker-alt"></i></span>1040 Wien</p>
+            <p><span class="icon"><i class="fas fa-phone"></i></span>01 8123934</p>
+            <p><span class="icon"><i class="fas fa-mobile-alt"></i></span>+43 660 02711523</p>
+            <p><span class="icon"><i class="fas fa-envelope"></i></span>christoph.becker@example.com</p>
+            <p><span class="icon"><i class="fas fa-globe"></i></span>www.doc04.at</p>
+            <p><span class="icon"><i class="fas fa-comments"></i></span>Deutsch, Französisch</p>
         </div>
-      
+
         <div class="calendar-side">
             <h2>Kalender</h2>
             <h3>Wählen Sie einen Termin aus</h3>
@@ -634,11 +697,11 @@
             <p></p>
             <button onclick="buchungSpeichern()">Termin buchen</button>
         </div>
-      
-      </div>
 
-      <script>
-        document.addEventListener('DOMContentLoaded', function() {
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
             flatpickr('#datePicker-7', {
                 enableTime: true, // Erlaubt die Auswahl der Uhrzeit
                 dateFormat: "d-m-Y H:i", // Das Datums- und Uhrzeitformat
@@ -657,7 +720,7 @@
                         longhand: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember']
                     }
                 },
-                onClose: function(selectedDates, dateStr, instance) {
+                onClose: function (selectedDates, dateStr, instance) {
                     console.log("Ausgewähltes Datum und Uhrzeit:", dateStr);
                 },
                 // Weitere Konfigurationen hier...
@@ -665,22 +728,22 @@
         });
     </script>
 
-      -- arzt nr 8
+    -- arzt nr 8
 
-      <div class="container-box" id="container-box-8">
-  
+    <div class="container-box" id="container-box-8">
+
         <!-- Linke Seite für Informationen -->
         <div class="info-side">
-          <h2>Dr. med. Laura Hofman</h2>
-          <h3>Fachärztin für Neurologie</h3>
-          <p><span class="icon"><i class="fas fa-map-marker-alt"></i></span>1060 Wien</p>
-          <p><span class="icon"><i class="fas fa-phone"></i></span>01 3821773</p>
-          <p><span class="icon"><i class="fas fa-mobile-alt"></i></span>+43 665 01822436</p>
-          <p><span class="icon"><i class="fas fa-envelope"></i></span>laura.hofmann@example.com</p>
-          <p><span class="icon"><i class="fas fa-globe"></i></span>www.doc06.at</p>
-          <p><span class="icon"><i class="fas fa-comments"></i></span>Deutsch, Russisch</p>
+            <h2>Dr. med. Laura Hofman</h2>
+            <h3>Fachärztin für Neurologie</h3>
+            <p><span class="icon"><i class="fas fa-map-marker-alt"></i></span>1060 Wien</p>
+            <p><span class="icon"><i class="fas fa-phone"></i></span>01 3821773</p>
+            <p><span class="icon"><i class="fas fa-mobile-alt"></i></span>+43 665 01822436</p>
+            <p><span class="icon"><i class="fas fa-envelope"></i></span>laura.hofmann@example.com</p>
+            <p><span class="icon"><i class="fas fa-globe"></i></span>www.doc06.at</p>
+            <p><span class="icon"><i class="fas fa-comments"></i></span>Deutsch, Russisch</p>
         </div>
-      
+
         <div class="calendar-side">
             <h2>Kalender</h2>
             <h3>Wählen Sie einen Termin aus</h3>
@@ -689,11 +752,11 @@
             <p></p>
             <button onclick="buchungSpeichern()">Termin buchen</button>
         </div>
-      </div>
+    </div>
 
 
-      <script>
-        document.addEventListener('DOMContentLoaded', function() {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
             flatpickr('#datePicker-8', {
                 enableTime: true, // Erlaubt die Auswahl der Uhrzeit
                 dateFormat: "d-m-Y H:i", // Das Datums- und Uhrzeitformat
@@ -712,7 +775,7 @@
                         longhand: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember']
                     }
                 },
-                onClose: function(selectedDates, dateStr, instance) {
+                onClose: function (selectedDates, dateStr, instance) {
                     console.log("Ausgewähltes Datum und Uhrzeit:", dateStr);
                 },
                 // Weitere Konfigurationen hier...
@@ -720,8 +783,8 @@
         });
     </script>
     <script>
-    const doctors = [
-    { id: 1, name: 'Dr. Erwald Heberer', specialty: 'Allgemeinmedizin', location: '1050 Wien' },
+        const doctors = [
+            { id: 1, name: 'Dr. Erwald Heberer', specialty: 'Allgemeinmedizin', location: '1050 Wien' },
             { id: 2, name: 'Dr. Marie Effner', specialty: 'Kardiologie', location: '1100 Wien' },
             { id: 3, name: 'Dr. med. Michael Jordan', specialty: 'Dermatologie', location: '1120 Wien' },
             { id: 4, name: 'Dr. med. Julia Schmidt', specialty: 'Pädiatrie', location: '1010 Wien' },
@@ -731,31 +794,31 @@
             { id: 8, name: 'Dr. med. Laura Hofmann', specialty: 'Neurologie', location: '1060 Wien' },
         ];
 
-    function searchDoctors() {
-    const specialtyInput = document.getElementById('fachrichtungDropdown').value.toLowerCase();
-    const locationInput = document.getElementById('ortPlzDropdown').value.toLowerCase();
+        function searchDoctors() {
+            const specialtyInput = document.getElementById('fachrichtungDropdown').value.toLowerCase();
+            const locationInput = document.getElementById('ortPlzDropdown').value.toLowerCase();
 
-    const filteredDoctors = doctors.filter(doctor =>
-        doctor.specialty.toLowerCase().includes(specialtyInput) &&
-        doctor.location.toLowerCase().includes(locationInput)
-    );
+            const filteredDoctors = doctors.filter(doctor =>
+                doctor.specialty.toLowerCase().includes(specialtyInput) &&
+                doctor.location.toLowerCase().includes(locationInput)
+            );
 
-    displayDoctors(filteredDoctors);
-    }
-function displayDoctors(doctors) {
-    const doctorsListContainer = document.getElementById('doctorResults');
-    doctorsListContainer.innerHTML = '';
+            displayDoctors(filteredDoctors);
+        }
+        function displayDoctors(doctors) {
+            const doctorsListContainer = document.getElementById('doctorResults');
+            doctorsListContainer.innerHTML = '';
 
-    if (doctors.length === 0) {
-        doctorsListContainer.innerHTML = '<p>Keine Ärzte gefunden.</p>';
-        return;
-    }
+            if (doctors.length === 0) {
+                doctorsListContainer.innerHTML = '<p>Keine Ärzte gefunden.</p>';
+                return;
+            }
 
-    doctors.forEach(doctor => {
-        const doctorElement = document.createElement('div');
-        doctorElement.className = 'container-box';
-        doctorElement.id = 'container-box-' + doctor.id;
-        doctorElement.innerHTML = `
+            doctors.forEach(doctor => {
+                const doctorElement = document.createElement('div');
+                doctorElement.className = 'container-box';
+                doctorElement.id = 'container-box-' + doctor.id;
+                doctorElement.innerHTML = `
             <div class="info-side">
                 <h2>${doctor.name}</h2>
                 <h3>${doctor.specialty}</h3>
@@ -770,37 +833,37 @@ function displayDoctors(doctors) {
                 <button onclick="buchungSpeichern()">Termin buchen</button>
             </div>
         `;
-        doctorsListContainer.appendChild(doctorElement);
-    });
-}
+                doctorsListContainer.appendChild(doctorElement);
+            });
+        }
 
 
-     const datePickerId = 'datePicker-' + doctor.id;
-     flatpickr('#' + datePickerId, {
-         enableTime: true,
-         dateFormat: "d-m-Y H:i",
-         minDate: "today",
-         maxDate: new Date().fp_incr(60),
-         defaultDate: "today",
-         time_24hr: true,
-         locale: {
-             firstDayOfWeek: 1,
-             weekdays: {
-                 shorthand: ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
-                 longhand: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag']
-             },
-             months: {
-                 shorthand: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
-                 longhand: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember']
-             }
-         },
-         onClose: function (selectedDates, dateStr, instance) {
-             console.log("Ausgewähltes Datum und Uhrzeit:", dateStr);
-         },
-     
-     });
+        const datePickerId = 'datePicker-' + doctor.id;
+        flatpickr('#' + datePickerId, {
+            enableTime: true,
+            dateFormat: "d-m-Y H:i",
+            minDate: "today",
+            maxDate: new Date().fp_incr(60),
+            defaultDate: "today",
+            time_24hr: true,
+            locale: {
+                firstDayOfWeek: 1,
+                weekdays: {
+                    shorthand: ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
+                    longhand: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag']
+                },
+                months: {
+                    shorthand: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
+                    longhand: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember']
+                }
+            },
+            onClose: function (selectedDates, dateStr, instance) {
+                console.log("Ausgewähltes Datum und Uhrzeit:", dateStr);
+            },
 
-        </script>
+        });
+
+    </script>
 
 
     <!-- Footer aus der Home-Seite -->
@@ -817,7 +880,7 @@ function displayDoctors(doctors) {
             </div>
         </div>
     </div>
-   <!-- Ende Footer -->
+    <!-- Ende Footer -->
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

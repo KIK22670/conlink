@@ -22,6 +22,7 @@ router.get('/aerzte', (req, res) => {
 });
 
 
+
 // Registration route
 router.post('/registration', async (req, res) => {
     const { nameregister, emailregister, passwortregister } = req.body;
