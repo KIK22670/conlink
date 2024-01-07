@@ -10,7 +10,7 @@ const app = express();
 const port = process.env.PORT || 3001;
 
 app.use(morgan('combined'));
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')));
@@ -31,12 +31,11 @@ app.post('/registration', async (req, res) => {
     const hashedPassword = await bcrypt.hash(passwortregister, 10);
 
     const query = {
-      text: 'INSERT INTO u_userverwaltung(u_email, u_passwort) VALUES($1, $2)',
+      text: 'INSERT INTO u_userverwaltung(u_email, u_passwort) VALUES($1, $2) RETURNING *',
       values: [emailregister, hashedPassword],
     };
-
+    
     const result = await client.query(query);
-
     console.log(result);
     res.status(201).json({ message: 'User registered successfully' });
   } catch (error) {

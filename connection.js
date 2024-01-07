@@ -8,4 +8,8 @@ const client = new Client({
     database: "postgres"
 })
 
-module.exports = client
+client.connect()
+  .then(() => console.log('Connected to the database'))
+  .catch(error => console.error('Error connecting to the database', error));
+
+module.exports = client;
