@@ -28,16 +28,31 @@ app.post('/registration', async (req, res) => {
   const { emailregister, passwortregister } = req.body;
 
   try {
+    // Check if the email is already registered
+    const checkEmailQuery = {
+      text: 'SELECT * FROM u_userverwaltung WHERE u_email = $1',
+      values: [emailregister],
+    };
+
+    const emailCheckResult = await client.query(checkEmailQuery);
+
+    if (emailCheckResult.rows.length > 0) {
+      // Email is already registered
+      return res.status(400).json({ error: 'Email already exists' });
+    }
+
+    // If email is not registered, proceed with registration
     const hashedPassword = await bcrypt.hash(passwortregister, 10);
 
-    const query = {
+    const insertUserQuery = {
       text: 'INSERT INTO u_userverwaltung(u_email, u_passwort) VALUES($1, $2) RETURNING *',
       values: [emailregister, hashedPassword],
     };
-    
-    const result = await client.query(query);
+
+    const result = await client.query(insertUserQuery);
     console.log(result);
     res.status(201).json({ message: 'User registered successfully' });
+    res.redirect('/login.html');
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: error.message });
@@ -47,6 +62,47 @@ app.post('/registration', async (req, res) => {
 app.get('/login', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'login.html'));
 });
+
+app.post('/login', async (req, res) => {
+  const { email, passwort } = req.body;
+
+  try {
+    if (!passwort) {
+      return res.status(400).json({ error: 'Password is required' });
+    }
+
+    const query = {
+      text: 'SELECT * FROM u_userverwaltung WHERE u_email = $1',
+      values: [email],
+    };
+
+    const result = await client.query(query);
+
+    if (result.rows.length === 1) {
+      const user = result.rows[0];
+
+      if (user.u_passwort) {
+        // Check if hashed password is defined
+        if (bcrypt.compareSync(passwort, user.u_passwort)) {
+          res.status(200).json({ message: 'Login successful' });
+        } else {
+          res.status(401).json({ error: 'Invalid email or password' });
+        }
+      } else {
+        res.status(401).json({ error: 'Invalid email or password' });
+      }
+    } else {
+      res.status(401).json({ error: 'Invalid email or password' });
+    }
+  } catch (error) {
+    console.error('Error during login:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+
+
+
 
 app.get('/doctor/:id', async (req, res) => {
   try {
