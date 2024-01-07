@@ -64,34 +64,50 @@ app.get('/login', (req, res) => {
 });
 
 app.post('/login', async (req, res) => {
-  const { email, passwort } = req.body;
-
   try {
+    const { email, passwort } = req.body;
+
+    // Log Request Body
+    console.log('Request Body:', req.body);
+
+    // Check if password is provided
     if (!passwort) {
+      console.log('Password is required');
       return res.status(400).json({ error: 'Password is required' });
     }
 
+    // Database Query
     const query = {
-      text: 'SELECT * FROM u_userverwaltung WHERE u_email = $1',
-      values: [email],
+      text: 'SELECT * FROM u_userverwaltung WHERE LOWER(u_email) = LOWER($1)',
+      values: [email.toLowerCase()],
     };
-
+    
     const result = await client.query(query);
 
+    // Log Database Query Result
+    console.log('Database Query Result:', result.rows);
+
     if (result.rows.length === 1) {
+      console.log('User found in the database');
       const user = result.rows[0];
 
       if (user.u_passwort) {
+        console.log('User has a hashed password');
+
         // Check if hashed password is defined
         if (bcrypt.compareSync(passwort, user.u_passwort)) {
+          console.log('Password comparison successful');
           res.status(200).json({ message: 'Login successful' });
         } else {
+          console.log('Incorrect email or password');
           res.status(401).json({ error: 'Invalid email or password' });
         }
       } else {
+        console.log('User does not have a hashed password');
         res.status(401).json({ error: 'Invalid email or password' });
       }
     } else {
+      console.log('No user found with the provided email');
       res.status(401).json({ error: 'Invalid email or password' });
     }
   } catch (error) {
@@ -99,6 +115,7 @@ app.post('/login', async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+
 
 
 
