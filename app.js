@@ -52,7 +52,7 @@ app.post('/registration', async (req, res) => {
     const result = await client.query(insertUserQuery);
     console.log(result);
     res.status(201).json({ message: 'User registered successfully' });
-    res.redirect('/login.html');
+    
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: error.message });
@@ -97,7 +97,7 @@ app.post('/login', async (req, res) => {
         // Check if hashed password is defined
         if (bcrypt.compareSync(passwort, user.u_passwort)) {
           console.log('Password comparison successful');
-          res.status(200).json({ message: 'Login successful' });
+          res.redirect('/doctorsearch.html');
         } else {
           console.log('Incorrect email or password');
           res.status(401).json({ error: 'Invalid email or password' });
