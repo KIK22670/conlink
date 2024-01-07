@@ -232,31 +232,31 @@
 
                 <select class="form-select" id="ortPlzDropdown">
                     <option value="" selected>Orte/PLZ</option>
-                    <option value="1050">1050 Wien</option>
-                    <option value="1100">1100 Wien</option>
-                    <option value="1120">1120 Wien</option>
-                    <option value="1010">1010 Wien</option>
-                    <option value="1020">1020 Wien</option>
-                    <option value="1030">1030 Wien</option>
-                    <option value="1040">1040 Wien</option>
-                    <option value="1060">1060 Wien</option>
+                    <option value="1050 Wien">1050 Wien</option>
+                    <option value="1100 Wien">1100 Wien</option>
+                    <option value="1120 Wien">1120 Wien</option>
+                    <option value="1010 Wien">1010 Wien</option>
+                    <option value="1020 Wien">1020 Wien</option>
+                    <option value="1030 Wien">1030 Wien</option>
+                    <option value="1040 Wien">1040 Wien</option>
+                    <option value="1060 Wien">1060 Wien</option>
                 </select>
 
-                <button class="btn btn-primary search-btn" type="button">
-                    <i class="bi bi-search"></i> Suche
+                <button class="btn btn-primary search-btn" type="button" onclick="suche()">
+                    <i class="bi bi-search"></i>
                 </button>
             </div>
         </div>
     </div>
 
 
-    Arzt nr 1
+    Arzt nr 1 
 
     <div class="container-box" id="container-box-1">
         <div class="info-side">
             <h2>Dr. Erwald Heberer</h2>
-            <h3>Facharzt für Allgemeinmedizin</h3>
-            <p><span class="icon"><i class="fas fa-map-marker-alt"></i></span>1050 Wien</p>
+            <h3>Facharzt für <span class="lt_richtung">Allgemeinmedizin</span></h3>
+            <p class="lt_plz"><span class="icon"><i class="fas fa-map-marker-alt"></i></span>1050 Wien</p>
             <p><span class="icon"><i class="fas fa-phone"></i></span>01 8374623</p>
             <p><span class="icon"><i class="fas fa-mobile-alt"></i></span>+43 677 12863712</p>
             <p><span class="icon"><i class="fas fa-envelope"></i></span>erwald.heberer@example.com</p>
@@ -327,6 +327,47 @@
 
 
     <script>
+
+        function suche() {
+    
+            var selectedFachrichtung = document.getElementById("fachrichtungDropdown").value;
+            var selectedOrtPlz = document.getElementById("ortPlzDropdown").value;
+
+            if (!selectedFachrichtung && !selectedOrtPlz) {
+                alert("Bitte wählen Sie eine Fachrichtung oder einen PLZ aus.");
+                 return; // Abbruch, wenn nichts ausgewählt wurde
+            }else if (!selectedFachrichtung) {
+                alert("Bitte wählen Sie eine Fachrichtung aus.");
+                 return; // Abbruch, wenn nichts ausgewählt wurde
+            }else if(!selectedOrtPlz) {
+                alert("Bitte wählen Sie eine PLZ aus.");
+                 return; // Abbruch, wenn nichts ausgewählt wurde
+            }
+
+            // Alle Container holen
+            var containerBoxes = document.getElementsByClassName("container-box");
+
+            // Durch alle Container iterieren und nur die passenden anzeigen
+            for (var i = 0; i < containerBoxes.length; i++) {
+                var container = containerBoxes[i];
+                var richtungElement = container.querySelector(".lt_richtung");
+                var plzElement = container.querySelector(".lt_plz");
+
+                var containerRichtung = richtungElement.innerText.trim();
+                var containerPlz = plzElement.innerText.trim();
+
+
+            // Container ausblenden, wenn die Auswahl nicht exakt übereinstimmt
+                
+            if (selectedFachrichtung === containerRichtung && selectedOrtPlz === containerPlz) {
+                container.style.display = "flex";
+            } else {
+                container.style.display = "none";
+            }
+            }
+        
+        }
+
         function searchDoctors() {
             const fachrichtung = $('#fachrichtungDropdown').val();
             const ortPlz = $('#ortPlzDropdown').val();
@@ -409,8 +450,8 @@
         <!-- Linke Seite für Informationen -->
         <div class="info-side">
             <h2>Dr. Marie Effner</h2>
-            <h3>Fachärztin für Kardiologie</h3>
-            <p><span class="icon"><i class="fas fa-map-marker-alt"></i></span>1100 Wien</p>
+            <h3>Fachärztin für <span class="lt_richtung">Kardiologie</span></h3>
+            <p class="lt_plz"><span class="icon"><i class="fas fa-map-marker-alt"></i></span>1100 Wien</p>
             <p><span class="icon"><i class="fas fa-phone"></i></span>01 6743561</p>
             <p><span class="icon"><i class="fas fa-mobile-alt"></i></span>+43 600 45327698</p>
             <p><span class="icon"><i class="fas fa-envelope"></i></span>marie.effner@example.com</p>
@@ -456,15 +497,15 @@
         });
     </script>
 
-    -- arzt nr 3
+    <!-- arzt nr 3 -->
 
     <div class="container-box" id="container-box-3">
 
         <!-- Linke Seite für Informationen -->
         <div class="info-side">
             <h2>Dr. med. Michael Jordan</h2>
-            <h3>Facharzt für Dermatologie</h3>
-            <p><span class="icon"><i class="fas fa-map-marker-alt"></i></span>1120 Wien</p>
+            <h3>Facharzt für <span class="lt_richtung">Dermatologie</span></h3>
+            <p class="lt_plz"><span class="icon"><i class="fas fa-map-marker-alt"></i></span>1120 Wien</p>
             <p><span class="icon"><i class="fas fa-phone"></i></span>01 9371263</p>
             <p><span class="icon"><i class="fas fa-mobile-alt"></i></span>+43 699 49271263</p>
             <p><span class="icon"><i class="fas fa-envelope"></i></span>michael.jordan@example.com</p>
@@ -510,15 +551,15 @@
         });
     </script>
 
-    -- arzt nr 4
+    <!-- arzt nr 4 -->
 
     <div class="container-box" id="container-box-4">
 
         <!-- Linke Seite für Informationen -->
         <div class="info-side">
             <h2>Dr. med. Julia Schmidt</h2>
-            <h3>Fachärztin für Pädiatrie</h3>
-            <p><span class="icon"><i class="fas fa-map-marker-alt"></i></span>1010 Wien</p>
+            <h3>Fachärztin für <span class="lt_richtung">Pädiatrie</span></h3>
+            <p class="lt_plz"><span class="icon"><i class="fas fa-map-marker-alt"></i></span>1010 Wien</p>
             <p><span class="icon"><i class="fas fa-phone"></i></span>01 4820374</p>
             <p><span class="icon"><i class="fas fa-mobile-alt"></i></span>+43 699 98362817</p>
             <p><span class="icon"><i class="fas fa-envelope"></i></span>julia.schmidt@example.com</p>
@@ -564,15 +605,15 @@
         });
     </script>
 
-    -- arzt nr 5
+    <!-- arzt nr 5 -->
 
     <div class="container-box" id="container-box-5">
 
         <!-- Linke Seite für Informationen -->
         <div class="info-side">
             <h2>Dr. med. Michael Müller</h2>
-            <h3>Facharzt für Onkologie</h3>
-            <p><span class="icon"><i class="fas fa-map-marker-alt"></i></span>1020 Wien</p>
+            <h3>Facharzt für <span class="lt_richtung">Onkologie</span></h3>
+            <p class="lt_plz"><span class="icon"><i class="fas fa-map-marker-alt"></i></span>1020 Wien</p>
             <p><span class="icon"><i class="fas fa-phone"></i></span>01 9012834</p>
             <p><span class="icon"><i class="fas fa-mobile-alt"></i></span>+43 674 09271635</p>
             <p><span class="icon"><i class="fas fa-envelope"></i></span>michael.müller@example.com</p>
@@ -619,15 +660,15 @@
     </script>
 
 
-    -- arzt nr 6
+    <!-- arzt nr 6 -->
 
     <div class="container-box" id="container-box-6">
 
         <!-- Linke Seite für Informationen -->
         <div class="info-side">
             <h2>Dr. med. Anna Wagner</h2>
-            <h3>Fachärztin für Psychologie</h3>
-            <p><span class="icon"><i class="fas fa-map-marker-alt"></i></span>1030 Wien</p>
+            <h3>Fachärztin für <span class="lt_richtung">Psychologie</span></h3>
+            <p class="lt_plz"><span class="icon"><i class="fas fa-map-marker-alt"></i></span>1030 Wien</p>
             <p><span class="icon"><i class="fas fa-phone"></i></span>01 9381726</p>
             <p><span class="icon"><i class="fas fa-mobile-alt"></i></span>+43 674 09273649</p>
             <p><span class="icon"><i class="fas fa-envelope"></i></span>anna.wagner@example.com</p>
@@ -673,15 +714,15 @@
         });
     </script>
 
-    -- arzt nr 7
+    <!-- arzt nr 7 -->
 
     <div class="container-box" id="container-box-7">
 
         <!-- Linke Seite für Informationen -->
         <div class="info-side">
             <h2>Dr. Christoph Becker</h2>
-            <h3>Facharzt für Orthopädie</h3>
-            <p><span class="icon"><i class="fas fa-map-marker-alt"></i></span>1040 Wien</p>
+            <h3>Facharzt für <span class="lt_richtung">Orthopädie</span></h3>
+            <p class="lt_plz"><span class="icon"><i class="fas fa-map-marker-alt"></i></span>1040 Wien</p>
             <p><span class="icon"><i class="fas fa-phone"></i></span>01 8123934</p>
             <p><span class="icon"><i class="fas fa-mobile-alt"></i></span>+43 660 02711523</p>
             <p><span class="icon"><i class="fas fa-envelope"></i></span>christoph.becker@example.com</p>
@@ -728,15 +769,15 @@
         });
     </script>
 
-    -- arzt nr 8
+    <!-- arzt nr 8 -->
 
     <div class="container-box" id="container-box-8">
 
         <!-- Linke Seite für Informationen -->
         <div class="info-side">
             <h2>Dr. med. Laura Hofman</h2>
-            <h3>Fachärztin für Neurologie</h3>
-            <p><span class="icon"><i class="fas fa-map-marker-alt"></i></span>1060 Wien</p>
+            <h3>Fachärztin für <span class="lt_richtung">Neurologie</span></h3>
+            <p class="lt_plz"><span class="icon"><i class="fas fa-map-marker-alt"></i></span>1060 Wien</p>
             <p><span class="icon"><i class="fas fa-phone"></i></span>01 3821773</p>
             <p><span class="icon"><i class="fas fa-mobile-alt"></i></span>+43 665 01822436</p>
             <p><span class="icon"><i class="fas fa-envelope"></i></span>laura.hofmann@example.com</p>
