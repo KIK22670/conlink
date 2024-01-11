@@ -19,13 +19,16 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
 }));
-app.use(express.static(path.join(__dirname, 'public')));
-app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')));
-app.use(cors()); // Enable CORS
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'home.html'));
 });
+
+app.use(express.static(path.join(__dirname, 'public')));
+app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')));
+app.use(cors()); // Enable CORS
+
+
 
 app.get('/registration', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'registration.html'));
@@ -58,7 +61,7 @@ app.post('/registration', async (req, res) => {
 
     const result = await client.query(insertUserQuery);
     console.log(result);
-    res.status(201).json({ message: 'User registered successfully, now try to login' });   
+    res.status(201).json({ message: 'User registered successfully, now try to login' });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: error.message });
@@ -87,7 +90,7 @@ app.post('/login', async (req, res) => {
       text: 'SELECT * FROM u_userverwaltung WHERE LOWER(u_email) = LOWER($1)',
       values: [email.toLowerCase()],
     };
-    
+
     const result = await client.query(query);
 
     // Log Database Query Result
@@ -104,10 +107,10 @@ app.post('/login', async (req, res) => {
         if (bcrypt.compareSync(passwort, user.u_passwort)) {
           console.log('Password comparison successful');
           req.session.user = { id: user.u_id, email: user.u_email };
-         // sessionStorage.setItem("user-id", user.id);
+          // sessionStorage.setItem("user-id", user.id);
           //sessionStorage.setItem("usermail", user.email);
           //sessionStorage.getItem() != null
-          res.redirect('/doctorsearch'); 
+          res.redirect('/doctorsearch');
         } else {
           console.log('Incorrect email or password');
           res.status(401).json({ error: 'Invalid email or password' });
@@ -185,7 +188,7 @@ app.get('/doctorsearch', (req, res, next) => {
   console.log(req.session.user);
   console.log("=======================================");
   if (req.session.user) {
-  
+
     // User is logged in, proceed
     console.log("doctorsearch USer erlaubt und vorhanden");
     res.sendFile(path.join(__dirname, 'doctorsearch.html'));
@@ -201,7 +204,7 @@ app.get('/appoitmentoverview', (req, res, next) => {
   console.log(req.session.user);
   console.log("=======================================");
   if (req.session.user) {
-  
+
     // User is logged in, proceed
     res.sendFile(path.join(__dirname, 'appoitmentoverview.html'));
   } else {
@@ -214,23 +217,24 @@ app.use('/api', apiRouter);
 
 app.post('/speichereTermin', async (req, res) => {
   const { doctorId, selectedDate, kategorie } = req.body;//patientID
-  console.log("DATUM:",selectedDate,"DoctorID:",doctorId,"Kategorie:",kategorie);//"PatientID:",patientID
+  console.log("DATUM:", selectedDate, "DoctorID:", doctorId, "Kategorie:", kategorie);//"PatientID:",patientID
   try {
     const userID = req.session.user.id;
-    console.log("dDie User ID",userID);
-    
-    const inserTermin={
-      text:`INSERT INTO t_termine (t_datum, t_a_id,t_p_id,t_termintyp) VALUES ($1, $2, $3, $4)`,
-      values:[selectedDate,doctorId,userID,kategorie],};
+    console.log("dDie User ID", userID);
 
-      const result = await client.query(inserTermin);
-      console.log(result);
-      res.status(201).json({message:'Termin wurde hinzugefügt'});
+    const inserTermin = {
+      text: `INSERT INTO t_termine (t_datum, t_a_id,t_p_id,t_termintyp) VALUES ($1, $2, $3, $4)`,
+      values: [selectedDate, doctorId, userID, kategorie],
+    };
+
+    const result = await client.query(inserTermin);
+    console.log(result);
+    res.status(201).json({ message: 'Termin wurde hinzugefügt' });
   } catch (error) {
     console.error(error);
-    res.status(500).json({error:error.message});
+    res.status(500).json({ error: error.message });
   }
- 
+
 });
 
 app.get('/holetermine', async (req, res) => {
@@ -251,7 +255,7 @@ app.get('/holetermine', async (req, res) => {
       const appointments = result.rows.map(appointment => {
         return {
           appointmentID: appointment.t_id,
-          appointmentDate: appointment.t_datum.toISOString().substring(0,19),
+          appointmentDate: appointment.t_datum.toISOString().substring(0, 19),
           appointmentTyp: appointment.t_termintyp,
         };
       });
