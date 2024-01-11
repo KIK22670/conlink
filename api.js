@@ -5,9 +5,17 @@ const client = require('./connection.js');
 const bcrypt = require('bcrypt');
 
 // Middleware, um die Verbindung zu öffnen
+//router.use((req, res, next) => {
+//    client.connect();
+//    next();
+//});
 router.use((req, res, next) => {
-    client.connect();
-    next();
+    // Überprüfe, ob ein Benutzer in der Sitzung gespeichert ist
+    if (req.session.user) {
+        next();
+    } else {
+        res.status(401).json({ message: 'Unauthorized' });
+    }
 });
 
 router.get('/aerzte', (req, res) => {
@@ -38,7 +46,6 @@ router.post('/registration', async (req, res) => {
 
         // Insert user into the database
         await client.query(query);
-
         res.status(201).json({ message: 'User registered successfully' });
     } catch (error) {
         console.error(error);
@@ -67,14 +74,12 @@ router.post('/login', async (req, res) => {
         const user = result.rows[0];
 
         // Compare the provided password with the stored hashed password
-        const isPasswordValid = await bcrypt.compare(passwort, user.password);
+        const isPasswordValid = await bcrypt.compare(passwort, req.session.user.u_passwort);
 
-        if (!isPasswordValid) {
-            // Invalid password
-            return res.status(401).json({ message: 'Invalid credentials' });
-        }
-
-        // Successful login
+    if (!isPasswordValid) {
+        // Invalid password
+        return res.status(401).json({ message: 'Invalid credentials' });
+    }
         res.status(200).json({ message: 'Login successful', user: { id: user.id, name: user.name, email: user.email } });
     } catch (error) {
         console.error(error);

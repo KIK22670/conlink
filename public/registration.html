@@ -49,7 +49,7 @@
                 try {
                     const response = await axios.post('/registration', formDataObject);
                     console.log(response.data);
-                    alert('Registrierung erfolgreich!');
+                    window.location.href= "/login";
                 } catch (error) {
                     console.error(error);
                     alert('Fehler bei der Registrierung: ' + error.message);
