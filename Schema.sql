@@ -34,17 +34,17 @@ CREATE TABLE IF NOT EXISTS p_patienten (
 );
 
 -- Tabelle `t_termine` erstellen
+select * from t_termine;
 CREATE TABLE IF NOT EXISTS t_termine (
   t_id SERIAL PRIMARY KEY,
-  t_datum DATE,
-  t_uhrzeit TIME,
+  t_datum TIMESTAMPTZ,
   t_termintyp VARCHAR(45),
   t_p_id INT REFERENCES p_patienten(p_id) ON DELETE NO ACTION ON UPDATE NO ACTION,
   t_a_id INT REFERENCES a_aerzte(a_id) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  t_tt_id INT,
   t_z_id INT 
 );
 
+delete from t_termine where t_termintyp is null;
 -- Tabelle `b_bewertungen` erstellen
 CREATE TABLE IF NOT EXISTS b_bewertungen (
   b_id SERIAL PRIMARY KEY,
@@ -55,11 +55,6 @@ CREATE TABLE IF NOT EXISTS b_bewertungen (
 );
 
 -- Tabelle `tt_termintyp` erstellen
-CREATE TABLE IF NOT EXISTS tt_termintyp (
-  tt_id SERIAL PRIMARY KEY,
-  tt_bezeichnung VARCHAR(45)
-);
-
 -- Tabelle `m_medikamente` erstellen
 CREATE TABLE IF NOT EXISTS m_medikamente (
   m_id SERIAL PRIMARY KEY,
@@ -86,11 +81,12 @@ select * from u_userverwaltung;
 -- Tabelle `u_userverwaltung` erstellen
 create TABLE IF NOT EXISTS u_userverwaltung (
   u_id SERIAL PRIMARY KEY,
+<<<<<<< HEAD:conlinkdb.sql
   u_username VARCHAR(45),
+=======
+>>>>>>> 75f5ed92ee1bf7e39c26e095a09f8b641c98a318:Schema.sql
   u_passwort VARCHAR(100),
   u_email VARCHAR(45),
-  u_telefonnummer VARCHAR(20),
-  u_rolle VARCHAR(45),
   u_p_id INT REFERENCES p_patienten(p_id) ON DELETE NO ACTION ON UPDATE NO ACTION,
   u_a_id INT REFERENCES a_aerzte(a_id) ON DELETE NO ACTION ON UPDATE NO ACTION
 );
@@ -226,5 +222,9 @@ CREATE TABLE IF NOT EXISTS u_general_users (
   password VARCHAR(100),
   email VARCHAR(100)
   /* Add other necessary fields */
+<<<<<<< HEAD:conlinkdb.sql
 )
 
+=======
+)
+>>>>>>> 75f5ed92ee1bf7e39c26e095a09f8b641c98a318:Schema.sql

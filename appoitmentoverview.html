@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ConLink - Ärztesuche</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Header aus der Home-Seite -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+    />
+    <link
+      href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css"
+      rel="stylesheet"
+    />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/doctorsearch.css" />
+    <link rel="stylesheet" href="css/stylehome.css" />
+
+    <style>
+      .termin-button {
+        margin-left: 123px;
+        margin-top: 0px;
+      }
+
+      .termin-button button {
+        background-color: #1b9aaa; /* Hintergrundfarbe des Buttons (Blau) */
+        color: #ffffff !important; /* Schriftfarbe des Buttons (Weiß) */
+        min-width: 1070px;
+        min-height: 50px;
+        font-size: xx-large;
+      }
+
+      .off-button {
+        margin-left: 123px;
+      }
+      .off-button button {
+        background-color: #1b9aaa; /* Hintergrundfarbe des Buttons (Blau) */
+        color: #ffffff !important; /* Schriftfarbe des Buttons (Weiß) */
+        min-width: 535px;
+        min-height: 30px;
+        font-size: x-large;
+      }
+
+      .ver-button {
+        margin-left: 658px;
+      }
+
+      .ver-button button {
+        background-color: #1b9aaa;
+        color: #ffffff !important;
+        min-width: 535px;
+        min-height: 30px;
+        font-size: x-large;
+        margin-top: -75px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Navbar aus der Home-Seite -->
+    <div class="container-fluid sticky-top bg-white shadow-sm">
+      <div class="container">
+        <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0">
+          <a href="home.html" class="navbar-brand">
+            <img src="img/logo.png" class="logo-img" />
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarCollapse"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto py-0">
+              <a href="home.html" class="nav-item nav-link active">Home</a>
+              <a href="aboutus.html" class="nav-item nav-link">About Us</a>
+              <a href="faq.html" class="nav-item nav-link">FAQ</a>
+              <a href="/logout" class="nav-item nav-link">Logout</a>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <!-- Ende Navbar -->
+
+    <!-- Linke Navbar -->
+    <nav class="navbar left-navbar">
+      <div class="container">
+        <div class="navbar-nav">
+          <a href="doctorsearch" class="nav-item nav-link">
+            <i class="bi bi-person"></i> Ärztesuche
+          </a>
+          <a href="appoitmentoverview" class="nav-item nav-link">
+            <i class="bi bi-calendar"></i> Termine
+          </a>
+        </div>
+      </div>
+    </nav>
+    <!-- Ende linke Navbar -->
+
+    <!-- Oberste Navbar -->
+    <div class="container-fluid sticky-top bg-white shadow-sm">
+      <div class="container">
+        <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0">
+          <!-- ... (Rest des Navbar-Codes) ... -->
+        </nav>
+      </div>
+    </div>
+    <!-- Ende oberste Navbar -->
+    <div class="container">
+      <div class="row">
+        <div class="termin-button">
+          <button type="button" class="btn btn-primary" onclick="holeTermine()">
+            <i class="bi bi-calendar"></i> Ihre Termine
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="off-button">
+          <button type="button" class="btn btn-primary" onclick="holeTermine(Date.now())">
+            <i class="bi bi-clock"></i> Offene Termine
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="ver-button">
+          <button type="button" class="btn btn-primary" onclick="holeTermine(0, Date.now())">
+            <i class="bi bi-calendar-check"></i> Vergangene Termine
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="container col-md-6">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Datum</th>
+            <th scope="col">ID</th>
+            <th scope="col">Typ</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        holeTermine();
+      });
+
+      function holeTermine(dateFrom, dateTo) {
+        if (!dateTo) dateTo = new Date("3000-01-01");
+        if (!dateFrom) dateFrom = 0;
+        const table = document.querySelector("tbody");
+        table.innerHTML = '';
+
+        // Fetch all appointments
+        fetch("/holetermine")
+          .then((response) => response.json())
+          .then((appointments) => {
+            
+            appointments.filter(a=>new Date(a.appointmentDate) <= dateTo && new Date(a.appointmentDate) >= dateFrom).forEach((appointment) => {
+              const tr = document.createElement("tr");
+              tr.innerHTML = `
+                        <td>${new Date(appointment.appointmentDate).toLocaleString()}</td>
+                        <td>${appointment.appointmentID}</td>
+                        <td>${appointment.appointmentTyp}</td>
+                      `;
+              table.appendChild(tr);
+            });
+          });
+      }
+
+      
+      
+    </script>
+
+    <!-- Footer -->
+    <!-- Hier wird der Footer von der Home-Seite wiederverwendet --
+    <div class="container-fluid bg-dark text-light border-top border-secondary py-4">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-md-0">&copy; <a class="text-primary" href="#">ConLink</a>. All Rights Reserved.
+                    </p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <a href="impressum.html" style="margin-right: 10px;">Impressum</a>
+                    <a href="datenschutz.html">Datenschutz</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    !-- Ende Footer -->
+
+    <!-- JavaScript-Bibliotheken -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
