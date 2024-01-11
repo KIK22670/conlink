@@ -3,4 +3,4 @@
 **/.vscode
 **/.vs
 package-lock.json
-*.sql
+
