@@ -81,6 +81,10 @@ select * from u_userverwaltung;
 -- Tabelle `u_userverwaltung` erstellen
 create TABLE IF NOT EXISTS u_userverwaltung (
   u_id SERIAL PRIMARY KEY,
+<<<<<<< HEAD:conlinkdb.sql
+  u_username VARCHAR(45),
+=======
+>>>>>>> 75f5ed92ee1bf7e39c26e095a09f8b641c98a318:Schema.sql
   u_passwort VARCHAR(100),
   u_email VARCHAR(45),
   u_p_id INT REFERENCES p_patienten(p_id) ON DELETE NO ACTION ON UPDATE NO ACTION,
@@ -218,4 +222,9 @@ CREATE TABLE IF NOT EXISTS u_general_users (
   password VARCHAR(100),
   email VARCHAR(100)
   /* Add other necessary fields */
+<<<<<<< HEAD:conlinkdb.sql
 )
+
+=======
+)
+>>>>>>> 75f5ed92ee1bf7e39c26e095a09f8b641c98a318:Schema.sql
