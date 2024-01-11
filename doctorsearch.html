@@ -161,6 +161,11 @@
             height: 100%;
             /* Je nach Bedarf */
         }
+
+        .lt-con {
+            position: fixed;
+            bottom: 0px;
+        }
     </style>
 </head>
 <!-- ... (remaining code) ... -->
@@ -186,9 +191,7 @@
                         <a href="home.html" class="nav-item nav-link">Home</a>
                         <a href="aboutus.html" class="nav-item nav-link">About Us</a>
                         <a href="faq.html" class="nav-item nav-link">FAQ</a>
-                        <a href="#" class="nav-item nav-link">
-                            <i class="bi bi-person"></i> <!-- Hier das Benutzer-Icon -->
-                        </a>
+                        <a href="logout" class="nav-item nav-link">Logout</a>                       
                     </div>
                 </div>
             </nav>
@@ -201,10 +204,10 @@
     <nav class="navbar left-navbar">
         <div class="container">
             <div class="navbar-nav">
-                <a href="doctorsearch.html" class="nav-item nav-link">
+                <a href="doctorsearch" class="nav-item nav-link">
                     <i class="bi bi-person"></i> Ärztesuche
                 </a>
-                <a href="appoitmentoverview.html" class="nav-item nav-link">
+                <a href="appoitmentoverview" class="nav-item nav-link">
                     <i class="bi bi-calendar"></i> Termine
                 </a>
             </div>
@@ -270,7 +273,7 @@
             Hier könnte weiterer Text oder HTML für den Kalender stehen
             <input type="text" id="datePicker-1" placeholder="Datum und Uhrzeit auswählen">
             <p></p>
-            <button onclick="buchungSpeichern()">Termin buchen</button>
+            <button onclick="buchungSpeichern(1)">Termin buchen</button>
         </div>
     </div>
 
@@ -328,46 +331,41 @@
 
     <script>
 
-        function suche() {
-    
-            var selectedFachrichtung = document.getElementById("fachrichtungDropdown").value;
-            var selectedOrtPlz = document.getElementById("ortPlzDropdown").value;
+function suche() {
+var selectedFachrichtung = document.getElementById("fachrichtungDropdown").value;
+var selectedOrtPlz = document.getElementById("ortPlzDropdown").value;
 
-            if (!selectedFachrichtung && !selectedOrtPlz) {
-                alert("Bitte wählen Sie eine Fachrichtung oder einen PLZ aus.");
-                 return; // Abbruch, wenn nichts ausgewählt wurde
-            }else if (!selectedFachrichtung) {
-                alert("Bitte wählen Sie eine Fachrichtung aus.");
-                 return; // Abbruch, wenn nichts ausgewählt wurde
-            }else if(!selectedOrtPlz) {
-                alert("Bitte wählen Sie eine PLZ aus.");
-                 return; // Abbruch, wenn nichts ausgewählt wurde
-            }
-
+if (!selectedFachrichtung && !selectedOrtPlz) {
+    alert("Bitte wählen Sie eine Fachrichtung oder einen PLZ aus.");
+     return; // Abbruch, wenn nichts ausgewählt wurde
+}
             // Alle Container holen
-            var containerBoxes = document.getElementsByClassName("container-box");
+        var containerBoxes = document.getElementsByClassName("container-box");
 
-            // Durch alle Container iterieren und nur die passenden anzeigen
-            for (var i = 0; i < containerBoxes.length; i++) {
-                var container = containerBoxes[i];
-                var richtungElement = container.querySelector(".lt_richtung");
-                var plzElement = container.querySelector(".lt_plz");
+        // Durch alle Container iterieren und nur die passenden anzeigen
+        for (var i = 0; i < containerBoxes.length; i++) {
+            var container = containerBoxes[i];
+            var richtungElement = container.querySelector(".lt_richtung");
+            var plzElement = container.querySelector(".lt_plz");
 
-                var containerRichtung = richtungElement.innerText.trim();
-                var containerPlz = plzElement.innerText.trim();
+            var containerRichtung = richtungElement.innerText.trim();
+            var containerPlz = plzElement.innerText.trim();
 
 
-            // Container ausblenden, wenn die Auswahl nicht exakt übereinstimmt
-                
-            if (selectedFachrichtung === containerRichtung && selectedOrtPlz === containerPlz) {
-                container.style.display = "flex";
-            } else {
-                container.style.display = "none";
-            }
-            }
-        
+        // Container ausblenden, wenn die Auswahl nicht exakt übereinstimmt
+
+        if (selectedFachrichtung === containerRichtung && selectedOrtPlz === containerPlz) {
+            container.style.display = "flex";
+        }else if (selectedFachrichtung === containerRichtung) {
+            container.style.display = "flex";
+        }else if (selectedOrtPlz === containerPlz) {
+            container.style.display = "flex";
+        } else {
+            container.style.display = "none";
+        }
         }
 
+    }
         function searchDoctors() {
             const fachrichtung = $('#fachrichtungDropdown').val();
             const ortPlz = $('#ortPlzDropdown').val();
@@ -417,7 +415,7 @@
                 doctorResultsDiv.append(doctorBox);
 
                 // Flatpickr für jeden Arzt initialisieren
-                flatpickr(`#datePicker-${doctor.a_id}`, {
+                flatpickr(`#datePicker-1`, {
                     enableTime: true,
                     dateFormat: "d-m-Y H:i",
                     minDate: "today",
@@ -432,15 +430,36 @@
                 });
             });
         }
-
+        
         function buchungSpeichern(doctorId) {
-            const selectedDate = $(`#datePicker-${doctorId}`).val();
+    // Ausgewähltes Datum und Arzt-ID abrufen
+    const selectedDate = $(`#datePicker-${doctorId}`).val();
+    const selectedDateSplitted = selectedDate.match(/(\d+)-(\d+)-(\d+) (\d+):(\d+)/);
+    console.log(selectedDateSplitted);
 
-            // Hier können Sie den ausgewählten Termin und die Arzt-ID an den Server senden
-            // und die Buchung speichern
-            console.log(`Termin für Arzt ${doctorId} speichern:`, selectedDate);
-            // Fügen Sie hier Ihre AJAX-Anfrage zum Speichern der Buchung hinzu
+    const kategorie = document.querySelector(`#container-box-${doctorId} .lt_richtung`).innerText.trim();
+    
+    // AJAX-Anfrage zum Speichern der Buchung
+    $.ajax({
+        url: '/speichereTermin',  // Hier sollte die URL des Servers stehen, der die Datenbankanfrage verarbeitet
+        method: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({
+            doctorId: doctorId,
+            selectedDate: `${selectedDateSplitted[3]}-${selectedDateSplitted[2]}-${selectedDateSplitted[1]}T${selectedDateSplitted[4]}:${selectedDateSplitted[5]}:00`,
+            kategorie: kategorie
+        }),
+        success: function(response) {
+            kategorie=null;
+            console.log('Buchung erfolgreich gespeichert:', response);
+            // Fügen Sie hier weitere Aktionen nach erfolgreicher Speicherung hinzu
+        },
+        error: function(error) {
+            console.error('Fehler beim Speichern der Buchung:', error);
+            // Fügen Sie hier Aktionen für den Fall eines Fehlers hinzu
         }
+    });
+}
     </script>
 
     <!-- arzt nr 2-->
@@ -465,7 +484,7 @@
             <!-- Hier könnte weiterer Text oder HTML für den Kalender stehen -->
             <input type="text" id="datePicker-2" placeholder="Datum und Uhrzeit auswählen">
             <p></p>
-            <button onclick="buchungSpeichern()">Termin buchen</button>
+            <button onclick="buchungSpeichern(2)">Termin buchen</button>
         </div>
     </div>
 
@@ -519,7 +538,7 @@
             <!-- Hier könnte weiterer Text oder HTML für den Kalender stehen -->
             <input type="text" id="datePicker-3" placeholder="Datum und Uhrzeit auswählen">
             <p></p>
-            <button onclick="buchungSpeichern()">Termin buchen</button>
+            <button onclick="buchungSpeichern(3, 'Dermatologie')">Termin buchen</button>
         </div>
     </div>
 
@@ -573,7 +592,7 @@
             <!-- Hier könnte weiterer Text oder HTML für den Kalender stehen -->
             <input type="text" id="datePicker-4" placeholder="Datum und Uhrzeit auswählen">
             <p></p>
-            <button onclick="buchungSpeichern()">Termin buchen</button>
+            <button onclick="buchungSpeichern(4)">Termin buchen</button>
         </div>
     </div>
 
@@ -627,7 +646,7 @@
             <!-- Hier könnte weiterer Text oder HTML für den Kalender stehen -->
             <input type="text" id="datePicker-5" placeholder="Datum und Uhrzeit auswählen">
             <p></p>
-            <button onclick="buchungSpeichern()">Termin buchen</button>
+            <button onclick="buchungSpeichern(5)">Termin buchen</button>
         </div>
     </div>
 
@@ -680,9 +699,9 @@
             <h2>Kalender</h2>
             <h3>Wählen Sie einen Termin aus</h3>
             <!-- Hier könnte weiterer Text oder HTML für den Kalender stehen -->
-            <input type="text" id="datePicker-5" placeholder="Datum und Uhrzeit auswählen">
+            <input type="text" id="datePicker-6" placeholder="Datum und Uhrzeit auswählen">
             <p></p>
-            <button onclick="buchungSpeichern()">Termin buchen</button>
+            <button onclick="buchungSpeichern(6)">Termin buchen</button>
         </div>
     </div>
 
@@ -736,7 +755,7 @@
             <!-- Hier könnte weiterer Text oder HTML für den Kalender stehen -->
             <input type="text" id="datePicker-7" placeholder="Datum und Uhrzeit auswählen">
             <p></p>
-            <button onclick="buchungSpeichern()">Termin buchen</button>
+            <button onclick="buchungSpeichern(7)">Termin buchen</button>
         </div>
 
     </div>
@@ -791,7 +810,7 @@
             <!-- Hier könnte weiterer Text oder HTML für den Kalender stehen -->
             <input type="text" id="datePicker-8" placeholder="Datum und Uhrzeit auswählen">
             <p></p>
-            <button onclick="buchungSpeichern()">Termin buchen</button>
+            <button onclick="buchungSpeichern(8)">Termin buchen</button>
         </div>
     </div>
 
@@ -908,7 +927,7 @@
 
 
     <!-- Footer aus der Home-Seite -->
-    <div class="container-fluid bg-dark text-light border-top border-secondary py-4">
+    <div class="lt-con container-fluid bg-dark text-light border-top border-secondary py-4">
         <div class="container">
             <div class="row g-5">
                 <div class="col-md-6 text-center text-md-start">
