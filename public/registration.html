@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Registration</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/node_modules/tempusdominus-bootstrap-4/build/css/tempusdominus-bootstrap-4.min.css" />
+
+    <link href="img/favicon.ico" rel="icon">
+
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="css/stylehome.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/stylelogin.css">
+    <link rel="stylesheet" href="css/stylehome.css">
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="/node_modules/tempusdominus-bootstrap-4/build/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var form = document.querySelector('.signin-form');
+
+            form.addEventListener('submit', function (event) {
+                var password = form.querySelector('input[name="passwortregister"]').value;
+                var confirmPassword = form.querySelector('input[name="passwort_confirm"]').value;
+
+                if (password !== confirmPassword) {
+                    alert('Die Passwörter stimmen nicht überein. Bitte überprüfen Sie Ihre Eingaben.');
+                    event.preventDefault(); // Verhindert das Absenden des Formulars
+                }
+            });
+
+            form.addEventListener('submit', async function (e) {
+                e.preventDefault();
+
+                const formData = new FormData(this);
+                const formDataObject = {};
+                formData.forEach((value, key) => {
+                    formDataObject[key] = value;
+                });
+
+                try {
+                    const response = await axios.post('/registration', formDataObject);
+                    console.log(response.data);
+                    window.location.href= "/login";
+                } catch (error) {
+                    console.error(error);
+                    alert('Fehler bei der Registrierung: ' + error.message);
+                }
+            });
+        });
+    </script>
+
+</head>
+
+<body>
+
+    <!-- Navbar aus der Home-Seite -->
+    <div class="container-fluid sticky-top bg-white shadow-sm">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0">
+                <a href="home.html" class="navbar-brand">
+                    <img src="img/logo.png" class="logo-img">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav ms-auto py-0">
+                        <a href="home.html" class="nav-item nav-link ">Home</a>
+                        <a href="aboutus.html" class="nav-item nav-link">About Us</a>
+                        <a href="faq.html" class="nav-item nav-link">FAQ</a>
+                        <a href="login.html" class="nav-item nav-link active">Login</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Ende Navbar -->
+
+    <section class="ftco-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 text-center mb-5">
+                    <h2 class="heading-section"></h2>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-12 col-lg-10">
+                    <div class="wrap d-md-flex">
+                        <div class="text-wrap p-4 p-lg-5 text-center d-flex align-items-center order-md-last">
+                            <div class="text w-100">
+                                <h2>Already have an account?</h2>
+                                <a href="login.html" class="btn btn-white btn-outline-white">Sign In</a>
+                            </div>
+                        </div>
+                        <div class="login-wrap p-4 p-lg-5">
+                            <div class="d-flex">
+                                <div class="w-100">
+                                    <h3 class="mb-4">Sign Up</h3>
+                                </div>
+                            </div>
+                            <form action="/registration" method="post" class="signin-form">
+                                <div class="form-group mb-3">
+                                    <label class="label">Email</label>
+                                    <input class="form-control" name="emailregister" placeholder="Email" required>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label class="label" for="password">Passwort</label>
+                                    <input type="password" class="form-control" name="passwortregister" placeholder="Password" required>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label class="label" for="password_confirm">Passwort bestätigen</label>
+                                    <input type="password" class="form-control" name="passwort_confirm" placeholder="Confirm Password" required>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <button type="submit" value="Registration" class="form-control btn btn-primary submit px-3">Sign Up</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!--Fehlermeldung die kommt, wenn Passwörter nicht übereinstimmen -->
+    
+    
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-light border-top border-secondary py-4">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-md-0">&copy; <a class="text-primary" href="#">ConLink</a>. All Rights Reserved.
+                    </p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <a href="impressum.html" style="margin-right: 10px;">Impressum</a>
+                    <a href="datenschutz.html">Datenschutz</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+    <!-- jQuery einbinden -->
+
+
+
+
+
+</body>
+
+</html>

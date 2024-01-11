@@ -54,21 +54,12 @@ app.post('/registration', async (req, res) => {
     // If email is not registered, proceed with registration
     const hashedPassword = await bcrypt.hash(passwortregister, 10);
 
-<<<<<<< HEAD
-    const query = {
-      text: 'INSERT INTO u_userverwaltung(u_email, u_passwort) VALUES($1, $2) RETURNING *',
-      values: [emailregister, hashedPassword],
-    };
-    
-    const result = await client.query(query);
-=======
     const insertUserQuery = {
       text: 'INSERT INTO u_userverwaltung(u_email, u_passwort) VALUES($1, $2) RETURNING *',
       values: [emailregister, hashedPassword],
     };
 
     const result = await client.query(insertUserQuery);
->>>>>>> 75f5ed92ee1bf7e39c26e095a09f8b641c98a318
     console.log(result);
     res.status(201).json({ message: 'User registered successfully, now try to login' });
   } catch (error) {
