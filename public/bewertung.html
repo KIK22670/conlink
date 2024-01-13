@@ -37,7 +37,6 @@
     <!-- ... (previous code) ... -->
 
     <style>
-
         h1 {
             color: #1B9AAA;
             font-weight: bold;
@@ -45,7 +44,7 @@
             text-align: center;
             font-size: 25px
         }
-        
+
         h2 {
             color: #1B9AAA;
             font-weight: bold;
@@ -62,16 +61,19 @@
             padding: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
+
         #comments {
             list-style-type: none;
             padding: 0;
             margin: 0;
         }
+
         .comment {
             border: 1px solid #ddd;
             margin-bottom: 10px;
             padding: 10px;
         }
+
         #commentForm {
             margin-bottom: 10px;
         }
@@ -109,7 +111,7 @@
     <nav class="navbar left-navbar">
         <div class="container">
             <div class="navbar-nav">
-                <a href="doctorsearch.html" class="nav-item nav-link">
+                <a href="../doctorsearch1.html" class="nav-item nav-link">
                     <i class="bi bi-person"></i> Ärztesuche
                 </a>
                 <a href="appoitmentoverview.html" class="nav-item nav-link">
@@ -128,7 +130,7 @@
         <form id="commentForm">
             <label for="name">Name:</label>
             <input type="text" id="name" required>
-    
+
             <label for="rating">Bewertung:</label>
             <select id="rating" required>
                 <option value="1">1 Stern</option>
@@ -137,42 +139,42 @@
                 <option value="4">4 Sterne</option>
                 <option value="5">5 Sterne</option>
             </select>
-    
+
             <label for="comment">Kommentar:</label>
             <textarea id="comment" required></textarea>
-    
+
             <button type="button" onclick="submitComment()">Bewertung abgeben</button>
         </form>
-    
+
         <ul id="comments"></ul>
     </div>
-    
+
     <script>
         function submitComment() {
             var name = document.getElementById('name').value;
             var rating = document.getElementById('rating').value;
             var comment = document.getElementById('comment').value;
-    
+
             var commentList = document.getElementById('comments');
             var listItem = document.createElement('li');
             listItem.className = 'comment';
             listItem.innerHTML = '<strong>' + name + '</strong> - Bewertung: ' + rating + ' Sterne<br>' + comment;
             commentList.appendChild(listItem);
-    
+
             // Zurücksetzen der Formularfelder
             document.getElementById('commentForm').reset();
-    
+
             // Manuell den Standardwert für die Bewertung festlegen
             document.getElementById('rating').value = '1';
         }
     </script>
-    
+
     <h2>Dr. Effner</h2>
     <div id="commentBox">
         <form id="commentForm">
             <label for="name">Name:</label>
             <input type="text" id="name" required>
-    
+
             <label for="rating">Bewertung:</label>
             <select id="rating" required>
                 <option value="1">1 Stern</option>
@@ -181,42 +183,42 @@
                 <option value="4">4 Sterne</option>
                 <option value="5">5 Sterne</option>
             </select>
-    
+
             <label for="comment">Kommentar:</label>
             <textarea id="comment" required></textarea>
-    
+
             <button type="button" onclick="submitComment()">Bewertung abgeben</button>
         </form>
-    
+
         <ul id="comments"></ul>
     </div>
-    
+
     <script>
         function submitComment() {
             var name = document.getElementById('name').value;
             var rating = document.getElementById('rating').value;
             var comment = document.getElementById('comment').value;
-    
+
             var commentList = document.getElementById('comments');
             var listItem = document.createElement('li');
             listItem.className = 'comment';
             listItem.innerHTML = '<strong>' + name + '</strong> - Bewertung: ' + rating + ' Sterne<br>' + comment;
             commentList.appendChild(listItem);
-    
+
             // Zurücksetzen der Formularfelder
             document.getElementById('commentForm').reset();
-    
+
             // Manuell den Standardwert für die Bewertung festlegen
             document.getElementById('rating').value = '1';
         }
     </script>
-    
+
     <h2>Dr. med. Jordan</h2>
     <div id="commentBox">
         <form id="commentForm">
             <label for="name">Name:</label>
             <input type="text" id="name" required>
-    
+
             <label for="rating">Bewertung:</label>
             <select id="rating" required>
                 <option value="1">1 Stern</option>
@@ -225,86 +227,42 @@
                 <option value="4">4 Sterne</option>
                 <option value="5">5 Sterne</option>
             </select>
-    
+
             <label for="comment">Kommentar:</label>
             <textarea id="comment" required></textarea>
-    
+
             <button type="button" onclick="submitComment()">Bewertung abgeben</button>
         </form>
-    
+
         <ul id="comments"></ul>
     </div>
-    
+
     <script>
         function submitComment() {
             var name = document.getElementById('name').value;
             var rating = document.getElementById('rating').value;
             var comment = document.getElementById('comment').value;
-    
+
             var commentList = document.getElementById('comments');
             var listItem = document.createElement('li');
             listItem.className = 'comment';
             listItem.innerHTML = '<strong>' + name + '</strong> - Bewertung: ' + rating + ' Sterne<br>' + comment;
             commentList.appendChild(listItem);
-    
+
             // Zurücksetzen der Formularfelder
             document.getElementById('commentForm').reset();
-    
+
             // Manuell den Standardwert für die Bewertung festlegen
             document.getElementById('rating').value = '1';
         }
     </script>
 
-<h2>Dr. med. Schmidt</h2>
-<div id="commentBox">
-    <form id="commentForm">
-        <label for="name">Name:</label>
-        <input type="text" id="name" required>
-
-        <label for="rating">Bewertung:</label>
-        <select id="rating" required>
-            <option value="1">1 Stern</option>
-            <option value="2">2 Sterne</option>
-            <option value="3">3 Sterne</option>
-            <option value="4">4 Sterne</option>
-            <option value="5">5 Sterne</option>
-        </select>
-
-        <label for="comment">Kommentar:</label>
-        <textarea id="comment" required></textarea>
-
-        <button type="button" onclick="submitComment()">Bewertung abgeben</button>
-    </form>
-
-    <ul id="comments"></ul>
-</div>
-
-<script>
-    function submitComment() {
-        var name = document.getElementById('name').value;
-        var rating = document.getElementById('rating').value;
-        var comment = document.getElementById('comment').value;
-
-        var commentList = document.getElementById('comments');
-        var listItem = document.createElement('li');
-        listItem.className = 'comment';
-        listItem.innerHTML = '<strong>' + name + '</strong> - Bewertung: ' + rating + ' Sterne<br>' + comment;
-        commentList.appendChild(listItem);
-
-        // Zurücksetzen der Formularfelder
-        document.getElementById('commentForm').reset();
-
-        // Manuell den Standardwert für die Bewertung festlegen
-        document.getElementById('rating').value = '1';
-    }
-</script>
-
-<h2>Dr. med. Müller</h2>
+    <h2>Dr. med. Schmidt</h2>
     <div id="commentBox">
         <form id="commentForm">
             <label for="name">Name:</label>
             <input type="text" id="name" required>
-    
+
             <label for="rating">Bewertung:</label>
             <select id="rating" required>
                 <option value="1">1 Stern</option>
@@ -313,86 +271,42 @@
                 <option value="4">4 Sterne</option>
                 <option value="5">5 Sterne</option>
             </select>
-    
+
             <label for="comment">Kommentar:</label>
             <textarea id="comment" required></textarea>
-    
+
             <button type="button" onclick="submitComment()">Bewertung abgeben</button>
         </form>
-    
+
         <ul id="comments"></ul>
     </div>
-    
+
     <script>
         function submitComment() {
             var name = document.getElementById('name').value;
             var rating = document.getElementById('rating').value;
             var comment = document.getElementById('comment').value;
-    
+
             var commentList = document.getElementById('comments');
             var listItem = document.createElement('li');
             listItem.className = 'comment';
             listItem.innerHTML = '<strong>' + name + '</strong> - Bewertung: ' + rating + ' Sterne<br>' + comment;
             commentList.appendChild(listItem);
-    
+
             // Zurücksetzen der Formularfelder
             document.getElementById('commentForm').reset();
-    
+
             // Manuell den Standardwert für die Bewertung festlegen
             document.getElementById('rating').value = '1';
         }
     </script>
 
-<h2>Dr. med. Wagner</h2>
-<div id="commentBox">
-    <form id="commentForm">
-        <label for="name">Name:</label>
-        <input type="text" id="name" required>
-
-        <label for="rating">Bewertung:</label>
-        <select id="rating" required>
-            <option value="1">1 Stern</option>
-            <option value="2">2 Sterne</option>
-            <option value="3">3 Sterne</option>
-            <option value="4">4 Sterne</option>
-            <option value="5">5 Sterne</option>
-        </select>
-
-        <label for="comment">Kommentar:</label>
-        <textarea id="comment" required></textarea>
-
-        <button type="button" onclick="submitComment()">Bewertung abgeben</button>
-    </form>
-
-    <ul id="comments"></ul>
-</div>
-
-<script>
-    function submitComment() {
-        var name = document.getElementById('name').value;
-        var rating = document.getElementById('rating').value;
-        var comment = document.getElementById('comment').value;
-
-        var commentList = document.getElementById('comments');
-        var listItem = document.createElement('li');
-        listItem.className = 'comment';
-        listItem.innerHTML = '<strong>' + name + '</strong> - Bewertung: ' + rating + ' Sterne<br>' + comment;
-        commentList.appendChild(listItem);
-
-        // Zurücksetzen der Formularfelder
-        document.getElementById('commentForm').reset();
-
-        // Manuell den Standardwert für die Bewertung festlegen
-        document.getElementById('rating').value = '1';
-    }
-</script>
-
-<h2>Dr. Becker</h2>
+    <h2>Dr. med. Müller</h2>
     <div id="commentBox">
         <form id="commentForm">
             <label for="name">Name:</label>
             <input type="text" id="name" required>
-    
+
             <label for="rating">Bewertung:</label>
             <select id="rating" required>
                 <option value="1">1 Stern</option>
@@ -401,79 +315,167 @@
                 <option value="4">4 Sterne</option>
                 <option value="5">5 Sterne</option>
             </select>
-    
+
             <label for="comment">Kommentar:</label>
             <textarea id="comment" required></textarea>
-    
+
             <button type="button" onclick="submitComment()">Bewertung abgeben</button>
         </form>
-    
+
         <ul id="comments"></ul>
     </div>
-    
+
     <script>
         function submitComment() {
             var name = document.getElementById('name').value;
             var rating = document.getElementById('rating').value;
             var comment = document.getElementById('comment').value;
-    
+
             var commentList = document.getElementById('comments');
             var listItem = document.createElement('li');
             listItem.className = 'comment';
             listItem.innerHTML = '<strong>' + name + '</strong> - Bewertung: ' + rating + ' Sterne<br>' + comment;
             commentList.appendChild(listItem);
-    
+
             // Zurücksetzen der Formularfelder
             document.getElementById('commentForm').reset();
-    
+
             // Manuell den Standardwert für die Bewertung festlegen
             document.getElementById('rating').value = '1';
         }
     </script>
 
-<h2>Dr. med. Hofmann</h2>
-<div id="commentBox">
-    <form id="commentForm">
-        <label for="name">Name:</label>
-        <input type="text" id="name" required>
+    <h2>Dr. med. Wagner</h2>
+    <div id="commentBox">
+        <form id="commentForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" required>
 
-        <label for="rating">Bewertung:</label>
-        <select id="rating" required>
-            <option value="1">1 Stern</option>
-            <option value="2">2 Sterne</option>
-            <option value="3">3 Sterne</option>
-            <option value="4">4 Sterne</option>
-            <option value="5">5 Sterne</option>
-        </select>
+            <label for="rating">Bewertung:</label>
+            <select id="rating" required>
+                <option value="1">1 Stern</option>
+                <option value="2">2 Sterne</option>
+                <option value="3">3 Sterne</option>
+                <option value="4">4 Sterne</option>
+                <option value="5">5 Sterne</option>
+            </select>
 
-        <label for="comment">Kommentar:</label>
-        <textarea id="comment" required></textarea>
+            <label for="comment">Kommentar:</label>
+            <textarea id="comment" required></textarea>
 
-        <button type="button" onclick="submitComment()">Bewertung abgeben</button>
-    </form>
+            <button type="button" onclick="submitComment()">Bewertung abgeben</button>
+        </form>
 
-    <ul id="comments"></ul>
-</div>
+        <ul id="comments"></ul>
+    </div>
 
-<script>
-    function submitComment() {
-        var name = document.getElementById('name').value;
-        var rating = document.getElementById('rating').value;
-        var comment = document.getElementById('comment').value;
+    <script>
+        function submitComment() {
+            var name = document.getElementById('name').value;
+            var rating = document.getElementById('rating').value;
+            var comment = document.getElementById('comment').value;
 
-        var commentList = document.getElementById('comments');
-        var listItem = document.createElement('li');
-        listItem.className = 'comment';
-        listItem.innerHTML = '<strong>' + name + '</strong> - Bewertung: ' + rating + ' Sterne<br>' + comment;
-        commentList.appendChild(listItem);
+            var commentList = document.getElementById('comments');
+            var listItem = document.createElement('li');
+            listItem.className = 'comment';
+            listItem.innerHTML = '<strong>' + name + '</strong> - Bewertung: ' + rating + ' Sterne<br>' + comment;
+            commentList.appendChild(listItem);
 
-        // Zurücksetzen der Formularfelder
-        document.getElementById('commentForm').reset();
+            // Zurücksetzen der Formularfelder
+            document.getElementById('commentForm').reset();
 
-        // Manuell den Standardwert für die Bewertung festlegen
-        document.getElementById('rating').value = '1';
-    }
-</script>
+            // Manuell den Standardwert für die Bewertung festlegen
+            document.getElementById('rating').value = '1';
+        }
+    </script>
+
+    <h2>Dr. Becker</h2>
+    <div id="commentBox">
+        <form id="commentForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" required>
+
+            <label for="rating">Bewertung:</label>
+            <elect id="rating" required>
+                <option value="1">1 Stern</option>
+                <option value="2">2 Sterne</option>
+                <option value="3">3 Sterne</option>
+                <option value="4">4 Sterne</option>
+                <option value="5">5 Sterne</option>
+                </select>
+
+                <label for="comment">Kommentar:</label>
+                <textarea id="comment" required></textarea>
+
+                <button type="button" onclick="submitComment()">Bewertung abgeben</button>
+        </form>
+
+        <ul id="comments"></ul>
+    </div>
+
+    <script>
+        function submitComment() {
+            var name = document.getElementById('name').value;
+            var rating = document.getElementById('rating').value;
+            var comment = document.getElementById('comment').value;
+
+            var commentList = document.getElementById('comments');
+            var listItem = document.createElement('li');
+            listItem.className = 'comment';
+            listItem.innerHTML = '<strong>' + name + '</strong> - Bewertung: ' + rating + ' Sterne<br>' + comment;
+            commentList.appendChild(listItem);
+
+            // Zurücksetzen der Formularfelder
+            document.getElementById('commentForm').reset();
+
+            // Manuell den Standardwert für die Bewertung festlegen
+            document.getElementById('rating').value = '1';
+        }
+    </script>
+
+    <h2>Dr. med. Hofmann</h2>
+    <div id="commentBox">
+        <form id="commentForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" required>
+
+            <label for="rating">Bewertung:</label>
+            <select id="rating" required>
+                <option value="1">1 Stern</option>
+                <option value="2">2 Sterne</option>
+                <option value="3">3 Sterne</option>
+                <option value="4">4 Sterne</option>
+                <option value="5">5 Sterne</option>
+            </select>
+
+            <label for="comment">Kommentar:</label>
+            <textarea id="comment" required></textarea>
+
+            <button type="button" onclick="submitComment()">Bewertung abgeben</button>
+        </form>
+
+        <ul id="comments"></ul>
+    </div>
+
+    <script>
+        function submitComment() {
+            var name = document.getElementById('name').value;
+            var rating = document.getElementById('rating').value;
+            var comment = document.getElementById('comment').value;
+
+            var commentList = document.getElementById('comments');
+            var listItem = document.createElement('li');
+            listItem.className = 'comment';
+            listItem.innerHTML = '<strong>' + name + '</strong> - Bewertung: ' + rating + ' Sterne<br>' + comment;
+            commentList.appendChild(listItem);
+
+            // Zurücksetzen der Formularfelder
+            document.getElementById('commentForm').reset();
+
+            // Manuell den Standardwert für die Bewertung festlegen
+            document.getElementById('rating').value = '1';
+        }
+    </script>
 
     <!-- Footer aus der Home-Seite -->
     <div class="container-fluid bg-dark text-light border-top border-secondary py-4">
@@ -504,7 +506,7 @@
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
 
-    
+
 </body>
 
 </html>

@@ -106,32 +106,6 @@ VALUES
 ('Dr', 'Christoph', 'Becker', 'christoph.becker@example.com', '444444444', 'Orthopäde', '1040', 'Wien', 18, NULL),
 ('Dr. med.', 'Laura', 'Hofmann', 'laura.hofmann@example.com', '481910519', 'Neurologin', '1050', 'Wien', 12, 'Dr. med., Neurologie');
 
--- Patienten einfügen
-INSERT INTO p_patienten (p_vorname, p_nachname, p_email, p_passwort, p_telefonnummer, p_geburtsdatum, p_svnr, p_allergien, p_vorerkrankungen, p_medikamente, p_a_behandelnderArzt)
-VALUES
-('Anna', 'Schmidt', 'anna.schmidt@example.com', 'pass123', '123456789', '1990-05-15', '1234567890', 'Pollen', 'Bluthochdruck', 'Aspirin', 1),
-('Markus', 'Müller', 'markus.mueller@example.com', 'pass456', '0987654321', '1985-08-22', '0987654321', NULL, 'Diabetes', 'Insulin', 2),
-('Julia', 'Becker', 'julia.becker@example.com', 'pass789', '1122334455', '1993-03-10', '1122334455', 'Asthma', NULL, 'Ventolin', 3),
-('Max', 'Lehmann', 'max.lehmann@example.com', 'passabc', '5544332211', '1980-11-28', '5544332211', 'Erdnüsse', 'Herzkrankheit', 'Clopidogrel', 2),
-('Sophie', 'Hoffmann', 'sophie.hoffmann@example.com', 'passxyz', '6677889900', '1995-07-03', '6677889900', 'Schalentiere', 'Arthritis', 'Ibuprofen', 1);
-
--- Bewertungen einfügen
-INSERT INTO b_bewertungen (b_punkte, b_kommentar, b_p_id, b_a_id)
-VALUES
-(2, 'Nicht zufrieden mit der Behandlung!', 1, 1),
-(5, 'Kompetenter Arzt, empfehle ich weiter.', 3, 3),
-(3, 'Etwas längere Wartezeit, aber gute Beratung.', 2, 2),
-(4, 'Freundliches Personal und saubere Praxis.', 4, 2),
-(5, 'Schnelle Diagnose, bin sehr zufrieden.', 5, 1);
-
--- Logging einfügen
-INSERT INTO l_logging (l_event_typ, l_p_id, l_a_id)
-VALUES
-('Anmeldung', 1, 1),
-('Terminvereinbarung', 3, 3),
-('Bewertung', 2, 2),
-('Anmeldung', 4, 2),
-('Terminvereinbarung', 5, 1);
 
 -- Termintyp einfügen
 INSERT INTO tt_termintyp (tt_bezeichnung)

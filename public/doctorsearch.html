@@ -5,8 +5,6 @@
     <title>ConLink - Ärztesuche</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Header aus der Home-Seite -->
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
@@ -21,20 +19,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
-    <!-- Flatpickr CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-
-    <!-- Font Awesome Icons (falls nicht bereits eingebunden) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-
-    <!-- jQuery (falls für Flatpickr erforderlich) -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
-    <!-- Flatpickr JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-
-    <!-- ... (previous code) ... -->
 
 
     <style>
@@ -43,6 +31,7 @@
             flex-direction: column;
             align-items: center;
             margin-top: 2%;
+
         }
 
         .search-group {
@@ -77,6 +66,8 @@
         #ortPlzDropdown {
             width: 200px;
         }
+
+
 
         .search-btn {
             border: none;
@@ -117,6 +108,7 @@
             width: 60%;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
+            margin-left: 27.5%;
         }
 
         /* Styling für die linke Seite */
@@ -161,16 +153,161 @@
             height: 100%;
             /* Je nach Bedarf */
         }
+
+        .lt-con {
+            position: fixed;
+            bottom: 0px;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .button-container button {
+            background-color: #1B9AAA;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .button-container button:hover {
+            background-color: #155d74;
+        }
+
+        .profile-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-image {
+            width: 100px;
+            /* Passe die Breite nach Bedarf an */
+            height: 100px;
+            /* Passe die Höhe nach Bedarf an */
+            border-radius: 50%;
+            /* Macht das Bild rund */
+            margin-right: 20px;
+            /* Fügt rechts Platz hinzu */
+        }
+
+        .name-and-specialty {
+            display: inline-block;
+            /* Damit Name und Facharzt in einer Zeile bleiben */
+            vertical-align: middle;
+            /* Zentriere vertikal */
+        }
+
+        .info-side h2,
+        .info-side h3 {
+            margin-top: 0;
+            /* Entferne den oberen Abstand des Namens und Facharzts */
+        }
+
+        .user-icon {
+            width: 30px;
+            /* Adjust the width as needed */
+            height: 30px;
+            /* Adjust the height as needed */
+            border-radius: 50%;
+            /* Makes the image rounded */
+            margin-right: 10px;
+            /* Adds some space between icon and username */
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .username {
+            margin: 0;
+            /* Reset margin to remove any default spacing */
+        }
+
+        #bewertungenContainer {
+            background-color: #f5f5f5;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .bewertungen-header {
+            font-size: 18px;
+            color: #1B9AAA;
+            margin-bottom: 10px;
+        }
+
+        .bewertung {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+            margin-bottom: 10px;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .user-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .username {
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .rating {
+            color: #1B9AAA;
+            margin-bottom: 10px;
+        }
+
+        .fa-star {
+            font-size: 20px;
+        }
+
+        .bewertung-text {
+            font-size: 16px;
+        }
+
+        .bewertung-inputs {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .bewertung-inputs input,
+        .bewertung-inputs textarea,
+        .bewertung-inputs button {
+            margin-top: 10px;
+        }
+
+        .bewertungen-button {
+            background-color: #1B9AAA;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .bewertungen-button:hover {
+            background-color: #155d74;
+        }
     </style>
-</head>
-<!-- ... (remaining code) ... -->
-
-
-<!-- Ende Header -->
 </head>
 
 <body>
-
     <!-- Navbar aus der Home-Seite -->
     <div class="container-fluid sticky-top bg-white shadow-sm">
         <div class="container">
@@ -186,34 +323,30 @@
                         <a href="home.html" class="nav-item nav-link">Home</a>
                         <a href="aboutus.html" class="nav-item nav-link">About Us</a>
                         <a href="faq.html" class="nav-item nav-link">FAQ</a>
-                        <a href="#" class="nav-item nav-link">
-                            <i class="bi bi-person"></i> <!-- Hier das Benutzer-Icon -->
-                        </a>
+                        <a href="logout" class="nav-item nav-link">Logout</a>
                     </div>
                 </div>
             </nav>
         </div>
     </div>
-    <!-- Ende Navbar -->
-
-
-    <!-- Linke Navbar -->
     <nav class="navbar left-navbar">
         <div class="container">
             <div class="navbar-nav">
-                <a href="doctorsearch.html" class="nav-item nav-link">
-                    <i class="bi bi-person"></i> Ärztesuche
+                <a href="stammdaten.html" class="nav-item nav-link">
+                    <i class="bi bi-person-check"></i> Stammdaten
                 </a>
-               <!-- <a href="stammdaten.html" class="nav-item nav-link"> Stammdaten</a> -->
+
+                <a href="doctorsearch.html" class="nav-item nav-link">
+                    <i class="fas fa-user-md"></i> Ärztesuche
+                </a>
                 <a href="appoitmentoverview.html" class="nav-item nav-link">
-                
                     <i class="bi bi-calendar"></i> Termine
                 </a>
             </div>
         </div>
     </nav>
     <!-- Ende linke Navbar -->
-
+    <!--Suchfunktion-->
     <div class="content">
         <div class="left-content">
             <h1>Ärztesuche</h1>
@@ -251,32 +384,101 @@
         </div>
     </div>
 
-
-    Arzt nr 1 
-
+    <!--Arztprofile Doktor 1-->
     <div class="container-box" id="container-box-1">
         <div class="info-side">
-            <h2>Dr. Erwald Heberer</h2>
-            <h3>Facharzt für <span class="lt_richtung">Allgemeinmedizin</span></h3>
+            <div class="profile-container">
+                <img src="img/team-1.png" alt="Dr. Erwald Heberer" class="profile-image">
+                <div class="name-and-specialty">
+                    <h2>Dr. Erwald Heberer</h2>
+                    <h3>Facharzt für <span class="lt_richtung">Allgemeinmedizin</span></h3>
+                </div>
+            </div>
             <p class="lt_plz"><span class="icon"><i class="fas fa-map-marker-alt"></i></span>1050 Wien</p>
             <p><span class="icon"><i class="fas fa-phone"></i></span>01 8374623</p>
             <p><span class="icon"><i class="fas fa-mobile-alt"></i></span>+43 677 12863712</p>
             <p><span class="icon"><i class="fas fa-envelope"></i></span>erwald.heberer@example.com</p>
             <p><span class="icon"><i class="fas fa-globe"></i></span>www.doc05.at</p>
             <p><span class="icon"><i class="fas fa-comments"></i></span>Deutsch</p>
-        </div>
 
+            <button class="bewertungen-button" onclick="toggleBewertungen(1)">Bewertungen
+                anschauen</button>
+
+            <!-- Hidden div for Bewertungen -->
+            <div id="bewertungenContainer-1" class="bewertungen-container" style="display: none;">
+                <!-- Realistic Bewertungen with small and rounded user icons -->
+                <div class="bewertung">
+                    <div class="user-info">
+                        <img src="img/user1.png" alt="User Icon" class="user-icon">
+                        <p class="username">MaxMustermann123</p>
+                    </div>
+                    <div class="rating">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                    </div>
+                    <p class="bewertung-text">Sehr zufrieden mit der Behandlung! Der Arzt war sehr freundlich und
+                        kompetent.</p>
+                </div>
+                <div class="bewertung">
+                    <div class="user-info">
+                        <img src="img/user.jpg" alt="User Icon" class="user-icon">
+                        <p class="username">Mohammed Ali</p>
+                    </div>
+                    <div class="rating">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                    </div>
+                    <p class="bewertung-text">Top-Arzt! Sehr professionell und hilfsbereit. Kann ich nur
+                        weiterempfehlen.</p>
+                </div>
+                <h3>Bewertung schreiben:</h3>
+                <!-- Bewertung schreiben section -->
+                <div class="bewertung">
+                    <div class="user-info">
+                        <form id="bewertungForm">
+                            <div class="rating">
+                                <input type="radio" name="bewertungRating" value="1"> <span class="fa fa-star checked">
+                                    1 Star
+                                </span><br>
+                                <input type="radio" name="bewertungRating" value="2"> <span class="fa fa-star checked">
+                                    2 Star
+                                </span><br>
+                                <input type="radio" name="bewertungRating" value="3"> <span class="fa fa-star checked">
+                                    3 Star
+                                </span><br>
+                                <input type="radio" name="bewertungRating" value="4"> <span class="fa fa-star"> 4 Star
+                                </span><br>
+                                <input type="radio" name="bewertungRating" value="5"> <span class="fa fa-star"> 5 Star
+                                </span><br>
+                            </div>
+                            <textarea id="bewertungText" class="bewertung-textarea"
+                                placeholder="Teilen Sie Ihre Erfahrung mit uns" style="width: 100%;"></textarea>
+                            <button type="button" class="bewertungen-button" onclick="submitBewertung()">Bewertung
+                                abschicken</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="calendar-side">
             <h2>Kalender</h2>
             <h3>Wählen Sie einen Termin aus</h3>
-            Hier könnte weiterer Text oder HTML für den Kalender stehen
             <input type="text" id="datePicker-1" placeholder="Datum und Uhrzeit auswählen">
             <p></p>
-            <button onclick="buchungSpeichern()">Termin buchen</button>
+            <div class="button-container">
+                <button onclick="buchungSpeichern(1)">Termin buchen</button>
+            </div>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             flatpickr('#datePicker-1', {
@@ -307,9 +509,6 @@
         });
 
         function speichern() {
-            // Sende die ausgewählten Daten an den Server oder führe eine andere Aktion aus
-            // Hier könnte eine AJAX-Anfrage an den Server erfolgen
-            // Beispiel mit Fetch API:
             fetch('/speichern', {
                 method: 'POST',
                 headers: {
@@ -329,23 +528,73 @@
 
 
     <script>
+        function toggleBewertungen(profileNumber) {
+            var bewertungenContainer = document.getElementById('bewertungenContainer-' + profileNumber);
+            bewertungenContainer.style.display = (bewertungenContainer.style.display === 'none') ? 'block' : 'none';
+        }
+
+        function submitBewertung() {
+            // Get user input
+            const bewertungText = document.getElementById("bewertungText").value;
+            const bewertungRating = document.querySelector('input[name="bewertungRating"]:checked');
+
+            // Validate user input
+            if (!bewertungText || !bewertungRating) {
+                alert("Bitte füllen Sie alle Felder aus.");
+                return;
+            }
+
+            // Construct the new Bewertung
+            const newBewertung = document.createElement("div");
+            newBewertung.classList.add("bewertung");
+
+            // User info (dummy user for now)
+            const userInfo = document.createElement("div");
+            userInfo.classList.add("user-info");
+            userInfo.innerHTML = `
+        <i class="fas fa-user user-icon"></i>
+        <p class="username">You</p>
+    `;
+            newBewertung.appendChild(userInfo);
+
+            // Rating
+            const rating = document.createElement("div");
+            rating.classList.add("rating");
+            for (let i = 0; i < bewertungRating.value; i++) {
+                const starIcon = document.createElement("span");
+                starIcon.classList.add("fa", "fa-star", "checked");
+                rating.appendChild(starIcon);
+            }
+            newBewertung.appendChild(rating);
+
+            // Text
+            const bewertungTextElement = document.createElement("p");
+            bewertungTextElement.classList.add("bewertung-text");
+            bewertungTextElement.textContent = bewertungText;
+            newBewertung.appendChild(bewertungTextElement);
+
+            // Get the container for existing Bewertungen
+            const bewertungenContainer = document.getElementById("bewertungenContainer");
+
+            // Insert the new Bewertung after existing Bewertungen
+            bewertungenContainer.insertBefore(newBewertung, bewertungenContainer.firstChild);
+
+            // Clear the form
+            document.getElementById("bewertungForm").reset();
+
+            // Optionally, you can hide the form after submission
+            bewertungenContainer.style.display = "none";
+        }
+
 
         function suche() {
-    
             var selectedFachrichtung = document.getElementById("fachrichtungDropdown").value;
             var selectedOrtPlz = document.getElementById("ortPlzDropdown").value;
 
             if (!selectedFachrichtung && !selectedOrtPlz) {
                 alert("Bitte wählen Sie eine Fachrichtung oder einen PLZ aus.");
-                 return; // Abbruch, wenn nichts ausgewählt wurde
-            }else if (!selectedFachrichtung) {
-                alert("Bitte wählen Sie eine Fachrichtung aus.");
-                 return; // Abbruch, wenn nichts ausgewählt wurde
-            }else if(!selectedOrtPlz) {
-                alert("Bitte wählen Sie eine PLZ aus.");
-                 return; // Abbruch, wenn nichts ausgewählt wurde
+                return; // Abbruch, wenn nichts ausgewählt wurde
             }
-
             // Alle Container holen
             var containerBoxes = document.getElementsByClassName("container-box");
 
@@ -359,17 +608,20 @@
                 var containerPlz = plzElement.innerText.trim();
 
 
-            // Container ausblenden, wenn die Auswahl nicht exakt übereinstimmt
-                
-            if (selectedFachrichtung === containerRichtung && selectedOrtPlz === containerPlz) {
-                container.style.display = "flex";
-            } else {
-                container.style.display = "none";
-            }
-            }
-        
-        }
+                // Container ausblenden, wenn die Auswahl nicht exakt übereinstimmt
 
+                if (selectedFachrichtung === containerRichtung && selectedOrtPlz === containerPlz) {
+                    container.style.display = "flex";
+                } else if (selectedFachrichtung === containerRichtung) {
+                    container.style.display = "flex";
+                } else if (selectedOrtPlz === containerPlz) {
+                    container.style.display = "flex";
+                } else {
+                    container.style.display = "none";
+                }
+            }
+
+        }
         function searchDoctors() {
             const fachrichtung = $('#fachrichtungDropdown').val();
             const ortPlz = $('#ortPlzDropdown').val();
@@ -419,7 +671,7 @@
                 doctorResultsDiv.append(doctorBox);
 
                 // Flatpickr für jeden Arzt initialisieren
-                flatpickr(`#datePicker-${doctor.a_id}`, {
+                flatpickr(`#datePicker-1`, {
                     enableTime: true,
                     dateFormat: "d-m-Y H:i",
                     minDate: "today",
@@ -435,41 +687,140 @@
             });
         }
 
-        function buchungSpeichern(doctorId) {
-            const selectedDate = $(`#datePicker-${doctorId}`).val();
 
-            // Hier können Sie den ausgewählten Termin und die Arzt-ID an den Server senden
-            // und die Buchung speichern
-            console.log(`Termin für Arzt ${doctorId} speichern:`, selectedDate);
-            // Fügen Sie hier Ihre AJAX-Anfrage zum Speichern der Buchung hinzu
+
+        function buchungSpeichern(doctorId) {
+
+            // Ausgewähltes Datum und Arzt-ID abrufen
+            const selectedDate = $(`#datePicker-${doctorId}`).val();
+            const selectedDateSplitted = selectedDate.match(/(\d+)-(\d+)-(\d+) (\d+):(\d+)/);
+            console.log(selectedDateSplitted);
+
+            const kategorie = document.querySelector(`#container-box-${doctorId} .lt_richtung`).innerText.trim();
+
+            // AJAX-Anfrage zum Speichern der Buchung
+            $.ajax({
+                url: '/speichereTermin',  // Hier sollte die URL des Servers stehen, der die Datenbankanfrage verarbeitet
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    doctorId: doctorId,
+                    selectedDate: `${selectedDateSplitted[3]}-${selectedDateSplitted[2]}-${selectedDateSplitted[1]}T${selectedDateSplitted[4]}:${selectedDateSplitted[5]}:00`,
+                    kategorie: kategorie
+                }),
+                success: function (response) {
+                    kategorie = null;
+                    console.log('Buchung erfolgreich gespeichert:', response);
+                    // Fügen Sie hier weitere Aktionen nach erfolgreicher Speicherung hinzu
+
+                },
+                error: function (error) {
+                    console.error('Fehler beim Speichern der Buchung:', error);
+                    // Fügen Sie hier Aktionen für den Fall eines Fehlers hinzu
+                }
+            });
         }
     </script>
 
-    <!-- arzt nr 2-->
-
+    <!-- Arztprofil 2 -->
     <div class="container-box" id="container-box-2">
-
         <!-- Linke Seite für Informationen -->
         <div class="info-side">
-            <h2>Dr. Marie Effner</h2>
-            <h3>Fachärztin für <span class="lt_richtung">Kardiologie</span></h3>
+            <div class="profile-container">
+                <img src="img/team-2.jpg" alt="Dr. Marie Effner" class="profile-image">
+                <div class="name-and-specialty">
+                    <h2>Dr. Marie Effner</h2>
+                    <h3>Fachärztin für <span class="lt_richtung">Kardiologie</span></h3>
+                </div>
+            </div>
             <p class="lt_plz"><span class="icon"><i class="fas fa-map-marker-alt"></i></span>1100 Wien</p>
             <p><span class="icon"><i class="fas fa-phone"></i></span>01 6743561</p>
             <p><span class="icon"><i class="fas fa-mobile-alt"></i></span>+43 600 45327698</p>
             <p><span class="icon"><i class="fas fa-envelope"></i></span>marie.effner@example.com</p>
             <p><span class="icon"><i class="fas fa-globe"></i></span>www.doc10.at</p>
             <p><span class="icon"><i class="fas fa-comments"></i></span>Deutsch, Englisch</p>
+
+            <button class="bewertungen-button" onclick="toggleBewertungen(2)">Bewertungen
+                anschauen</button>
+
+            <!-- Hidden div for Bewertungen -->
+            <div id="bewertungenContainer-2" class="bewertungen-container" style="display: none;">
+                <!-- Realistic Bewertungen with small and rounded user icons -->
+                <div class="bewertung">
+                    <div class="user-info">
+                        <img src="img/user1.png" alt="User Icon" class="user-icon">
+                        <p class="username">MaxMustermann123</p>
+                    </div>
+                    <div class="rating">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                    </div>
+                    <p class="bewertung-text">Sehr zufrieden mit der Behandlung! Der Arzt war sehr freundlich und
+                        kompetent.
+                    </p>
+                </div>
+                <div class="bewertung">
+                    <div class="user-info">
+                        <img src="img/user.jpg" alt="User Icon" class="user-icon">
+                        <p class="username">Mohammed Ali</p>
+                    </div>
+                    <div class="rating">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                    </div>
+                    <p class="bewertung-text">Top-Arzt! Sehr professionell und hilfsbereit. Kann ich nur
+                        weiterempfehlen.
+                    </p>
+                </div>
+                <h3>Bewertung schreiben:</h3>
+                <!-- Bewertung schreiben section -->
+                <div class="bewertung">
+                    <div class="user-info">
+                        <form id="bewertungForm-2">
+                            <div class="rating">
+                                <input type="radio" name="bewertungRating" value="1"> <span class="fa fa-star checked">
+                                    1
+                                    Star </span><br>
+                                <input type="radio" name="bewertungRating" value="2"> <span class="fa fa-star checked">
+                                    2
+                                    Star </span><br>
+                                <input type="radio" name="bewertungRating" value="3"> <span class="fa fa-star checked">
+                                    3
+                                    Star </span><br>
+                                <input type="radio" name="bewertungRating" value="4"> <span class="fa fa-star"> 4 Star
+                                </span><br>
+                                <input type="radio" name="bewertungRating" value="5"> <span class="fa fa-star"> 5 Star
+                                </span><br>
+                            </div>
+                            <textarea id="bewertungText" class="bewertung-textarea"
+                                placeholder="Teilen Sie Ihre Erfahrung mit uns" style="width: 100%;"></textarea>
+                            <button type="button" class="bewertungen-button" onclick="submitBewertung(2)">Bewertung
+                                abschicken</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
 
+        <!-- Rechte Seite für den Kalender -->
         <div class="calendar-side">
             <h2>Kalender</h2>
             <h3>Wählen Sie einen Termin aus</h3>
             <!-- Hier könnte weiterer Text oder HTML für den Kalender stehen -->
             <input type="text" id="datePicker-2" placeholder="Datum und Uhrzeit auswählen">
             <p></p>
-            <button onclick="buchungSpeichern()">Termin buchen</button>
+            <div class="button-container">
+                <button onclick="buchungSpeichern(2)">Termin buchen</button>
+            </div>
         </div>
     </div>
+
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -499,31 +850,104 @@
         });
     </script>
 
-    <!-- arzt nr 3 -->
-
+    <!-- Arzt Nr. 3 -->
     <div class="container-box" id="container-box-3">
-
         <!-- Linke Seite für Informationen -->
         <div class="info-side">
-            <h2>Dr. med. Michael Jordan</h2>
-            <h3>Facharzt für <span class="lt_richtung">Dermatologie</span></h3>
+            <div class="profile-container">
+                <img src="img/team-3.png" alt="Dr. med. Michael Jordan" class="profile-image">
+                <div class="name-and-specialty">
+                    <h2>Dr. med. Michael Jordan</h2>
+                    <h3>Facharzt für <span class="lt_richtung">Dermatologie</span></h3>
+                </div>
+            </div>
             <p class="lt_plz"><span class="icon"><i class="fas fa-map-marker-alt"></i></span>1120 Wien</p>
             <p><span class="icon"><i class="fas fa-phone"></i></span>01 9371263</p>
             <p><span class="icon"><i class="fas fa-mobile-alt"></i></span>+43 699 49271263</p>
             <p><span class="icon"><i class="fas fa-envelope"></i></span>michael.jordan@example.com</p>
             <p><span class="icon"><i class="fas fa-globe"></i></span>www.doc12.at</p>
             <p><span class="icon"><i class="fas fa-comments"></i></span>Deutsch, Serbisch</p>
+            <button class="bewertungen-button" onclick="toggleBewertungen(3)">Bewertungen
+                anschauen</button>
+
+            <div id="bewertungenContainer-3" class="bewertungen-container" style="display: none;">
+                <!-- Realistic Bewertungen with small and rounded user icons -->
+                <div class="bewertung">
+                    <!-- Beispielbewertung 1 für Arztprofil 3 -->
+                    <div class="user-info">
+                        <img src="img/user3.png" alt="User Icon" class="user-icon">
+                        <p class="username">AnnaMusterfrau456</p>
+                    </div>
+                    <div class="rating">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                    </div>
+                    <p class="bewertung-text">Sehr freundlicher Arzt mit fundiertem Fachwissen. Kann ich nur empfehlen!
+                    </p>
+                </div>
+                <div class="bewertung">
+                    <!-- Beispielbewertung 2 für Arztprofil 3 -->
+                    <div class="user-info">
+                        <img src="img/user4.jpg" alt="User Icon" class="user-icon">
+                        <p class="username">MaxPower789</p>
+                    </div>
+                    <div class="rating">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                    </div>
+                    <p class="bewertung-text">Exzellenter Dermatologe! Hat mir sehr geholfen und ist sehr kompetent.</p>
+                </div>
+
+                <!-- Bewertung schreiben section -->
+                <h3>Bewertung schreiben:</h3>
+                <div class="bewertung">
+                    <!-- Formular für neue Bewertung für Arztprofil 3 -->
+                    <div class="user-info">
+                        <form id="bewertungForm-3">
+                            <div class="rating">
+                                <input type="radio" name="bewertungRating-3" value="1"> <span
+                                    class="fa fa-star checked"> 1
+                                    Star</span><br>
+                                <input type="radio" name="bewertungRating-3" value="2"> <span
+                                    class="fa fa-star checked"> 2
+                                    Star</span><br>
+                                <input type="radio" name="bewertungRating-3" value="3"> <span
+                                    class="fa fa-star checked"> 3
+                                    Star</span><br>
+                                <input type="radio" name="bewertungRating-3" value="4"> <span class="fa fa-star"> 4
+                                    Star</span><br>
+                                <input type="radio" name="bewertungRating-3" value="5"> <span class="fa fa-star"> 5
+                                    Star</span><br>
+                            </div>
+                            <textarea id="bewertungText-3" class="bewertung-textarea"
+                                placeholder="Teilen Sie Ihre Erfahrung mit uns" style="width: 100%;"></textarea>
+                            <button type="button" class="bewertungen-button" onclick="submitBewertung(3)">Bewertung
+                                abschicken</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
 
+        <!-- Rechte Seite für den Kalender -->
         <div class="calendar-side">
             <h2>Kalender</h2>
             <h3>Wählen Sie einen Termin aus</h3>
             <!-- Hier könnte weiterer Text oder HTML für den Kalender stehen -->
             <input type="text" id="datePicker-3" placeholder="Datum und Uhrzeit auswählen">
             <p></p>
-            <button onclick="buchungSpeichern()">Termin buchen</button>
+            <div class="button-container">
+                <button onclick="buchungSpeichern(3)">Termin buchen</button>
+            </div>
         </div>
     </div>
+
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -553,31 +977,104 @@
         });
     </script>
 
-    <!-- arzt nr 4 -->
-
+    <!-- Arzt Nr. 4 -->
     <div class="container-box" id="container-box-4">
-
         <!-- Linke Seite für Informationen -->
         <div class="info-side">
-            <h2>Dr. med. Julia Schmidt</h2>
-            <h3>Fachärztin für <span class="lt_richtung">Pädiatrie</span></h3>
+            <div class="profile-container">
+                <img src="img/team-4.jpg" alt="Dr. med. Julia Schmidt" class="profile-image">
+                <div class="name-and-specialty">
+                    <h2>Dr. med. Julia Schmidt</h2>
+                    <h3>Fachärztin für <span class="lt_richtung">Pädiatrie</span></h3>
+                </div>
+            </div>
             <p class="lt_plz"><span class="icon"><i class="fas fa-map-marker-alt"></i></span>1010 Wien</p>
             <p><span class="icon"><i class="fas fa-phone"></i></span>01 4820374</p>
             <p><span class="icon"><i class="fas fa-mobile-alt"></i></span>+43 699 98362817</p>
             <p><span class="icon"><i class="fas fa-envelope"></i></span>julia.schmidt@example.com</p>
             <p><span class="icon"><i class="fas fa-globe"></i></span>www.doc01.at</p>
             <p><span class="icon"><i class="fas fa-comments"></i></span>Deutsch, Rumänisch</p>
+            <button class="bewertungen-button" onclick="toggleBewertungen(4)">Bewertungen
+                anschauen</button>
+
+            <div id="bewertungenContainer-4" class="bewertungen-container" style="display: none;">
+                <!-- Realistic Bewertungen with small and rounded user icons -->
+                <div class="bewertung">
+                    <!-- Beispielbewertung 1 für Arztprofil 3 -->
+                    <div class="user-info">
+                        <img src="img/user3.png" alt="User Icon" class="user-icon">
+                        <p class="username">AnnaMusterfrau456</p>
+                    </div>
+                    <div class="rating">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                    </div>
+                    <p class="bewertung-text">Sehr freundlicher Arzt mit fundiertem Fachwissen. Kann ich nur empfehlen!
+                    </p>
+                </div>
+                <div class="bewertung">
+                    <!-- Beispielbewertung 2 für Arztprofil 3 -->
+                    <div class="user-info">
+                        <img src="img/user4.jpg" alt="User Icon" class="user-icon">
+                        <p class="username">MaxPower789</p>
+                    </div>
+                    <div class="rating">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                    </div>
+                    <p class="bewertung-text">Exzellenter Dermatologe! Hat mir sehr geholfen und ist sehr kompetent.</p>
+                </div>
+
+                <!-- Bewertung schreiben section -->
+                <h3>Bewertung schreiben:</h3>
+                <div class="bewertung">
+                    <!-- Formular für neue Bewertung für Arztprofil 3 -->
+                    <div class="user-info">
+                        <form id="bewertungForm-3">
+                            <div class="rating">
+                                <input type="radio" name="bewertungRating-3" value="1"> <span
+                                    class="fa fa-star checked"> 1
+                                    Star</span><br>
+                                <input type="radio" name="bewertungRating-3" value="2"> <span
+                                    class="fa fa-star checked"> 2
+                                    Star</span><br>
+                                <input type="radio" name="bewertungRating-3" value="3"> <span
+                                    class="fa fa-star checked"> 3
+                                    Star</span><br>
+                                <input type="radio" name="bewertungRating-3" value="4"> <span class="fa fa-star"> 4
+                                    Star</span><br>
+                                <input type="radio" name="bewertungRating-3" value="5"> <span class="fa fa-star"> 5
+                                    Star</span><br>
+                            </div>
+                            <textarea id="bewertungText-3" class="bewertung-textarea"
+                                placeholder="Teilen Sie Ihre Erfahrung mit uns" style="width: 100%;"></textarea>
+                            <button type="button" class="bewertungen-button" onclick="submitBewertung(4)">Bewertung
+                                abschicken</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
 
+        <!-- Rechte Seite für den Kalender -->
         <div class="calendar-side">
             <h2>Kalender</h2>
             <h3>Wählen Sie einen Termin aus</h3>
             <!-- Hier könnte weiterer Text oder HTML für den Kalender stehen -->
             <input type="text" id="datePicker-4" placeholder="Datum und Uhrzeit auswählen">
             <p></p>
-            <button onclick="buchungSpeichern()">Termin buchen</button>
+            <div class="button-container">
+                <button onclick="buchungSpeichern(4)">Termin buchen</button>
+            </div>
         </div>
     </div>
+
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -607,31 +1104,104 @@
         });
     </script>
 
-    <!-- arzt nr 5 -->
-
+    <!-- Arzt Nr. 5 -->
     <div class="container-box" id="container-box-5">
-
         <!-- Linke Seite für Informationen -->
         <div class="info-side">
-            <h2>Dr. med. Michael Müller</h2>
-            <h3>Facharzt für <span class="lt_richtung">Onkologie</span></h3>
+            <div class="profile-container">
+                <img src="img/team-5.png" alt="Dr. med. Michael Müller" class="profile-image">
+                <div class="name-and-specialty">
+                    <h2>Dr. med. Michael Müller</h2>
+                    <h3>Facharzt für <span class="lt_richtung">Onkologie</span></h3>
+                </div>
+            </div>
             <p class="lt_plz"><span class="icon"><i class="fas fa-map-marker-alt"></i></span>1020 Wien</p>
             <p><span class="icon"><i class="fas fa-phone"></i></span>01 9012834</p>
             <p><span class="icon"><i class="fas fa-mobile-alt"></i></span>+43 674 09271635</p>
             <p><span class="icon"><i class="fas fa-envelope"></i></span>michael.müller@example.com</p>
             <p><span class="icon"><i class="fas fa-globe"></i></span>www.doc02.at</p>
             <p><span class="icon"><i class="fas fa-comments"></i></span>Deutsch, Urdu</p>
+            <button class="bewertungen-button" onclick="toggleBewertungen(5)">Bewertungen
+                anschauen</button>
+
+            <div id="bewertungenContainer-5" class="bewertungen-container" style="display: none;">
+                <!-- Realistic Bewertungen with small and rounded user icons -->
+                <div class="bewertung">
+                    <!-- Beispielbewertung 1 für Arztprofil 3 -->
+                    <div class="user-info">
+                        <img src="img/user3.png" alt="User Icon" class="user-icon">
+                        <p class="username">AnnaMusterfrau456</p>
+                    </div>
+                    <div class="rating">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                    </div>
+                    <p class="bewertung-text">Sehr freundlicher Arzt mit fundiertem Fachwissen. Kann ich nur empfehlen!
+                    </p>
+                </div>
+                <div class="bewertung">
+                    <!-- Beispielbewertung 2 für Arztprofil 3 -->
+                    <div class="user-info">
+                        <img src="img/user4.jpg" alt="User Icon" class="user-icon">
+                        <p class="username">MaxPower789</p>
+                    </div>
+                    <div class="rating">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                    </div>
+                    <p class="bewertung-text">Exzellenter Dermatologe! Hat mir sehr geholfen und ist sehr kompetent.</p>
+                </div>
+
+                <!-- Bewertung schreiben section -->
+                <h3>Bewertung schreiben:</h3>
+                <div class="bewertung">
+                    <!-- Formular für neue Bewertung für Arztprofil 3 -->
+                    <div class="user-info">
+                        <form id="bewertungForm-3">
+                            <div class="rating">
+                                <input type="radio" name="bewertungRating-3" value="1"> <span
+                                    class="fa fa-star checked"> 1
+                                    Star</span><br>
+                                <input type="radio" name="bewertungRating-3" value="2"> <span
+                                    class="fa fa-star checked"> 2
+                                    Star</span><br>
+                                <input type="radio" name="bewertungRating-3" value="3"> <span
+                                    class="fa fa-star checked"> 3
+                                    Star</span><br>
+                                <input type="radio" name="bewertungRating-3" value="4"> <span class="fa fa-star"> 4
+                                    Star</span><br>
+                                <input type="radio" name="bewertungRating-3" value="5"> <span class="fa fa-star"> 5
+                                    Star</span><br>
+                            </div>
+                            <textarea id="bewertungText-3" class="bewertung-textarea"
+                                placeholder="Teilen Sie Ihre Erfahrung mit uns" style="width: 100%;"></textarea>
+                            <button type="button" class="bewertungen-button" onclick="submitBewertung(5)">Bewertung
+                                abschicken</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
 
+        <!-- Rechte Seite für den Kalender -->
         <div class="calendar-side">
             <h2>Kalender</h2>
             <h3>Wählen Sie einen Termin aus</h3>
             <!-- Hier könnte weiterer Text oder HTML für den Kalender stehen -->
             <input type="text" id="datePicker-5" placeholder="Datum und Uhrzeit auswählen">
             <p></p>
-            <button onclick="buchungSpeichern()">Termin buchen</button>
+            <div class="button-container">
+                <button onclick="buchungSpeichern(5)">Termin buchen</button>
+            </div>
         </div>
     </div>
+
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -662,35 +1232,107 @@
     </script>
 
 
-    <!-- arzt nr 6 -->
-
+    <!-- Arzt Nr. 6 -->
     <div class="container-box" id="container-box-6">
-
         <!-- Linke Seite für Informationen -->
         <div class="info-side">
-            <h2>Dr. med. Anna Wagner</h2>
-            <h3>Fachärztin für <span class="lt_richtung">Psychologie</span></h3>
+            <div class="profile-container">
+                <img src="img/team-6.png" alt="Dr. med. Anna Wagner" class="profile-image">
+                <div class="name-and-specialty">
+                    <h2>Dr. med. Anna Wagner</h2>
+                    <h3>Fachärztin für <span class="lt_richtung">Psychologie</span></h3>
+                </div>
+            </div>
             <p class="lt_plz"><span class="icon"><i class="fas fa-map-marker-alt"></i></span>1030 Wien</p>
             <p><span class="icon"><i class="fas fa-phone"></i></span>01 9381726</p>
             <p><span class="icon"><i class="fas fa-mobile-alt"></i></span>+43 674 09273649</p>
             <p><span class="icon"><i class="fas fa-envelope"></i></span>anna.wagner@example.com</p>
             <p><span class="icon"><i class="fas fa-globe"></i></span>www.doc03.at</p>
             <p><span class="icon"><i class="fas fa-comments"></i></span>Deutsch, Spanisch</p>
+            <button class="bewertungen-button" onclick="toggleBewertungen(6)">Bewertungen
+                anschauen</button>
+
+            <div id="bewertungenContainer-6" class="bewertungen-container" style="display: none;">
+                <!-- Realistic Bewertungen with small and rounded user icons -->
+                <div class="bewertung">
+                    <!-- Beispielbewertung 1 für Arztprofil 3 -->
+                    <div class="user-info">
+                        <img src="img/user3.png" alt="User Icon" class="user-icon">
+                        <p class="username">AnnaMusterfrau456</p>
+                    </div>
+                    <div class="rating">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                    </div>
+                    <p class="bewertung-text">Sehr freundlicher Arzt mit fundiertem Fachwissen. Kann ich nur empfehlen!
+                    </p>
+                </div>
+                <div class="bewertung">
+                    <!-- Beispielbewertung 2 für Arztprofil 3 -->
+                    <div class="user-info">
+                        <img src="img/user4.jpg" alt="User Icon" class="user-icon">
+                        <p class="username">MaxPower789</p>
+                    </div>
+                    <div class="rating">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                    </div>
+                    <p class="bewertung-text">Exzellenter Dermatologe! Hat mir sehr geholfen und ist sehr kompetent.</p>
+                </div>
+
+                <!-- Bewertung schreiben section -->
+                <h3>Bewertung schreiben:</h3>
+                <div class="bewertung">
+                    <!-- Formular für neue Bewertung für Arztprofil 3 -->
+                    <div class="user-info">
+                        <form id="bewertungForm-3">
+                            <div class="rating">
+                                <input type="radio" name="bewertungRating-3" value="1"> <span
+                                    class="fa fa-star checked"> 1
+                                    Star</span><br>
+                                <input type="radio" name="bewertungRating-3" value="2"> <span
+                                    class="fa fa-star checked"> 2
+                                    Star</span><br>
+                                <input type="radio" name="bewertungRating-3" value="3"> <span
+                                    class="fa fa-star checked"> 3
+                                    Star</span><br>
+                                <input type="radio" name="bewertungRating-3" value="4"> <span class="fa fa-star"> 4
+                                    Star</span><br>
+                                <input type="radio" name="bewertungRating-3" value="5"> <span class="fa fa-star"> 5
+                                    Star</span><br>
+                            </div>
+                            <textarea id="bewertungText-3" class="bewertung-textarea"
+                                placeholder="Teilen Sie Ihre Erfahrung mit uns" style="width: 100%;"></textarea>
+                            <button type="button" class="bewertungen-button" onclick="submitBewertung(6)">Bewertung
+                                abschicken</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
 
+        <!-- Rechte Seite für den Kalender -->
         <div class="calendar-side">
             <h2>Kalender</h2>
             <h3>Wählen Sie einen Termin aus</h3>
             <!-- Hier könnte weiterer Text oder HTML für den Kalender stehen -->
-            <input type="text" id="datePicker-5" placeholder="Datum und Uhrzeit auswählen">
+            <input type="text" id="datePicker-6" placeholder="Datum und Uhrzeit auswählen">
             <p></p>
-            <button onclick="buchungSpeichern()">Termin buchen</button>
+            <div class="button-container">
+                <button onclick="buchungSpeichern(6)">Termin buchen</button>
+            </div>
         </div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            flatpickr('#datePicker-5', {
+            flatpickr('#datePicker-6', {
                 enableTime: true, // Erlaubt die Auswahl der Uhrzeit
                 dateFormat: "d-m-Y H:i", // Das Datums- und Uhrzeitformat
                 minDate: "today", // Mindestens auswählbares Datum ist heute
@@ -718,30 +1360,104 @@
 
     <!-- arzt nr 7 -->
 
+    <!-- Arzt Nr. 7 -->
     <div class="container-box" id="container-box-7">
-
         <!-- Linke Seite für Informationen -->
         <div class="info-side">
-            <h2>Dr. Christoph Becker</h2>
-            <h3>Facharzt für <span class="lt_richtung">Orthopädie</span></h3>
+            <div class="profile-container">
+                <img src="img/team-7.png" alt="Dr. Christoph Becker" class="profile-image">
+                <div class="name-and-specialty">
+                    <h2>Dr. Christoph Becker</h2>
+                    <h3>Facharzt für <span class="lt_richtung">Orthopädie</span></h3>
+                </div>
+            </div>
             <p class="lt_plz"><span class="icon"><i class="fas fa-map-marker-alt"></i></span>1040 Wien</p>
             <p><span class="icon"><i class="fas fa-phone"></i></span>01 8123934</p>
             <p><span class="icon"><i class="fas fa-mobile-alt"></i></span>+43 660 02711523</p>
             <p><span class="icon"><i class="fas fa-envelope"></i></span>christoph.becker@example.com</p>
             <p><span class="icon"><i class="fas fa-globe"></i></span>www.doc04.at</p>
             <p><span class="icon"><i class="fas fa-comments"></i></span>Deutsch, Französisch</p>
+            <button class="bewertungen-button" onclick="toggleBewertungen(7)">Bewertungen
+                anschauen</button>
+
+            <div id="bewertungenContainer-7" class="bewertungen-container" style="display: none;">
+                <!-- Realistic Bewertungen with small and rounded user icons -->
+                <div class="bewertung">
+                    <!-- Beispielbewertung 1 für Arztprofil 3 -->
+                    <div class="user-info">
+                        <img src="img/user3.png" alt="User Icon" class="user-icon">
+                        <p class="username">AnnaMusterfrau456</p>
+                    </div>
+                    <div class="rating">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                    </div>
+                    <p class="bewertung-text">Sehr freundlicher Arzt mit fundiertem Fachwissen. Kann ich nur empfehlen!
+                    </p>
+                </div>
+                <div class="bewertung">
+                    <!-- Beispielbewertung 2 für Arztprofil 3 -->
+                    <div class="user-info">
+                        <img src="img/user4.jpg" alt="User Icon" class="user-icon">
+                        <p class="username">MaxPower789</p>
+                    </div>
+                    <div class="rating">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                    </div>
+                    <p class="bewertung-text">Exzellenter Dermatologe! Hat mir sehr geholfen und ist sehr kompetent.</p>
+                </div>
+
+                <!-- Bewertung schreiben section -->
+                <h3>Bewertung schreiben:</h3>
+                <div class="bewertung">
+                    <!-- Formular für neue Bewertung für Arztprofil 3 -->
+                    <div class="user-info">
+                        <form id="bewertungForm-3">
+                            <div class="rating">
+                                <input type="radio" name="bewertungRating-3" value="1"> <span
+                                    class="fa fa-star checked"> 1
+                                    Star</span><br>
+                                <input type="radio" name="bewertungRating-3" value="2"> <span
+                                    class="fa fa-star checked"> 2
+                                    Star</span><br>
+                                <input type="radio" name="bewertungRating-3" value="3"> <span
+                                    class="fa fa-star checked"> 3
+                                    Star</span><br>
+                                <input type="radio" name="bewertungRating-3" value="4"> <span class="fa fa-star"> 4
+                                    Star</span><br>
+                                <input type="radio" name="bewertungRating-3" value="5"> <span class="fa fa-star"> 5
+                                    Star</span><br>
+                            </div>
+                            <textarea id="bewertungText-3" class="bewertung-textarea"
+                                placeholder="Teilen Sie Ihre Erfahrung mit uns" style="width: 100%;"></textarea>
+                            <button type="button" class="bewertungen-button" onclick="submitBewertung(7)">Bewertung
+                                abschicken</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
 
+        <!-- Rechte Seite für den Kalender -->
         <div class="calendar-side">
             <h2>Kalender</h2>
             <h3>Wählen Sie einen Termin aus</h3>
             <!-- Hier könnte weiterer Text oder HTML für den Kalender stehen -->
             <input type="text" id="datePicker-7" placeholder="Datum und Uhrzeit auswählen">
             <p></p>
-            <button onclick="buchungSpeichern()">Termin buchen</button>
+            <div class="button-container">
+                <button onclick="buchungSpeichern(7)">Termin buchen</button>
+            </div>
         </div>
-
     </div>
+
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -771,31 +1487,104 @@
         });
     </script>
 
-    <!-- arzt nr 8 -->
-
+    <!-- Arzt Nr. 8 -->
     <div class="container-box" id="container-box-8">
-
         <!-- Linke Seite für Informationen -->
         <div class="info-side">
-            <h2>Dr. med. Laura Hofman</h2>
-            <h3>Fachärztin für <span class="lt_richtung">Neurologie</span></h3>
+            <div class="profile-container">
+                <img src="img/team-8.png" alt="Dr. med. Laura Hofman" class="profile-image">
+                <div class="name-and-specialty">
+                    <h2>Dr. med. Laura Hofman</h2>
+                    <h3>Fachärztin für <span class="lt_richtung">Neurologie</span></h3>
+                </div>
+            </div>
             <p class="lt_plz"><span class="icon"><i class="fas fa-map-marker-alt"></i></span>1060 Wien</p>
             <p><span class="icon"><i class="fas fa-phone"></i></span>01 3821773</p>
             <p><span class="icon"><i class="fas fa-mobile-alt"></i></span>+43 665 01822436</p>
             <p><span class="icon"><i class="fas fa-envelope"></i></span>laura.hofmann@example.com</p>
             <p><span class="icon"><i class="fas fa-globe"></i></span>www.doc06.at</p>
             <p><span class="icon"><i class="fas fa-comments"></i></span>Deutsch, Russisch</p>
+            <button class="bewertungen-button" onclick="toggleBewertungen(8)">Bewertungen
+                anschauen</button>
+
+            <div id="bewertungenContainer-8" class="bewertungen-container" style="display: none;">
+                <!-- Realistic Bewertungen with small and rounded user icons -->
+                <div class="bewertung">
+                    <!-- Beispielbewertung 1 für Arztprofil 3 -->
+                    <div class="user-info">
+                        <img src="img/user3.png" alt="User Icon" class="user-icon">
+                        <p class="username">AnnaMusterfrau456</p>
+                    </div>
+                    <div class="rating">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                    </div>
+                    <p class="bewertung-text">Sehr freundlicher Arzt mit fundiertem Fachwissen. Kann ich nur empfehlen!
+                    </p>
+                </div>
+                <div class="bewertung">
+                    <!-- Beispielbewertung 2 für Arztprofil 3 -->
+                    <div class="user-info">
+                        <img src="img/user4.jpg" alt="User Icon" class="user-icon">
+                        <p class="username">MaxPower789</p>
+                    </div>
+                    <div class="rating">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                    </div>
+                    <p class="bewertung-text">Exzellenter Dermatologe! Hat mir sehr geholfen und ist sehr kompetent.</p>
+                </div>
+
+                <!-- Bewertung schreiben section -->
+                <h3>Bewertung schreiben:</h3>
+                <div class="bewertung">
+                    <!-- Formular für neue Bewertung für Arztprofil 3 -->
+                    <div class="user-info">
+                        <form id="bewertungForm-3">
+                            <div class="rating">
+                                <input type="radio" name="bewertungRating-3" value="1"> <span
+                                    class="fa fa-star checked"> 1
+                                    Star</span><br>
+                                <input type="radio" name="bewertungRating-3" value="2"> <span
+                                    class="fa fa-star checked"> 2
+                                    Star</span><br>
+                                <input type="radio" name="bewertungRating-3" value="3"> <span
+                                    class="fa fa-star checked"> 3
+                                    Star</span><br>
+                                <input type="radio" name="bewertungRating-3" value="4"> <span class="fa fa-star"> 4
+                                    Star</span><br>
+                                <input type="radio" name="bewertungRating-3" value="5"> <span class="fa fa-star"> 5
+                                    Star</span><br>
+                            </div>
+                            <textarea id="bewertungText-3" class="bewertung-textarea"
+                                placeholder="Teilen Sie Ihre Erfahrung mit uns" style="width: 100%;"></textarea>
+                            <button type="button" class="bewertungen-button" onclick="submitBewertung(8)">Bewertung
+                                abschicken</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
 
+        <!-- Rechte Seite für den Kalender -->
         <div class="calendar-side">
             <h2>Kalender</h2>
             <h3>Wählen Sie einen Termin aus</h3>
             <!-- Hier könnte weiterer Text oder HTML für den Kalender stehen -->
             <input type="text" id="datePicker-8" placeholder="Datum und Uhrzeit auswählen">
             <p></p>
-            <button onclick="buchungSpeichern()">Termin buchen</button>
+            <div class="button-container">
+                <button onclick="buchungSpeichern(8)">Termin buchen</button>
+            </div>
         </div>
     </div>
+
 
 
     <script>
@@ -821,6 +1610,7 @@
                 onClose: function (selectedDates, dateStr, instance) {
                     console.log("Ausgewähltes Datum und Uhrzeit:", dateStr);
                 },
+                // Weitere Konfigurationen hier...
             });
         });
     </script>
@@ -907,27 +1697,6 @@
 
     </script>
 
-
-<div class="container-fluid py-5 bg-light">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 mb-4 mx-auto"> <!-- mx-auto hinzugefügt -->
-                <div class="card h-100">
-                    <div class="card-body d-flex flex-column justify-content-between">
-                        <div>
-                            <i class="bi bi-person-fill fs-3 text-primary me-3"></i>
-                            <h5 class="card-title">Feedback</h5>
-                        </div>
-                        <p class="card-text">Bewerten Sie hier Ihre Ärzte</p>
-                        <!-- Link/Button -->
-                        <a href="bewertung.html" class="btn btn-primary mt-3">Mehr erfahren</a>
-                    </div>
-                </div>
-            </div>     
-        </div>
-    </div>
-</div>        
-
     <!-- Footer aus der Home-Seite -->
     <div class="container-fluid bg-dark text-light border-top border-secondary py-4">
         <div class="container">
@@ -953,6 +1722,8 @@
     <script src="lib/tempusdominus/js/moment.min.js"></script>
     <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
