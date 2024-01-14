@@ -8,6 +8,7 @@ const cors = require('cors');
 const session = require('express-session');
 const { use } = require('passport');
 
+
 const app = express();
 const port = process.env.PORT || 3001;
 
@@ -147,10 +148,6 @@ app.get('/logout', (req, res) => {
 // ...
 
 
-
-
-
-
 app.get('/doctor/:id', async (req, res) => {
   try {
     console.log('Anfrage für Arzt mit ID:', req.params.id);
@@ -232,12 +229,12 @@ app.use('/api', apiRouter);
 
 app.post('/speichereStammdaten', async (req, res) => {
   const userID = req.session.user.id;
-  const { vorname, nachname, email, telefonnummer, geb, svnr, allergien, vorerkrankungen, medikamente } = req.body;
+  const { vorname, nachname, email, telefonnummer, svnr, allergien, vorerkrankungen, medikamente } = req.body;
 
   try {
     const updateData = {
       text: 'UPDATE p_patienten SET p_stammdaten = $1 WHERE p_id = $2',
-      values: [{ vorname, nachname, email, telefonnummer, geb, svnr, allergien, vorerkrankungen, medikamente }, userID],
+      values: [{ vorname, nachname, email, telefonnummer, svnr, allergien, vorerkrankungen, medikamente }, userID],
     };
 
     await client.query(updateData);
@@ -264,6 +261,7 @@ app.get('/ladeStammdaten', async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+
 
 
 app.post('/speichereTermin', async (req, res) => {
@@ -319,6 +317,7 @@ app.get('/holetermine', async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+
 
 app.listen(port, () => {
   console.log(`App läuft auf Port ${port}`);

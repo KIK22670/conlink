@@ -129,10 +129,6 @@
                         <input type="tel" class="form-control" id="p_telefonnummer" name="p_telefonnummer">
                     </div>
 
-                    <div class="form-group">
-                        <label for="p_geburtsdatum">Geburtsdatum:</label>
-                        <input type="date" class="form-control" id="p_geburtsdatum" name="p_geburtsdatum">
-                    </div>
 
                     <div class="form-group">
                         <label for="p_svnr">SVNR:</label>
@@ -181,7 +177,6 @@
                         document.getElementById('p_nachname').value = stammdaten.nachname;
                         document.getElementById('p_email').value = stammdaten.email;
                         document.getElementById('p_telefonnummer').value = stammdaten.telefonnummer;
-                        document.getElementById('p_geburtsdatum').value = stammdaten.geburtsdatum;
                         document.getElementById('p_svnr').value = stammdaten.svnr;
                         document.getElementById('p_allergien').value = stammdaten.allergien;
                         document.getElementById('p_vorerkrankungen').value = stammdaten.vorerkrankungen;
@@ -199,12 +194,12 @@
             const nachname = document.getElementById('p_nachname').value;
             const email = document.getElementById('p_email').value;
             const telefonnummer = document.getElementById('p_telefonnummer').value;
-            const gebElement = document.getElementById('p_geburtsdatum');
-            const geb = gebElement.value ? gebElement.value : null;
             const svnr = document.getElementById('p_svnr').value;
             const allergien = document.getElementById('p_allergien').value;
             const vorerkrankungen = document.getElementById('p_vorerkrankungen').value;
             const medikamente = document.getElementById('p_medikamente').value;
+
+
 
             fetch('/speichereStammdaten', {
                 method: 'POST',
@@ -216,7 +211,6 @@
                     nachname: nachname,
                     email: email,
                     telefonnummer: telefonnummer,
-                    geb: geb,
                     svnr: svnr,
                     allergien: allergien,
                     vorerkrankungen: vorerkrankungen,
