@@ -1,6 +1,8 @@
 DROP SCHEMA public CASCADE;
 CREATE SCHEMA public;
 
+select * from p_patienten;
+
 CREATE TABLE IF NOT EXISTS a_aerzte (
   a_id SERIAL PRIMARY KEY,
   a_titel VARCHAR(20),
@@ -75,6 +77,7 @@ CREATE TABLE IF NOT EXISTS z_zeitslots (
   z_endzeit TIME
 );
 
+select * from u_userverwaltung;
 -- Tabelle `u_userverwaltung` erstellen
 create TABLE IF NOT EXISTS u_userverwaltung (
   u_id SERIAL PRIMARY KEY,
@@ -181,6 +184,8 @@ FOREIGN KEY (l_p_id)
 REFERENCES p_patienten (p_id)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION;
+
+drop table u_general_users;
 
 CREATE TABLE IF NOT EXISTS u_general_users (
   user_id SERIAL PRIMARY KEY,
