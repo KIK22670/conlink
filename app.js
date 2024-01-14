@@ -1,4 +1,5 @@
 // Stelle sicher, dass client korrekt initialisiert wird
+const client = require('connection.js');
 const express = require('express');
 const path = require('path');
 const morgan = require('morgan');
@@ -7,7 +8,6 @@ const bcrypt = require('bcrypt');
 const cors = require('cors');
 const session = require('express-session');
 const { use } = require('passport');
-const client = require('./connection.js');
 
 const app = express();
 const port = process.env.PORT || 3001;
