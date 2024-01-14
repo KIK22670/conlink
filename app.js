@@ -1,7 +1,8 @@
+// Stelle sicher, dass client korrekt initialisiert wird
+const client = require('connection.js');
 const express = require('express');
 const path = require('path');
 const morgan = require('morgan');
-const client = require('./connection.js');
 const apiRouter = require('./api');
 const bcrypt = require('bcrypt');
 const cors = require('cors');
@@ -143,11 +144,6 @@ app.get('/logout', (req, res) => {
     }
   });
 });
-
-// ...
-
-
-
 
 
 
