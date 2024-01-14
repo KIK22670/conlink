@@ -254,7 +254,7 @@ app.get('/ladeStammdaten', async (req, res) => {
     const result = await client.query('SELECT p_stammdaten FROM p_patienten WHERE p_id = $1', [userID]);
 
     if (result.rows.length > 0 && result.rows[0].p_stammdaten) {
-      // Server: Senden Sie die Stammdaten als JSON-Zeichenfolge
+      // Server: Senden Sie die Stammdaten als JSON-Zeichenfolgen
       res.json({ success: true, stammdaten: JSON.stringify(result.rows[0].p_stammdaten) });
     } else {
       res.json({ success: false });
