@@ -417,6 +417,7 @@
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star"></span>
+
                     </div>
                     <p class="bewertung-text">Sehr zufrieden mit der Behandlung! Der Arzt war sehr freundlich und
                         kompetent, aber etwas lange Wartezeit!</p>
@@ -440,7 +441,7 @@
                 <!-- Bewertung schreiben section -->
                 <div class="bewertung">
                     <div class="user-info">
-                        <form id="bewertungForm">
+                        <form id="bewertungForm-1">
                             <div class="rating">
                                 <input type="radio" name="bewertungRating" value="1"> <span class="fa fa-star checked">
                                     1 Star
@@ -456,9 +457,9 @@
                                 <input type="radio" name="bewertungRating" value="5"> <span class="fa fa-star"> 5 Star
                                 </span><br>
                             </div>
-                            <textarea id="bewertungText" class="bewertung-textarea"
+                            <textarea id="bewertungText-1" class="bewertung-textarea"
                                 placeholder="Teilen Sie Ihre Erfahrung mit uns" style="width: 100%;"></textarea>
-                            <button type="button" class="bewertungen-button" onclick="submitBewertung()">Bewertung
+                            <button type="button" class="bewertungen-button" onclick="submitBewertung(1)">Bewertung
                                 abschicken</button>
                         </form>
                     </div>
@@ -486,7 +487,15 @@
                 minDate: "today", // Mindestens auswählbares Datum ist heute
                 maxDate: new Date().fp_incr(60), // Maximales auswählbares Datum ist 60 Tage in der Zukunft
                 defaultDate: "today", // Standardmäßig ausgewähltes Datum ist heute
-                time_24hr: true, // Verwendet das 24-Stunden-Format für die Uhrzeit
+                time_24hr: false,
+                minTime: "08:00",
+                maxTime: "17:00",
+                disable: [
+                    function (date) {
+                        // Deaktiviere Samstage (Index 6) und Sonntage (Index 0)
+                        return (date.getDay() === 6 || date.getDay() === 0);
+                    }
+                ],
                 onChange: function (selectedDates, dateStr, instance) {
                     selectedDate = dateStr;
                 },
@@ -532,10 +541,10 @@
             bewertungenContainer.style.display = (bewertungenContainer.style.display === 'none') ? 'block' : 'none';
         }
 
-        function submitBewertung() {
+        function submitBewertung(profileNumber) {
             // Get user input
-            const bewertungText = document.getElementById("bewertungText").value;
-            const bewertungRating = document.querySelector('input[name="bewertungRating"]:checked');
+            const bewertungText = document.getElementById(`bewertungText-${profileNumber}`).value;
+            const bewertungRating = document.querySelector(`#bewertungForm-${profileNumber} input[name="bewertungRating"]:checked`);
 
             // Validate user input
             if (!bewertungText || !bewertungRating) {
@@ -573,17 +582,18 @@
             newBewertung.appendChild(bewertungTextElement);
 
             // Get the container for existing Bewertungen
-            const bewertungenContainer = document.getElementById("bewertungenContainer");
+            const bewertungenContainer = document.getElementById(`bewertungenContainer-${profileNumber}`);
 
             // Insert the new Bewertung after existing Bewertungen
             bewertungenContainer.insertBefore(newBewertung, bewertungenContainer.firstChild);
 
             // Clear the form
-            document.getElementById("bewertungForm").reset();
+            document.getElementById(`bewertungForm-${profileNumber}`).reset();
 
             // Optionally, you can hide the form after submission
             bewertungenContainer.style.display = "none";
         }
+
 
 
         function suche() {
@@ -772,7 +782,8 @@
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
                     </div>
-                    <p class="bewertung-text">Ich hatte starke Schmerzen in der Brust, die Ärztin konnte mir den genauen Ablauf meiner Behandlung schrittweise hervorragendschildern, also ich komme wieder.
+                    <p class="bewertung-text">Ich hatte starke Schmerzen in der Brust, die Ärztin konnte mir den genauen
+                        Ablauf meiner Behandlung schrittweise hervorragendschildern, also ich komme wieder.
                     </p>
                 </div>
                 <h3>Bewertung schreiben:</h3>
@@ -795,7 +806,7 @@
                                 <input type="radio" name="bewertungRating" value="5"> <span class="fa fa-star"> 5 Star
                                 </span><br>
                             </div>
-                            <textarea id="bewertungText" class="bewertung-textarea"
+                            <textarea id="bewertungText-2" class="bewertung-textarea"
                                 placeholder="Teilen Sie Ihre Erfahrung mit uns" style="width: 100%;"></textarea>
                             <button type="button" class="bewertungen-button" onclick="submitBewertung(2)">Bewertung
                                 abschicken</button>
@@ -827,7 +838,15 @@
                 minDate: "today", // Mindestens auswählbares Datum ist heute
                 maxDate: new Date().fp_incr(60), // Maximales auswählbares Datum ist 60 Tage in der Zukunft
                 defaultDate: "today", // Standardmäßig ausgewähltes Datum ist heute
-                time_24hr: true, // Verwendet das 24-Stunden-Format für die Uhrzeit
+                time_24hr: false,
+                minTime: "08:00",
+                maxTime: "17:00",
+                disable: [
+                    function (date) {
+                        // Deaktiviere Samstage (Index 6) und Sonntage (Index 0)
+                        return (date.getDay() === 6 || date.getDay() === 0);
+                    }
+                ], // Verwendet das 24-Stunden-Format für die Uhrzeit
                 locale: {
                     firstDayOfWeek: 1, // Setzt den Montag als ersten Tag der Woche
                     weekdays: {
@@ -847,7 +866,8 @@
         });
     </script>
 
-    <!-- Arzt Nr. 3 -->
+    <!--Arztprofil 3-->
+
     <div class="container-box" id="container-box-3">
         <!-- Linke Seite für Informationen -->
         <div class="info-side">
@@ -864,16 +884,17 @@
             <p><span class="icon"><i class="fas fa-envelope"></i></span>michael.jordan@example.com</p>
             <p><span class="icon"><i class="fas fa-globe"></i></span>www.doc12.at</p>
             <p><span class="icon"><i class="fas fa-comments"></i></span>Deutsch, Serbisch</p>
+
             <button class="bewertungen-button" onclick="toggleBewertungen(3)">Bewertungen
                 anschauen</button>
 
+            <!-- Hidden div for Bewertungen -->
             <div id="bewertungenContainer-3" class="bewertungen-container" style="display: none;">
                 <!-- Realistic Bewertungen with small and rounded user icons -->
                 <div class="bewertung">
-                    <!-- Beispielbewertung 1 für Arztprofil 3 -->
                     <div class="user-info">
                         <img src="img/user4.png" alt="User Icon" class="user-icon">
-                        <p class="username">Anna Zeier</p>
+                        <p class="username">Anna Zeiler</p>
                     </div>
                     <div class="rating">
                         <span class="fa fa-star checked"></span>
@@ -882,11 +903,11 @@
                         <span class="fa fa-star"></span>
                         <span class="fa fa-star"></span>
                     </div>
-                    <p class="bewertung-text">Sehr freundlicher Arzt mit fundiertem Fachwissen. Kann ich nur empfehlen!
+                    <p class="bewertung-text">Sehr freundlicher Arzt mit fundiertem Fachwissen. Kann ich nur
+                        empfehlen!
                     </p>
                 </div>
                 <div class="bewertung">
-                    <!-- Beispielbewertung 2 für Arztprofil 3 -->
                     <div class="user-info">
                         <img src="img/user5.png" alt="User Icon" class="user-icon">
                         <p class="username">MaxPower789</p>
@@ -898,31 +919,30 @@
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
                     </div>
-                    <p class="bewertung-text">Exzellenter Dermatologe! Hat mir sehr geholfen und ist sehr kompetent.</p>
+                    <p class="bewertung-text">Exzellenter Dermatologe! Hat mir sehr geholfen und ist sehr kompetent.
+                    </p>
                 </div>
-
-                <!-- Bewertung schreiben section -->
                 <h3>Bewertung schreiben:</h3>
+                <!-- Bewertung schreiben section -->
                 <div class="bewertung">
-                    <!-- Formular für neue Bewertung für Arztprofil 3 -->
                     <div class="user-info">
                         <form id="bewertungForm-3">
                             <div class="rating">
-                                <input type="radio" name="bewertungRating-3" value="1"> <span
-                                    class="fa fa-star checked"> 1
-                                    Star</span><br>
-                                <input type="radio" name="bewertungRating-3" value="2"> <span
-                                    class="fa fa-star checked"> 2
-                                    Star</span><br>
-                                <input type="radio" name="bewertungRating-3" value="3"> <span
-                                    class="fa fa-star checked"> 3
-                                    Star</span><br>
-                                <input type="radio" name="bewertungRating-3" value="4"> <span class="fa fa-star"> 4
-                                    Star</span><br>
-                                <input type="radio" name="bewertungRating-3" value="5"> <span class="fa fa-star"> 5
-                                    Star</span><br>
+                                <input type="radio" name="bewertungRating" value="1"> <span class="fa fa-star checked">
+                                    1
+                                    Star </span><br>
+                                <input type="radio" name="bewertungRating" value="2"> <span class="fa fa-star checked">
+                                    2
+                                    Star </span><br>
+                                <input type="radio" name="bewertungRating" value="3"> <span class="fa fa-star checked">
+                                    3
+                                    Star </span><br>
+                                <input type="radio" name="bewertungRating" value="4"> <span class="fa fa-star"> 4 Star
+                                </span><br>
+                                <input type="radio" name="bewertungRating" value="5"> <span class="fa fa-star"> 5 Star
+                                </span><br>
                             </div>
-                            <textarea id="bewertungText-3" class="bewertung-textarea"
+                            <textarea id="bewertungText-2" class="bewertung-textarea"
                                 placeholder="Teilen Sie Ihre Erfahrung mit uns" style="width: 100%;"></textarea>
                             <button type="button" class="bewertungen-button" onclick="submitBewertung(3)">Bewertung
                                 abschicken</button>
@@ -931,7 +951,6 @@
                 </div>
             </div>
         </div>
-
         <!-- Rechte Seite für den Kalender -->
         <div class="calendar-side">
             <h2>Kalender</h2>
@@ -954,7 +973,15 @@
                 minDate: "today", // Mindestens auswählbares Datum ist heute
                 maxDate: new Date().fp_incr(60), // Maximales auswählbares Datum ist 60 Tage in der Zukunft
                 defaultDate: "today", // Standardmäßig ausgewähltes Datum ist heute
-                time_24hr: true, // Verwendet das 24-Stunden-Format für die Uhrzeit
+                time_24hr: false,
+                minTime: "08:00",
+                maxTime: "17:00",
+                disable: [
+                    function (date) {
+                        // Deaktiviere Samstage (Index 6) und Sonntage (Index 0)
+                        return (date.getDay() === 6 || date.getDay() === 0);
+                    }
+                ], // Verwendet das 24-Stunden-Format für die Uhrzeit
                 locale: {
                     firstDayOfWeek: 1, // Setzt den Montag als ersten Tag der Woche
                     weekdays: {
@@ -1006,7 +1033,7 @@
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
-                        
+
                     </div>
                     <p class="bewertung-text">Liebensvoller Umgang mit Kinder, aber leider lange Wartezeiten!
                     </p>
@@ -1023,7 +1050,8 @@
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
                     </div>
-                    <p class="bewertung-text">Freundliche Ärztin, aber lange Wartezeiten und kaum offene Termine.</p>
+                    <p class="bewertung-text">Freundliche Ärztin, aber lange Wartezeiten und kaum offene Termine.
+                    </p>
                 </div>
 
                 <!-- Bewertung schreiben section -->
@@ -1031,23 +1059,23 @@
                 <div class="bewertung">
                     <!-- Formular für neue Bewertung für Arztprofil 3 -->
                     <div class="user-info">
-                        <form id="bewertungForm-3">
+                        <form id="bewertungForm-4">
                             <div class="rating">
-                                <input type="radio" name="bewertungRating-3" value="1"> <span
-                                    class="fa fa-star checked"> 1
+                                <input type="radio" name="bewertungRating" value="1"> <span class="fa fa-star checked">
+                                    1
                                     Star</span><br>
-                                <input type="radio" name="bewertungRating-3" value="2"> <span
-                                    class="fa fa-star checked"> 2
+                                <input type="radio" name="bewertungRating" value="2"> <span class="fa fa-star checked">
+                                    2
                                     Star</span><br>
-                                <input type="radio" name="bewertungRating-3" value="3"> <span
-                                    class="fa fa-star checked"> 3
+                                <input type="radio" name="bewertungRating" value="3"> <span class="fa fa-star checked">
+                                    3
                                     Star</span><br>
-                                <input type="radio" name="bewertungRating-3" value="4"> <span class="fa fa-star"> 4
+                                <input type="radio" name="bewertungRating" value="4"> <span class="fa fa-star"> 4
                                     Star</span><br>
-                                <input type="radio" name="bewertungRating-3" value="5"> <span class="fa fa-star"> 5
+                                <input type="radio" name="bewertungRating" value="5"> <span class="fa fa-star"> 5
                                     Star</span><br>
                             </div>
-                            <textarea id="bewertungText-3" class="bewertung-textarea"
+                            <textarea id="bewertungText-4" class="bewertung-textarea"
                                 placeholder="Teilen Sie Ihre Erfahrung mit uns" style="width: 100%;"></textarea>
                             <button type="button" class="bewertungen-button" onclick="submitBewertung(4)">Bewertung
                                 abschicken</button>
@@ -1079,7 +1107,15 @@
                 minDate: "today", // Mindestens auswählbares Datum ist heute
                 maxDate: new Date().fp_incr(60), // Maximales auswählbares Datum ist 60 Tage in der Zukunft
                 defaultDate: "today", // Standardmäßig ausgewähltes Datum ist heute
-                time_24hr: true, // Verwendet das 24-Stunden-Format für die Uhrzeit
+                time_24hr: false,
+                minTime: "08:00",
+                maxTime: "17:00",
+                disable: [
+                    function (date) {
+                        // Deaktiviere Samstage (Index 6) und Sonntage (Index 0)
+                        return (date.getDay() === 6 || date.getDay() === 0);
+                    }
+                ], // Verwendet das 24-Stunden-Format für die Uhrzeit
                 locale: {
                     firstDayOfWeek: 1, // Setzt den Montag als ersten Tag der Woche
                     weekdays: {
@@ -1131,9 +1167,10 @@
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
-                       
+
                     </div>
-                    <p class="bewertung-text">Es wäre hilfreich, wenn die Rezeption telefonisch besser erreichbar wäre.
+                    <p class="bewertung-text">Es wäre hilfreich, wenn die Rezeption telefonisch besser erreichbar
+                        wäre.
                     </p>
                 </div>
                 <div class="bewertung">
@@ -1157,23 +1194,23 @@
                 <div class="bewertung">
                     <!-- Formular für neue Bewertung für Arztprofil 3 -->
                     <div class="user-info">
-                        <form id="bewertungForm-3">
+                        <form id="bewertungForm-5">
                             <div class="rating">
-                                <input type="radio" name="bewertungRating-3" value="1"> <span
-                                    class="fa fa-star checked"> 1
+                                <input type="radio" name="bewertungRating" value="1"> <span class="fa fa-star checked">
+                                    1
                                     Star</span><br>
-                                <input type="radio" name="bewertungRating-3" value="2"> <span
-                                    class="fa fa-star checked"> 2
+                                <input type="radio" name="bewertungRating" value="2"> <span class="fa fa-star checked">
+                                    2
                                     Star</span><br>
-                                <input type="radio" name="bewertungRating-3" value="3"> <span
-                                    class="fa fa-star checked"> 3
+                                <input type="radio" name="bewertungRating" value="3"> <span class="fa fa-star checked">
+                                    3
                                     Star</span><br>
-                                <input type="radio" name="bewertungRating-3" value="4"> <span class="fa fa-star"> 4
+                                <input type="radio" name="bewertungRating" value="4"> <span class="fa fa-star"> 4
                                     Star</span><br>
-                                <input type="radio" name="bewertungRating-3" value="5"> <span class="fa fa-star"> 5
+                                <input type="radio" name="bewertungRating" value="5"> <span class="fa fa-star"> 5
                                     Star</span><br>
                             </div>
-                            <textarea id="bewertungText-3" class="bewertung-textarea"
+                            <textarea id="bewertungText-5" class="bewertung-textarea"
                                 placeholder="Teilen Sie Ihre Erfahrung mit uns" style="width: 100%;"></textarea>
                             <button type="button" class="bewertungen-button" onclick="submitBewertung(5)">Bewertung
                                 abschicken</button>
@@ -1205,7 +1242,15 @@
                 minDate: "today", // Mindestens auswählbares Datum ist heute
                 maxDate: new Date().fp_incr(60), // Maximales auswählbares Datum ist 60 Tage in der Zukunft
                 defaultDate: "today", // Standardmäßig ausgewähltes Datum ist heute
-                time_24hr: true, // Verwendet das 24-Stunden-Format für die Uhrzeit
+                time_24hr: false,
+                minTime: "08:00",
+                maxTime: "17:00",
+                disable: [
+                    function (date) {
+                        // Deaktiviere Samstage (Index 6) und Sonntage (Index 0)
+                        return (date.getDay() === 6 || date.getDay() === 0);
+                    }
+                ], // Verwendet das 24-Stunden-Format für die Uhrzeit
                 locale: {
                     firstDayOfWeek: 1, // Setzt den Montag als ersten Tag der Woche
                     weekdays: {
@@ -1259,9 +1304,14 @@
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star"></span>
-                        
+
                     </div>
-                    <p class="bewertung-text">Während meine Wartezeit insgesamt akzeptabel war, könnte eine weitere Reduzierung geschätzt werden. Vielleicht könnte man auch darüber nachdenken, die Patienten über längere Wartezeiten im Voraus zu informieren. Auf jeden Fall bin ich jedoch mit den angebotenen Dienstleistungen und der allgemeinen Erfahrung zufrieden.
+                    <p class="bewertung-text">Während meine Wartezeit insgesamt akzeptabel war, könnte eine weitere
+                        Reduzierung geschätzt werden. Vielleicht könnte man auch darüber nachdenken, die Patienten
+                        über
+                        längere Wartezeiten im Voraus zu informieren. Auf jeden Fall bin ich jedoch mit den
+                        angebotenen
+                        Dienstleistungen und der allgemeinen Erfahrung zufrieden.
                     </p>
                 </div>
                 <div class="bewertung">
@@ -1277,7 +1327,9 @@
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
                     </div>
-                    <p class="bewertung-text">Die Praxis von Dr. Anna Wagner ist einladend und das Team ist freundlich. Insgesamt habe ich einen positiven Eindruck und fühle mich gut betreut.</p>
+                    <p class="bewertung-text">Die Praxis von Dr. Anna Wagner ist einladend und das Team ist
+                        freundlich.
+                        Insgesamt habe ich einen positiven Eindruck und fühle mich gut betreut.</p>
                 </div>
 
                 <!-- Bewertung schreiben section -->
@@ -1285,23 +1337,23 @@
                 <div class="bewertung">
                     <!-- Formular für neue Bewertung für Arztprofil 3 -->
                     <div class="user-info">
-                        <form id="bewertungForm-3">
+                        <form id="bewertungForm-6">
                             <div class="rating">
-                                <input type="radio" name="bewertungRating-3" value="1"> <span
-                                    class="fa fa-star checked"> 1
+                                <input type="radio" name="bewertungRating" value="1"> <span class="fa fa-star checked">
+                                    1
                                     Star</span><br>
-                                <input type="radio" name="bewertungRating-3" value="2"> <span
-                                    class="fa fa-star checked"> 2
+                                <input type="radio" name="bewertungRating" value="2"> <span class="fa fa-star checked">
+                                    2
                                     Star</span><br>
-                                <input type="radio" name="bewertungRating-3" value="3"> <span
-                                    class="fa fa-star checked"> 3
+                                <input type="radio" name="bewertungRating" value="3"> <span class="fa fa-star checked">
+                                    3
                                     Star</span><br>
-                                <input type="radio" name="bewertungRating-3" value="4"> <span class="fa fa-star"> 4
+                                <input type="radio" name="bewertungRating" value="4"> <span class="fa fa-star"> 4
                                     Star</span><br>
-                                <input type="radio" name="bewertungRating-3" value="5"> <span class="fa fa-star"> 5
+                                <input type="radio" name="bewertungRating" value="5"> <span class="fa fa-star"> 5
                                     Star</span><br>
                             </div>
-                            <textarea id="bewertungText-3" class="bewertung-textarea"
+                            <textarea id="bewertungText-6" class="bewertung-textarea"
                                 placeholder="Teilen Sie Ihre Erfahrung mit uns" style="width: 100%;"></textarea>
                             <button type="button" class="bewertungen-button" onclick="submitBewertung(6)">Bewertung
                                 abschicken</button>
@@ -1332,7 +1384,15 @@
                 minDate: "today", // Mindestens auswählbares Datum ist heute
                 maxDate: new Date().fp_incr(60), // Maximales auswählbares Datum ist 60 Tage in der Zukunft
                 defaultDate: "today", // Standardmäßig ausgewähltes Datum ist heute
-                time_24hr: true, // Verwendet das 24-Stunden-Format für die Uhrzeit
+                time_24hr: false,
+                minTime: "08:00",
+                maxTime: "17:00",
+                disable: [
+                    function (date) {
+                        // Deaktiviere Samstage (Index 6) und Sonntage (Index 0)
+                        return (date.getDay() === 6 || date.getDay() === 0);
+                    }
+                ], // Verwendet das 24-Stunden-Format für die Uhrzeit
                 locale: {
                     firstDayOfWeek: 1, // Setzt den Montag als ersten Tag der Woche
                     weekdays: {
@@ -1389,7 +1449,9 @@
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
                     </div>
-                    <p class="bewertung-text">Die Betreuung durch Dr. Becker war außergewöhnlich. Er nahm sich Zeit, alle meine Fragen zu beantworten, und sorgte dafür, dass ich mich in jedem Schritt des Heilungsprozesses wohl fühlte
+                    <p class="bewertung-text">Die Betreuung durch Dr. Becker war außergewöhnlich. Er nahm sich Zeit,
+                        alle meine Fragen zu beantworten, und sorgte dafür, dass ich mich in jedem Schritt des
+                        Heilungsprozesses wohl fühlte
                     </p>
                 </div>
                 <div class="bewertung">
@@ -1403,9 +1465,10 @@
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
-                       
+
                     </div>
-                    <p class="bewertung-text">Die Wartezeiten könnten möglicherweise verkürzt werden, aber dies hat meine Zufriedenheit mit der Behandlung insgesamt nicht beeinträchtigt.</p>
+                    <p class="bewertung-text">Die Wartezeiten könnten möglicherweise verkürzt werden, aber dies hat
+                        meine Zufriedenheit mit der Behandlung insgesamt nicht beeinträchtigt.</p>
                 </div>
 
                 <!-- Bewertung schreiben section -->
@@ -1413,23 +1476,23 @@
                 <div class="bewertung">
                     <!-- Formular für neue Bewertung für Arztprofil 3 -->
                     <div class="user-info">
-                        <form id="bewertungForm-3">
+                        <form id="bewertungForm-7">
                             <div class="rating">
-                                <input type="radio" name="bewertungRating-3" value="1"> <span
-                                    class="fa fa-star checked"> 1
+                                <input type="radio" name="bewertungRating" value="1"> <span class="fa fa-star checked">
+                                    1
                                     Star</span><br>
-                                <input type="radio" name="bewertungRating-3" value="2"> <span
-                                    class="fa fa-star checked"> 2
+                                <input type="radio" name="bewertungRating" value="2"> <span class="fa fa-star checked">
+                                    2
                                     Star</span><br>
-                                <input type="radio" name="bewertungRating-3" value="3"> <span
-                                    class="fa fa-star checked"> 3
+                                <input type="radio" name="bewertungRating" value="3"> <span class="fa fa-star checked">
+                                    3
                                     Star</span><br>
-                                <input type="radio" name="bewertungRating-3" value="4"> <span class="fa fa-star"> 4
+                                <input type="radio" name="bewertungRating" value="4"> <span class="fa fa-star"> 4
                                     Star</span><br>
-                                <input type="radio" name="bewertungRating-3" value="5"> <span class="fa fa-star"> 5
+                                <input type="radio" name="bewertungRating" value="5"> <span class="fa fa-star"> 5
                                     Star</span><br>
                             </div>
-                            <textarea id="bewertungText-3" class="bewertung-textarea"
+                            <textarea id="bewertungText-7" class="bewertung-textarea"
                                 placeholder="Teilen Sie Ihre Erfahrung mit uns" style="width: 100%;"></textarea>
                             <button type="button" class="bewertungen-button" onclick="submitBewertung(7)">Bewertung
                                 abschicken</button>
@@ -1461,7 +1524,15 @@
                 minDate: "today", // Mindestens auswählbares Datum ist heute
                 maxDate: new Date().fp_incr(60), // Maximales auswählbares Datum ist 60 Tage in der Zukunft
                 defaultDate: "today", // Standardmäßig ausgewähltes Datum ist heute
-                time_24hr: true, // Verwendet das 24-Stunden-Format für die Uhrzeit
+                time_24hr: false,
+                minTime: "08:00",
+                maxTime: "17:00",
+                disable: [
+                    function (date) {
+                        // Deaktiviere Samstage (Index 6) und Sonntage (Index 0)
+                        return (date.getDay() === 6 || date.getDay() === 0);
+                    }
+                ], // Verwendet das 24-Stunden-Format für die Uhrzeit
                 locale: {
                     firstDayOfWeek: 1, // Setzt den Montag als ersten Tag der Woche
                     weekdays: {
@@ -1513,9 +1584,11 @@
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
-                                               
+
                     </div>
-                    <p class="bewertung-text">Eine etwas ausführlichere Erläuterung der langfristigen Behandlungsplanung könnte für Patienten hilfreich sein, um die nächsten Schritte besser zu verstehen.</p>
+                    <p class="bewertung-text">Eine etwas ausführlichere Erläuterung der langfristigen
+                        Behandlungsplanung
+                        könnte für Patienten hilfreich sein, um die nächsten Schritte besser zu verstehen.</p>
                 </div>
                 <div class="bewertung">
                     <!-- Beispielbewertung 2 für Arztprofil 3 -->
@@ -1530,7 +1603,10 @@
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
                     </div>
-                    <p class="bewertung-text">Meine Erfahrung mit Dr. Hofman war äußerst positiv. Ihre Professionalität, Empathie und die hohe Qualität der medizinischen Versorgung haben einen bleibenden Eindruck hinterlassen.</p>
+                    <p class="bewertung-text">Meine Erfahrung mit Dr. Hofman war äußerst positiv. Ihre
+                        Professionalität,
+                        Empathie und die hohe Qualität der medizinischen Versorgung haben einen bleibenden Eindruck
+                        hinterlassen.</p>
                 </div>
 
                 <!-- Bewertung schreiben section -->
@@ -1538,23 +1614,23 @@
                 <div class="bewertung">
                     <!-- Formular für neue Bewertung für Arztprofil 3 -->
                     <div class="user-info">
-                        <form id="bewertungForm-3">
+                        <form id="bewertungForm-8">
                             <div class="rating">
-                                <input type="radio" name="bewertungRating-3" value="1"> <span
-                                    class="fa fa-star checked"> 1
+                                <input type="radio" name="bewertungRating" value="1"> <span class="fa fa-star checked">
+                                    1
                                     Star</span><br>
-                                <input type="radio" name="bewertungRating-3" value="2"> <span
-                                    class="fa fa-star checked"> 2
+                                <input type="radio" name="bewertungRating" value="2"> <span class="fa fa-star checked">
+                                    2
                                     Star</span><br>
-                                <input type="radio" name="bewertungRating-3" value="3"> <span
-                                    class="fa fa-star checked"> 3
+                                <input type="radio" name="bewertungRating" value="3"> <span class="fa fa-star checked">
+                                    3
                                     Star</span><br>
-                                <input type="radio" name="bewertungRating-3" value="4"> <span class="fa fa-star"> 4
+                                <input type="radio" name="bewertungRating" value="4"> <span class="fa fa-star"> 4
                                     Star</span><br>
-                                <input type="radio" name="bewertungRating-3" value="5"> <span class="fa fa-star"> 5
+                                <input type="radio" name="bewertungRating" value="5"> <span class="fa fa-star"> 5
                                     Star</span><br>
                             </div>
-                            <textarea id="bewertungText-3" class="bewertung-textarea"
+                            <textarea id="bewertungText-8" class="bewertung-textarea"
                                 placeholder="Teilen Sie Ihre Erfahrung mit uns" style="width: 100%;"></textarea>
                             <button type="button" class="bewertungen-button" onclick="submitBewertung(8)">Bewertung
                                 abschicken</button>
@@ -1587,7 +1663,15 @@
                 minDate: "today", // Mindestens auswählbares Datum ist heute
                 maxDate: new Date().fp_incr(60), // Maximales auswählbares Datum ist 60 Tage in der Zukunft
                 defaultDate: "today", // Standardmäßig ausgewähltes Datum ist heute
-                time_24hr: true, // Verwendet das 24-Stunden-Format für die Uhrzeit
+                time_24hr: false,
+                minTime: "08:00",
+                maxTime: "17:00",
+                disable: [
+                    function (date) {
+                        // Deaktiviere Samstage (Index 6) und Sonntage (Index 0)
+                        return (date.getDay() === 6 || date.getDay() === 0);
+                    }
+                ], // Verwendet das 24-Stunden-Format für die Uhrzeit
                 locale: {
                     firstDayOfWeek: 1, // Setzt den Montag als ersten Tag der Woche
                     weekdays: {
@@ -1669,7 +1753,15 @@
             minDate: "today",
             maxDate: new Date().fp_incr(60),
             defaultDate: "today",
-            time_24hr: true,
+            time_24hr: false,
+            minTime: "08:00",
+            maxTime: "17:00",
+            disable: [
+                function (date) {
+                    // Deaktiviere Samstage (Index 6) und Sonntage (Index 0)
+                    return (date.getDay() === 6 || date.getDay() === 0);
+                }
+            ],
             locale: {
                 firstDayOfWeek: 1,
                 weekdays: {
