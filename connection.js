@@ -1,3 +1,5 @@
+const { Client } = require('pg');
+
 let client;
 
 if (process.env.NODE_ENV === 'production') {

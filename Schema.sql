@@ -187,4 +187,7 @@ CREATE TABLE IF NOT EXISTS u_general_users (
   password VARCHAR(100),
   email VARCHAR(100)
   /* Add other necessary fields */
-)
+);
+
+ALTER TABLE p_patienten
+ADD COLUMN IF NOT EXISTS p_stammdaten JSON;
