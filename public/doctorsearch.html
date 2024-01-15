@@ -502,7 +502,7 @@
             <input type="text" id="datePicker-1" placeholder="Datum und Uhrzeit auswählen">
             <p></p>
             <h3>Wählen Sie ihre Untersuchung aus</h3>
-            <select id="appointmentType-1" class="custom-select">
+            <select class="custom-select">
                 <option value="Erstuntersuchung">Erstuntersuchung</option>
                 <option value="Folgeuntersuchung">Folgeuntersuchung</option>
                 <option value="Allergieuntersuchung">Allergieuntersuchung</option>
@@ -754,6 +754,8 @@
             // Untersuchungstyp und Fachrichtung in der Variable kategorie speichern
             //const kategorie = `${appointmentType} beim ${fachrichtung} `;
 
+            //  selectedDate: `${selectedDateSplitted[3]}-${selectedDateSplitted[2]}-${selectedDateSplitted[1]}T${selectedDateSplitted[4]}:${selectedDateSplitted[5]}:00`
+
             // AJAX-Anfrage zum Speichern der Buchung
             $.ajax({
                 url: '/speichereTermin',  // Hier sollte die URL des Servers stehen, der die Datenbankanfrage verarbeitet
@@ -761,7 +763,7 @@
                 contentType: 'application/json',
                 data: JSON.stringify({
                     doctorId: doctorId,
-                    selectedDate: `${selectedDateSplitted[3]}-${selectedDateSplitted[2]}-${selectedDateSplitted[1]}T${selectedDateSplitted[4]}:${selectedDateSplitted[5]}:00`,
+                    selectedDate: selectedDate,
                     kategorie: kategorie
                 }),
                 success: function (response) {
@@ -871,7 +873,7 @@
             <input type="text" id="datePicker-2" placeholder="Datum und Uhrzeit auswählen">
             <p></p>
             <h3>Wählen Sie ihre Untersuchung aus</h3>
-            <select id="appointmentType-2" class="custom-select">
+            <select class="custom-select">
                 <option value="Erstuntersuchung">Erstuntersuchung</option>
                 <option value="Folgeuntersuchung">Folgeuntersuchung</option>
                 <option value="Allergieuntersuchung">Allergieuntersuchung</option>
@@ -1014,7 +1016,7 @@
             <input type="text" id="datePicker-3" placeholder="Datum und Uhrzeit auswählen">
             <p></p>
             <h3>Wählen Sie ihre Untersuchung aus</h3>
-            <select id="appointmentType-3" class="custom-select">
+            <select class="custom-select">
                 <option value="Erstuntersuchung">Erstuntersuchung</option>
                 <option value="Folgeuntersuchung">Folgeuntersuchung</option>
                 <option value="Allergieuntersuchung">Allergieuntersuchung</option>
@@ -1157,7 +1159,7 @@
             <input type="text" id="datePicker-4" placeholder="Datum und Uhrzeit auswählen">
             <p></p>
             <h3>Wählen Sie ihre Untersuchung aus</h3>
-            <select id="appointmentType-4" class="custom-select">
+            <select class="custom-select">
                 <option value="Erstuntersuchung">Erstuntersuchung</option>
                 <option value="Folgeuntersuchung">Folgeuntersuchung</option>
                 <option value="Allergieuntersuchung">Allergieuntersuchung</option>
@@ -1300,7 +1302,7 @@
             <input type="text" id="datePicker-5" placeholder="Datum und Uhrzeit auswählen">
             <p></p>
             <h3>Wählen Sie ihre Untersuchung aus</h3>
-            <select id="appointmentType-5" class="custom-select">
+            <select class="custom-select">
                 <option value="Erstuntersuchung">Erstuntersuchung</option>
                 <option value="Folgeuntersuchung">Folgeuntersuchung</option>
                 <option value="Allergieuntersuchung">Allergieuntersuchung</option>
@@ -1451,7 +1453,7 @@
             <input type="text" id="datePicker-6" placeholder="Datum und Uhrzeit auswählen">
             <p></p>
             <h3>Wählen Sie ihre Untersuchung aus</h3>
-            <select id="appointmentType-6" class="custom-select">
+            <select class="custom-select">
                 <option value="Erstuntersuchung">Erstuntersuchung</option>
                 <option value="Folgeuntersuchung">Folgeuntersuchung</option>
                 <option value="Allergieuntersuchung">Allergieuntersuchung</option>
@@ -1598,7 +1600,7 @@
             <input type="text" id="datePicker-7" placeholder="Datum und Uhrzeit auswählen">
             <p></p>
             <h3>Wählen Sie ihre Untersuchung aus</h3>
-            <select id="appointmentType-7" class="custom-select">
+            <select class="custom-select">
                 <option value="Erstuntersuchung">Erstuntersuchung</option>
                 <option value="Folgeuntersuchung">Folgeuntersuchung</option>
                 <option value="Allergieuntersuchung">Allergieuntersuchung</option>
@@ -1744,7 +1746,7 @@
             <input type="text" id="datePicker-8" placeholder="Datum und Uhrzeit auswählen">
             <p></p>
             <h3>Wählen Sie ihre Untersuchung aus</h3>
-            <select id="appointmentType-8" class="custom-select">
+            <select class="custom-select">
                 <option value="Erstuntersuchung">Erstuntersuchung</option>
                 <option value="Folgeuntersuchung">Folgeuntersuchung</option>
                 <option value="Allergieuntersuchung">Allergieuntersuchung</option>
