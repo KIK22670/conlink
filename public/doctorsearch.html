@@ -740,7 +740,7 @@
 
             // Ausgewähltes Datum und Arzt-ID abrufen
             const selectedDate = $(`#datePicker-${doctorId}`).val();
-            //const selectedDateSplitted = selectedDate.match(/(\d+)-(\d+)-(\d+) (\d+):(\d+)/);
+            const selectedDateSplitted = selectedDate.match(/(\d+)-(\d+)-(\d+) (\d+):(\d+)/);
             //console.log(selectedDateSplitted);
 
             //const appointmentType = document.querySelector(`#appointmentType-${doctorId}`).value;
@@ -753,8 +753,7 @@
 
             // Untersuchungstyp und Fachrichtung in der Variable kategorie speichern
             //const kategorie = `${appointmentType} beim ${fachrichtung} `;
-
-            //  selectedDate: `${selectedDateSplitted[3]}-${selectedDateSplitted[2]}-${selectedDateSplitted[1]}T${selectedDateSplitted[4]}:${selectedDateSplitted[5]}:00`
+            selectedDate: `${selectedDateSplitted[3]}-${selectedDateSplitted[2]}-${selectedDateSplitted[1]}T${selectedDateSplitted[4]}:${selectedDateSplitted[5]}:00`
 
             // AJAX-Anfrage zum Speichern der Buchung
             $.ajax({
@@ -763,7 +762,7 @@
                 contentType: 'application/json',
                 data: JSON.stringify({
                     doctorId: doctorId,
-                    selectedDate: selectedDate,
+                    selectedDate: `${selectedDateSplitted[3]}-${selectedDateSplitted[2]}-${selectedDateSplitted[1]}T${selectedDateSplitted[4]}:${selectedDateSplitted[5]}:00`,
                     kategorie: kategorie
                 }),
                 success: function (response) {
@@ -872,13 +871,6 @@
             <!-- Hier könnte weiterer Text oder HTML für den Kalender stehen -->
             <input type="text" id="datePicker-2" placeholder="Datum und Uhrzeit auswählen">
             <p></p>
-            <h3>Wählen Sie ihre Untersuchung aus</h3>
-            <select class="custom-select">
-                <option value="Erstuntersuchung">Erstuntersuchung</option>
-                <option value="Folgeuntersuchung">Folgeuntersuchung</option>
-                <option value="Allergieuntersuchung">Allergieuntersuchung</option>
-            </select>
-            <span class="custom-select-arrow"><i class="fa fa-chevron-down"></i></span>
 
             <div class="button-container">
                 <button onclick="buchungSpeichern(2)">Termin buchen</button>
@@ -1015,13 +1007,6 @@
             <!-- Hier könnte weiterer Text oder HTML für den Kalender stehen -->
             <input type="text" id="datePicker-3" placeholder="Datum und Uhrzeit auswählen">
             <p></p>
-            <h3>Wählen Sie ihre Untersuchung aus</h3>
-            <select class="custom-select">
-                <option value="Erstuntersuchung">Erstuntersuchung</option>
-                <option value="Folgeuntersuchung">Folgeuntersuchung</option>
-                <option value="Allergieuntersuchung">Allergieuntersuchung</option>
-            </select>
-            <span class="custom-select-arrow"><i class="fa fa-chevron-down"></i></span>
 
             <div class="button-container">
                 <button onclick="buchungSpeichern(3)">Termin buchen</button>
@@ -1158,13 +1143,6 @@
             <!-- Hier könnte weiterer Text oder HTML für den Kalender stehen -->
             <input type="text" id="datePicker-4" placeholder="Datum und Uhrzeit auswählen">
             <p></p>
-            <h3>Wählen Sie ihre Untersuchung aus</h3>
-            <select class="custom-select">
-                <option value="Erstuntersuchung">Erstuntersuchung</option>
-                <option value="Folgeuntersuchung">Folgeuntersuchung</option>
-                <option value="Allergieuntersuchung">Allergieuntersuchung</option>
-            </select>
-            <span class="custom-select-arrow"><i class="fa fa-chevron-down"></i></span>
 
             <div class="button-container">
                 <button onclick="buchungSpeichern(4)">Termin buchen</button>
@@ -1301,13 +1279,6 @@
             <!-- Hier könnte weiterer Text oder HTML für den Kalender stehen -->
             <input type="text" id="datePicker-5" placeholder="Datum und Uhrzeit auswählen">
             <p></p>
-            <h3>Wählen Sie ihre Untersuchung aus</h3>
-            <select class="custom-select">
-                <option value="Erstuntersuchung">Erstuntersuchung</option>
-                <option value="Folgeuntersuchung">Folgeuntersuchung</option>
-                <option value="Allergieuntersuchung">Allergieuntersuchung</option>
-            </select>
-            <span class="custom-select-arrow"><i class="fa fa-chevron-down"></i></span>
 
             <div class="button-container">
                 <button onclick="buchungSpeichern(5)">Termin buchen</button>
@@ -1453,12 +1424,6 @@
             <input type="text" id="datePicker-6" placeholder="Datum und Uhrzeit auswählen">
             <p></p>
             <h3>Wählen Sie ihre Untersuchung aus</h3>
-            <select class="custom-select">
-                <option value="Erstuntersuchung">Erstuntersuchung</option>
-                <option value="Folgeuntersuchung">Folgeuntersuchung</option>
-                <option value="Allergieuntersuchung">Allergieuntersuchung</option>
-            </select>
-            <span class="custom-select-arrow"><i class="fa fa-chevron-down"></i></span>
 
             <div class="button-container">
                 <button onclick="buchungSpeichern(6)">Termin buchen</button>
@@ -1599,13 +1564,6 @@
             <!-- Hier könnte weiterer Text oder HTML für den Kalender stehen -->
             <input type="text" id="datePicker-7" placeholder="Datum und Uhrzeit auswählen">
             <p></p>
-            <h3>Wählen Sie ihre Untersuchung aus</h3>
-            <select class="custom-select">
-                <option value="Erstuntersuchung">Erstuntersuchung</option>
-                <option value="Folgeuntersuchung">Folgeuntersuchung</option>
-                <option value="Allergieuntersuchung">Allergieuntersuchung</option>
-            </select>
-            <span class="custom-select-arrow"><i class="fa fa-chevron-down"></i></span>
 
             <div class="button-container">
                 <button onclick="buchungSpeichern(7)">Termin buchen</button>
@@ -1745,13 +1703,6 @@
             <!-- Hier könnte weiterer Text oder HTML für den Kalender stehen -->
             <input type="text" id="datePicker-8" placeholder="Datum und Uhrzeit auswählen">
             <p></p>
-            <h3>Wählen Sie ihre Untersuchung aus</h3>
-            <select class="custom-select">
-                <option value="Erstuntersuchung">Erstuntersuchung</option>
-                <option value="Folgeuntersuchung">Folgeuntersuchung</option>
-                <option value="Allergieuntersuchung">Allergieuntersuchung</option>
-            </select>
-            <span class="custom-select-arrow"><i class="fa fa-chevron-down"></i></span>
 
             <div class="button-container">
                 <button onclick="buchungSpeichern(8)">Termin buchen</button>
