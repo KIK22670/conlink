@@ -267,6 +267,9 @@ app.get('/ladeStammdaten', async (req, res) => {
 app.post('/speichereTermin', async (req, res) => {
   const { doctorId, selectedDate, kategorie } = req.body;//patientID
   console.log("DATUM:", selectedDate, "DoctorID:", doctorId, "Kategorie:", kategorie);//"PatientID:",patientID
+  const datetime = Date.parse(req.selectedDate);
+  console.log(datetime);
+
   try {
     const userID = req.session.user.id;
     console.log("dDie User ID", userID);

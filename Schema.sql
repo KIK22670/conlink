@@ -227,6 +227,6 @@ CREATE TABLE IF NOT EXISTS u_general_users (
   email VARCHAR(100)
   /* Add other necessary fields */
 );
--- Beispiel für die Erstellung der `p_stammdaten`-Spalte als JSON
+
 ALTER TABLE p_patienten
 ADD COLUMN IF NOT EXISTS p_stammdaten JSON;
