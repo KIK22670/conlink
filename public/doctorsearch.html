@@ -743,16 +743,16 @@
             //const selectedDateSplitted = selectedDate.match(/(\d+)-(\d+)-(\d+) (\d+):(\d+)/);
             //console.log(selectedDateSplitted);
 
-            //const appointmentType = document.querySelector(`#appointmentType-${doctorId}`).value;
+            const appointmentType = document.querySelector(`#appointmentType-${doctorId}`).value;
 
-            const kategorie = document.querySelector(`#container-box-${doctorId} .lt_richtung`).innerText.trim();
+            //const kategorie = document.querySelector(`#container-box-${doctorId} .lt_richtung`).innerText.trim();
 
 
             // Fachrichtung des Arztes abrufen
-            // const fachrichtung = document.querySelector(`#container-box-${doctorId} .lt_richtung`).innerText.trim();
+            const fachrichtung = document.querySelector(`#container-box-${doctorId} .lt_richtung`).innerText.trim();
 
             // Untersuchungstyp und Fachrichtung in der Variable kategorie speichern
-            //const kategorie = `${appointmentType} beim ${fachrichtung} `;
+            const kategorie = `${appointmentType}, ${fachrichtung} `;
 
             // AJAX-Anfrage zum Speichern der Buchung
             $.ajax({
