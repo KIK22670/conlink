@@ -555,24 +555,6 @@
                 },
             });
         });
-
-        /*function speichern() {
-            fetch('/speichern', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ selectedDate }),
-            })
-                .then(response => response.json())
-                .then(data => {
-                    console.log('Daten erfolgreich gespeichert:', data);
-                })
-                .catch(error => {
-                    console.error('Fehler beim Speichern der Daten:', error);
-                });
-        }
-        */
     </script>
 
 
@@ -583,11 +565,10 @@
         }
 
         function submitBewertung(profileNumber) {
-            // Get user input
             const bewertungText = document.getElementById(`bewertungText-${profileNumber}`).value;
             const bewertungRating = document.querySelector(`#bewertungForm-${profileNumber} input[name="bewertungRating"]:checked`);
 
-            // Validate user input
+
             if (!bewertungText || !bewertungRating) {
                 alert("Bitte füllen Sie alle Felder aus.");
                 return;
