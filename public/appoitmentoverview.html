@@ -62,6 +62,7 @@
 
     .resulttable {
       margin-right: 35%;
+
     }
   </style>
 </head>
@@ -119,64 +120,51 @@
   </div>
   <!-- Ende oberste Navbar -->
 
-  
   <div class="container">
     <div class="row">
-      <div class="col-md-12 text-center">
-        <h2>Termine verwalten</h2>
-      </div>
-    </div>
-  </div>
-
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12 text-center">
+      <div class="termin-button">
         <button type="button" class="btn btn-primary" onclick="holeTermine()">
-          <i class="bi bi-calendar"></i> Ihre Termine anzeigen
+          <i class="bi bi-calendar"></i> Ihre Termine
         </button>
       </div>
     </div>
   </div>
 
-  <div class="container mt-4">
+  <div class="container">
     <div class="row">
-      <div class="col-md-12">
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th scope="col">Datum</th>
-              <th scope="col">Typ</th>
-              <th scope="col">Aktionen</th> <!-- Neue Spalte für Aktionen -->
-            </tr>
-          </thead>
-          <tbody id="appointmentTableBody"></tbody>
-        </table>
+      <div class="off-button">
+        <button type="button" class="btn btn-primary" onclick="holeTermine(Date.now())">
+          <i class="bi bi-clock"></i> Offene Termine
+        </button>
       </div>
     </div>
   </div>
 
-
-  <!-- Modal für Notizen -->
-  <div class="modal fade" id="notesModal" tabindex="-1" role="dialog" aria-labelledby="notesModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="notesModalLabel">Notizen hinterlassen</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <textarea id="
-          notesTextarea" class="form-control" rows="5"></textarea>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Schließen</button>
-          <button type="button" class="btn btn-primary" onclick="saveNotes()">Speichern</button>
-        </div>
+  <div class="container">
+    <div class="row">
+      <div class="ver-button">
+        <button type="button" class="btn btn-primary" onclick="holeTermine(0, Date.now())">
+          <i class="bi bi-calendar-check"></i> Vergangene Termine
+        </button>
       </div>
     </div>
   </div>
+
+  <div class="container col-md-6">
+    <div class="resulttable">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Datum</th>
+            <th scope="col">Typ</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+  </div>
+
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       holeTermine();
@@ -192,34 +180,43 @@
       const table = document.querySelector("tbody");
       table.innerHTML = '';
 
+      // Fetch all appointments -- <td>${new Date(appointment.appointmentDate).toLocaleString()}</td>
       fetch("/holetermine")
         .then((response) => response.json())
         .then((appointments) => {
+
           appointments.filter(a => new Date(a.appointmentDate) <= dateTo && new Date(a.appointmentDate) >= dateFrom).forEach((appointment) => {
             const tr = document.createElement("tr");
             tr.innerHTML = `
-                <td>${format_date(new Date(appointment.appointmentDate))}</td>
-                <td>${appointment.appointmentTyp}</td>
-                <td>
-                    <button class="btn btn-primary" onclick="editAppointment(${appointment.id})">Bearbeiten</button>
-                    <button class="btn btn-danger" onclick="deleteAppointment(${appointment.id})">Löschen</button>
-                </td>
-            `;
+                        <td>${format_date(new Date(appointment.appointmentDate))}</td>
+                        <td>${appointment.appointmentTyp}</td>
+                      `;
             table.appendChild(tr);
           });
         });
     }
 
-    function editAppointment(appointmentId) {
-      // Hier Implementieren Sie die Logik zum Öffnen eines Modal oder einer anderen Bearbeitungsansicht
-      console.log('Bearbeiten des Termins mit ID:', appointmentId);
-    }
 
-    function deleteAppointment(appointmentId) {
-      // Hier Implementieren Sie die Logik zum Bestätigen des Löschens und zur Ausführung des Löschvorgangs
-      console.log('Löschen des Termins mit ID:', appointmentId);
-    }
+
   </script>
+
+  <!-- Footer -->
+  <!-- Hier wird der Footer von der Home-Seite wiederverwendet --
+    <div class="container-fluid bg-dark text-light border-top border-secondary py-4">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-md-0">&copy; <a class="text-primary" href="#">ConLink</a>. All Rights Reserved.
+                    </p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <a href="impressum.html" style="margin-right: 10px;">Impressum</a>
+                    <a href="datenschutz.html">Datenschutz</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    !-- Ende Footer -->
 
   <!-- JavaScript-Bibliotheken -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
