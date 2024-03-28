@@ -1,14 +1,8 @@
-// api.js
 const express = require('express');
 const router = express.Router();
 const client = require('./connection.js');
 const bcrypt = require('bcrypt');
 
-// Middleware, um die Verbindung zu öffnen
-//router.use((req, res, next) => {
-//    client.connect();
-//    next();
-//});
 router.use((req, res, next) => {
     // Überprüfe, ob ein Benutzer in der Sitzung gespeichert ist
     if (req.session.user) {
@@ -29,9 +23,6 @@ router.get('/aerzte', (req, res) => {
     });
 });
 
-
-
-// Registration route
 router.post('/registration', async (req, res) => {
     const { nameregister, emailregister, passwortregister } = req.body;
 
@@ -41,7 +32,7 @@ router.post('/registration', async (req, res) => {
 
         const query = {
             text: 'INSERT INTO u_userverwaltung(u_id, u_passwort, u_email) VALUES($1, $2, $3)',
-            values: [nameregister, emailregister, hashedPassword],
+            values: [nameregister, hashedPassword, emailregister],
         };
 
         // Insert user into the database
@@ -53,13 +44,12 @@ router.post('/registration', async (req, res) => {
     }
 });
 
-// Login route
 router.post('/login', async (req, res) => {
     const { email, passwort } = req.body;
 
     try {
         const query = {
-            text: 'SELECT * FROM users WHERE email = $1',
+            text: 'SELECT * FROM u_userverwaltung WHERE u_email = $1',
             values: [email],
         };
 
@@ -74,24 +64,19 @@ router.post('/login', async (req, res) => {
         const user = result.rows[0];
 
         // Compare the provided password with the stored hashed password
-        const isPasswordValid = await bcrypt.compare(passwort, req.session.user.u_passwort);
+        const isPasswordValid = await bcrypt.compare(passwort, user.u_passwort);
 
-    if (!isPasswordValid) {
-        // Invalid password
-        return res.status(401).json({ message: 'Invalid credentials' });
-    }
-        res.status(200).json({ message: 'Login successful', user: { id: user.id, name: user.name, email: user.email } });
+        if (!isPasswordValid) {
+            // Invalid password
+            return res.status(401).json({ message: 'Invalid credentials' });
+        }
+
+        req.session.user = { id: user.u_id, email: user.u_email }; // Set user session
+        res.status(200).json({ message: 'Login successful', user: { id: user.u_id, email: user.u_email } });
     } catch (error) {
         console.error(error);
         res.status(500).send('Internal Server Error');
     }
-});
-
-
-// Middleware, um die Verbindung zu schließen
-router.use((req, res, next) => {
-    client.end();
-    next();
 });
 
 module.exports = router;
